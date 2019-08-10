@@ -47,6 +47,14 @@
     background-color: #0f1e5d !important;
     border-color: #0f1e5d !important;
 }
+.container-fluid{
+  background-color: white;
+  padding-left: 5% !important;
+  padding-right: 5% !important;
+}
+#content-wrapper{
+  background-color: white !important;
+}
 </style>
 
   <meta charset="utf-8">

@@ -14,11 +14,16 @@ include('sidebar.php');
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
-<body>
+<body id="page-top">
 
-<div class="container">
-	<?php //require_once 'process.php';
+  <!-- Page Wrapper -->
+  <div id="wrapper" style="width: 100% !important;">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
+      <!-- Main Content -->
+        <div id="content">
+	<?php 
    	include('topbar.php');
 	$fetchid=0;
 	$result = mysqli_query($mysqli, "SELECT * FROM laboratory");
@@ -27,7 +32,7 @@ include('sidebar.php');
 	$fetchid = $res['lab_id'];
 }
 ?>
-
+<div class="container-fluid">
 	<?php
 		if(isset($_SESSION['message'])):
 	?>
@@ -168,13 +173,6 @@ include('sidebar.php');
 	</div>
 	
 	<br/>
-	<?php
-		function pre_r($array){
-			echo "<pre>";
-			print_r($array);
-			echo "</pre>";
-		}
-	?>
 	<!-- End Added Building Here-->
 	<?php
 	include('footer.php');

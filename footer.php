@@ -1,4 +1,6 @@
-<footer class="sticky-footer bg-white">
+<br>
+<br>
+<footer class="" style="width: 100%;">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; SYSTEMS PLUS COLLEGE FOUNDATION - ICTDU 2019</span>

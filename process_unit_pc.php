@@ -1,17 +1,9 @@
 <?php
-	/*
-	session_start();
-	$host = 'localhost';
-	$username = 'root';
-	$password = '';
-	$database = 'ppfo_inventory';
-
-	$mysqli = new mysqli($host,$username,$password,$database) or die(mysql_error($mysqli));
-	*/
+ 
 	include 'dbh.php';
 	$update_pc_unit = false;
-	//$building_name = '';
-	//$building_description='';
+
+	$current_username = $_SESSION['username'];
 	/*Add Computers*/
 	if(isset($_POST['save'])){
 		$unit_no = $_POST['unit_no'];
@@ -31,7 +23,7 @@
 			while($unit_no<$unit_last){
 				$unit_no++;
 				$unit_name = "PC".$unit_no;
-				$mysqli->query("INSERT INTO unit_pc (unit_no,unit_name,lab_id,building_id,date_added,status) VALUES('$unit_no','$unit_name','$lab_id','$building_id','$date','working')") or die($mysqli->error());;
+				$mysqli->query("INSERT INTO unit_pc (unit_no,unit_name,lab_id,building_id,date_added,status, added_by) VALUES('$unit_no','$unit_name','$lab_id','$building_id','$date','working','$current_username')") or die($mysqli->error());;
 			}
 		}
 		else{ 
@@ -45,7 +37,7 @@
 			while($unit_no<$unit_last){
 				$unit_no++;
 				$unit_name = "PC".$unit_no;
-				$mysqli->query("INSERT INTO unit_pc (unit_no,unit_name,lab_id,building_id,date_added,status) VALUES('$unit_no','$unit_name','$lab_id','$building_id','$date','working')") or die($mysqli->error());
+				$mysqli->query("INSERT INTO unit_pc (unit_no,unit_name,lab_id,building_id,date_added,status,added_by) VALUES('$unit_no','$unit_name','$lab_id','$building_id','$date','working','$current_username')") or die($mysqli->error());
 			}
 		}
 

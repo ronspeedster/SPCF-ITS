@@ -1,18 +1,10 @@
 <?php
-
-	/*session_start();
-	$host = 'localhost';
-	$username = 'root';
-	$password = '';
-	$database = 'ppfo_inventory';
-
-	$mysqli = new mysqli($host,$username,$password,$database) or die(mysql_error($mysqli));
-	*/
-
 	include 'dbh.php';
 	$update_laboratory = false;
 	$lab_name = '';
 	$lab_description='';
+
+	$userName = $_SESSION['username'];
 
 	if(isset($_POST['save'])){
 		$lab_id= $_POST['lab_id'];
@@ -22,7 +14,7 @@
 		$lab_name_strip = str_replace(' ', '', $lab_name);
 		$lab_code = substr($lab_name_strip, 0, 5).'00'.$lab_id;
 
-		$mysqli->query("INSERT INTO laboratory (lab_id,lab_code,lab_name,lab_description,building_id) VALUES('$lab_id','$lab_code','$lab_name','$lab_description','$building_id')");
+		$mysqli->query("INSERT INTO laboratory (lab_id,lab_code,lab_name,lab_description,building_id, added_by) VALUES('$lab_id','$lab_code','$lab_name','$lab_description','$building_id','$userName')");
 		
 		$_SESSION['message'] = "Record has been saved!";
 		$_SESSION['msg_type'] = "success";

@@ -14,7 +14,7 @@
 		$peripheral_description  = $_POST['monitor-description'];
 		$peripheral_serial_no  = strtoupper($_POST['monitor-serialno']);
 		$peripheral_date_purchased = $_POST['monitor-datepurchase'];
-		$peripheral_amount  = $_POST['monitor-amount'];
+		echo $peripheral_amount  = $_POST['monitor-amount'];
 		$peripheral_date_issued = $_POST['monitor-dateissue'];
 		$peripheral_remarks = $_POST['monitor-remarks'];
 

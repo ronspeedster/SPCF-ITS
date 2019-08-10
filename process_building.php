@@ -1,26 +1,22 @@
 <?php
-	/*
-	session_start();
-	$host = 'localhost';
-	$username = 'root';
-	$password = '';
-	$database = 'ppfo_inventory';
-
-	$mysqli = new mysqli($host,$username,$password,$database) or die(mysql_error($mysqli));
-	*/
 	include 'dbh.php';
 	$update_building = false;
 	$building_name = '';
 	$building_description='';
 
+	$userName = $_SESSION['username'];
+	
 	if(isset($_POST['save'])){
-		$building_id= $_POST['building_id'];
-		$building_name = strtoupper($_POST['building_name']);
-		$building_description = $_POST['building_description'];
-		$building_name_strip = str_replace(' ', '', $building_name);
-		$building_code = substr($building_name_strip, 0, 5).'00'.$building_id;
+		echo $building_id= $_POST['building_id'];
+		echo $building_name = strtoupper($_POST['building_name']);
+		echo $building_description = $_POST['building_description'];
+		echo $building_name_strip = str_replace(' ', '', $building_name);
 
-		$mysqli->query("INSERT INTO building (building_id,building_code,building_name,building_description) VALUES('$building_id','$building_code','$building_name','$building_description')");
+
+
+		echo $building_code = substr($building_name_strip, 0, 5).'00'.$building_id;
+
+		$mysqli->query("INSERT INTO building (building_id,building_code,building_name,building_description, added_by) VALUES('$building_id','$building_code','$building_name','$building_description','$userName')") or die ($mysqli->error());
 		$_SESSION['message'] = "Record has been saved!";
 		$_SESSION['msg_type'] = "success";
 

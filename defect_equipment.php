@@ -16,12 +16,17 @@ include('process_misc_things.php');
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
-<body>
-<div class="container">
-	<?php
-	include('topbar.php');
-?>
+<body id="page-top">
 
+  <!-- Page Wrapper -->
+  <div id="wrapper" style="width: 100% !important;">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+        <div id="content">
+	<?php include('topbar.php'); ?>
+<div class="container-fluid">
 	<?php
 		if(isset($_SESSION['message'])):
 	?>

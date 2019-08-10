@@ -20,12 +20,16 @@ $_SESSION['getURI'] = $getURI;
 </head>
 <body id="page-top">
 
-<div class="container">
-	<?php
-	include('topbar.php');
+  <!-- Page Wrapper -->
+  <div id="wrapper" style="width: 100% !important;">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-		if(isset($_SESSION['message'])):
-	?>
+      <!-- Main Content -->
+        <div id="content">
+	<?php include('topbar.php'); ?>
+<div class="container-fluid">
+	<?php if(isset($_SESSION['message'])): ?>
 	<div class="alert alert-<?=$_SESSION['msg_type']?> alert-dismissible">
 	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<?php

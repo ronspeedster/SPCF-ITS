@@ -1,5 +1,5 @@
 <?php
-//require_once 'process_misc_things.php';
+
 require_once 'dbh.php';
 $currentItem = 'building';
 include('sidebar.php');
@@ -15,17 +15,6 @@ if(!isset($_GET['id'])){
 else{
 	$buildingID = $_GET['id'];
 }
-/*
-while ($newBuildings=$getBuildings->fetch_assoc()) {
-	//$tab_menu .= "<a href='view_buildings.php?id=".$newBuildings['building_id']."' class='nav-link border-left-warning btn-success btn'>".$newBuildings['building_name']."</a> &nbsp;";
-	if(mysqli_num_rows($getBuildings)>=5){
-		$moreThan8 = true;
-		//To be built later
-	}
-	$tab_menu .= "<li class='nav-item'><a href='view_buildings.php?id=".$newBuildings['building_id']."' class='nav-link'>".$newBuildings['building_name']."</a></li> &nbsp;";
-	$buildingName[++$buildingCounter] = $newBuildings['building_name'];
-}
-*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,12 +26,19 @@ while ($newBuildings=$getBuildings->fetch_assoc()) {
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </head>
-<body>
-<div class="container">
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper" style="width: 100% !important;">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+        <div id="content">
 	<?php
 	include('topbar.php');
 ?>
-
+<div class="container-fluid">
 	<?php
 		if(isset($_SESSION['message'])):
 	?>

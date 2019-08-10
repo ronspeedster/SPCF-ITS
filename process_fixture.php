@@ -14,7 +14,7 @@
 		echo $batchID = strtoupper(str_replace(" ", "", $type).$batchID);
 		$startNo = 1;
 		while($startNo<=$qty){
-		$mysqli->query("INSERT INTO fixture (type, batch_code, building_id, lab_id, date_added, remarks) VALUES('$type','$batchID','$building_id','$laboratory_id','$date','OK')");
+		$mysqli->query("INSERT INTO fixture (type, batch_code, building_id, lab_id, date_added, remarks) VALUES('$type','$batchID','$building_id','$laboratory_id','$date','OK')") or die($mysqli->error());
 			$startNo++;
 		}
 
