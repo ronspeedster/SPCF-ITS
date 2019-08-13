@@ -55,6 +55,9 @@
 #content-wrapper{
   background-color: white !important;
 }
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  opacity: 0.7 !important; /* Firefox */
+}
 </style>
 
   <meta charset="utf-8">
@@ -137,6 +140,14 @@
             <a class="collapse-item" href="misc_things.php" style="display: none;">Add / Edit Misc. Things</a>
           </div>
         </div>
+      </li>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item <?php if($currentItem=='aircon'){echo 'active';} ?>">
+        <a class="nav-link" href="aircon.php">
+          <i class="fas fa-fan"></i>
+          <span>Air Conditioner</span>
+        </a>
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->

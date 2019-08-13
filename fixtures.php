@@ -99,6 +99,7 @@ $_SESSION['getURI'] = $getURI;
 					<option value="airconditioner">Air Conditioner</option>
 					<option value="officeTable">Office Table</option>
 					<option value="officeChair">Office Chair</option>
+					<option value="flourescentLights">Flourescent Lights</option>
 					<option disabled>Select Type</option>
 				</select>
 			</td>
@@ -142,7 +143,17 @@ $_SESSION['getURI'] = $getURI;
 					<td><?php echo $newFixtures['building_name']; ?></td>
 					<td><?php echo $newFixtures['lab_name']; ?></td>
 					<td><?php echo $newFixtures['remarks']; ?></td>
-					<td><a class="btn btn-info btn-sm" href="#"><i class="far fa-edit"></i> Edit</a></td>
+					<td><a class="btn btn-info btn-sm" target="_blank" href="edit_fixture.php?type=<?php echo $newFixtures['type']; ?>&id=<?php echo $newFixtures['id'];?>&building_id=<?php echo $newFixtures['building_id']; ?>"><i class="far fa-edit"></i> Edit</a>
+					<!-- Start Drop down Delete here -->
+						<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="far fa-trash-alt"></i> Delete
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton btn-sm">
+							You sure you want to delete? You cannot undo the changes<br/>
+						<a href="process_fixture.php?delete=<?php echo $newFixtures['id'] ?>" class='btn btn-danger btn-sm'><i class="far fa-trash-alt"></i> Confirm Delete</a>
+						<a href="#" class='btn btn-success btn-sm'><i class="far fa-window-close"></i> Cancel</a> 
+					</div>
+					</td>
 				</tr>
 			<?php } ?>
 			</tbody>

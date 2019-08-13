@@ -7,7 +7,7 @@ include('sidebar.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add / Edit Laboratories</title>
+	<title>Add / Edit Laboratories and Rooms</title>
 	
 	<script src="libs/js/bootstrap.min.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -72,7 +72,7 @@ include('sidebar.php');
 			echo "<h4>Edit ".$lab_name."</h4>";
 		}
 		else{
-			echo "<h4>Add Laboratories</h4>";
+			echo "<h4>Add Laboratories and Rooms</h4>";
 		}
 		?>
 	</h2>
