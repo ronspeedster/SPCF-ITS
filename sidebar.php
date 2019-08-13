@@ -198,6 +198,22 @@
           <i class="fas fa-band-aid"></i>
           <span>Fixed Equipment</span></a>
       </li>
+<!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item <?php if($currentItem=='forms'){echo 'active';} ?>">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#forms" aria-expanded="true" aria-controls="equipments">
+          <i class="fas fa-print"></i>
+          <span>Forms</span>
+        </a>
+        <div id="forms" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">SELECT FORMS:</h6>
+            <a class="collapse-item" href="request_maintenance.php">Maintenance Request Form</a>
+            <a class="collapse-item" href="edit_pc_equipment.php">View PC Equipments</a>
+            <a class="collapse-item" href="fixtures.php">Add / Edit Fixtures</a>
+            <a class="collapse-item" href="misc_things.php" style="display: none;">Add / Edit Misc. Things</a>
+          </div>
+        </div>
+      </li>      
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 

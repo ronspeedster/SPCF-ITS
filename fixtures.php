@@ -45,7 +45,7 @@ $_SESSION['getURI'] = $getURI;
 	//print_r($getBuilding);
 	?>
 
-	
+	<h3>Add / Edit Fixtures</h3>
 	<!-- Add Fixtures Here -->
 	<div class="row justify-content-center">
 		<form action="process_fixture.php" method="POST">

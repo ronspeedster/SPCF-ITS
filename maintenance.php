@@ -4,11 +4,22 @@ $getURI = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $_SESSION['getURI'] = $getURI;
 
 $counter=1;
+$department = '';
+$electrical = '';
+$mechanical = '';
+$carpentry = '';
+$janitorial = '';
+$others = '';
+$others_text = '';
+$request = '';
+$action_taken = '';
+$date_requested ='';
+$userName='';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add / Edit Fixtures</title>
+	<title>Maintenance Print Forms</title>
 	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap" rel="stylesheet">  
 	<style type="text/css">
@@ -17,7 +28,7 @@ $counter=1;
 	}
 	  html{
 	  font-family: 'Roboto Condensed', sans-serif !important;
-	  font-size: 13.5px;
+	  font-size: 12px;
 	  }
 	  input.date{
 	    width: 10px;
@@ -75,10 +86,24 @@ $counter=1;
 	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
-
-<?php while($counter<=3){$counter++;
+<a target="_blank" href="request_maintenance.php"><- Get Back</a> Hit CRTL + P to PRINT
+<?php
+if(isset($_GET['department'])){
+	$department = $_GET['department'];
+	$electrical = $_GET['electrical'];
+	$mechanical = $_GET['mechanical'];
+	$carpentry = $_GET['carpentry'];
+	$janitorial = $_GET['janitorial'];
+	$others = $_GET['others'];
+	$others_text = $_GET['others_text'];
+	$request = $_GET['request'];
+	$action_taken = $_GET['action_taken'];
+	$date_requested = $_GET['date'];
+	$userName=$_GET['userName'];
+	}
+while($counter<=3){$counter++;
 ?>
-	<div style="padding: 1%;" class="row justify-content-center">
+	<div style="padding: 1%; height: 4.5in" class="row justify-content-center">
 	<table class='table table-borderless' width="100%">
 		<tr>
 			<td>
@@ -89,90 +114,68 @@ $counter=1;
 				<h5>PHYSICAL PLANT AND AND FACILITIES FORM</h5>
 				<h3 class="font-weight-bold">MAINTENANCE REQUEST FORM</h3>
 			</td>
-			<td><img src="img/favicon.png" style="width: 0.75in;"></td>
+			<td><img src="img/PPFO.png" style="width: 0.75in;"></td>
 		</tr>
 	</table>
 	<table class="table table-borderless" width="100%" style="border-bottom: 1px dotted black !important;">
 		<tr>
 			<td colspan="5" style="text-align: left !important; width: 70%;">
-				Department: <div style="width: 100%; border-bottom: 1px solid black;"></div>
+				<b>Department:</b> <?php echo "<span style='font-size: 14px !important;'>".$department."</span>"; ?><div style="width: 100%; border-bottom: 1px solid black;"></div>
 			</td>
 			<td>
-				Date:<div style="width: 100%; border-bottom: 1px solid black;"></div>
+				<b>Date:</b> <?php echo "<span style='font-size: 14px !important;'>".$date_requested."</span>"; ?><div style="width: 100%; border-bottom: 1px solid black;"></div>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				Nature:
+				<b>Nature:</b>
 			</td>
 			<td>
-				<input type="checkbox" name="">
+				<input type="checkbox" name="" <?php if($electrical==1){echo 'checked';} ?> disabled>
 				Electrical
 			</td>
 			<td>
-				<input type="checkbox" name="">
+				<input type="checkbox" name="" <?php if($mechanical==1){echo 'checked';} ?> disabled>
 				Mechanical
 			</td>
 			<td>
-				<input type="checkbox" name="">
+				<input type="checkbox" name="" <?php if($carpentry==1){echo 'checked';} ?> disabled>
 				Carpentry
 			</td>
 			<td>
-				<input type="checkbox" name="">
+				<input type="checkbox" name="" <?php if($janitorial==1){echo 'checked';} ?> disabled>
 				Janitorial
 			</td>
 			<td>
-				<input type="checkbox" name="">
-				Others:<div style="width: 100%; border-bottom: 1px solid black;"></div>
+				<input type="checkbox" name="" <?php if($others==1){echo 'checked';} ?> disabled>
+				Others: <?php echo $others_text; ?><div style="width: 100%; border-bottom: 1px solid black;"></div>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="6">
-				Request:
+				<b>Request:</b> <?php echo "<span style='font-size: 14px !important;'>".$request."</span>"; ?>
 				<div style="width: 100%; border-bottom: 1px solid black;"></div><br>
-				<div style="width: 100%; border-bottom: 1px solid black;"></div><br>
-				<div style="width: 100%; border-bottom: 1px solid black;"></div>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="6">
-				Action Taken:
+				<b>Action Taken:</b> <?php echo $action_taken; ?>
 				<div style="width: 100%; border-bottom: 1px solid black;"></div><br>
-				<div style="width: 100%; border-bottom: 1px solid black;"></div><br>
-				<div style="width: 100%; border-bottom: 1px solid black;"></div>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="3">
-				Prepared By:<br><br>
+				<b>Prepared By:</b> <?php echo $userName; ?>
 				<div style="width: 60%; border-bottom: 1px solid black;"></div><br>
 			</td>
 			<td colspan="3">
-				Approved By:
-				<br><br>
-				<div style="width: 60%; border-bottom: 1px solid black;"></div><br>
+				<b>Approved By:</b> 
+				<div style="width: 60%; border-bottom: 1px solid black;"></div>
 				PPFO
 			</td>
 		</tr>		
 	</table>
 </div>
 <?php  } ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
