@@ -121,9 +121,9 @@
         <div id="buildings" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Customize Buildings:</h6>
-            <a class="collapse-item" href="building.php">Add / Edit Buildings</a>
-            <a class="collapse-item" href="laboratories.php">Add / Edit Laboratories and Rooms</a>
-             <a class="collapse-item" href="view_buildings.php">View Buildings, Labs and Rooms</a>
+            <a class="collapse-item" href="building.php"><i class="fas fa-fw fa-building"></i> Add / Edit Buildings</a>
+            <a class="collapse-item" href="laboratories.php"><i class="fas fa-person-booth"></i> Add / Edit Laboratories and Rooms</a>
+             <a class="collapse-item" href="view_buildings.php"><i class="fas fa-eye"></i> View Buildings, Labs and Rooms</a>
           </div>
         </div>
       </li>
@@ -136,17 +136,19 @@
         </a>
         <div id="equipments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Customize Computers:</h6>
-            <a class="collapse-item" href="unit_pc.php">Add PC Units</a>
-            <a class="collapse-item" href="edit_pc_equipment.php">View PC Equipments</a>
-            <a class="collapse-item" href="fixtures.php">Add / Edit Fixtures</a>
+            <h6 class="collapse-header">Customize Computers / Fictures:</h6>
+            <a class="collapse-item" href="unit_pc.php"><i class="fas fa-laptop"></i> Add PC Units</a>
+            <a class="collapse-item" href="edit_pc_equipment.php"><i class="fas fa-eye"></i> View PC Equipments</a>
+            <a class="collapse-item" href="fixtures.php"><i class="fas fa-couch"></i> Add / Edit Fixtures</a>
+            <h6 class="collapse-header">Customize Computers / Fictures:</h6>
+            <a class="collapse-item" href="aircon.php"><i class="fas fa-fan"></i> View Air Conditioners</a>
             <a class="collapse-item" href="misc_things.php" style="display: none;">Add / Edit Misc. Things</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item <?php if($currentItem=='aircon'){echo 'active';} ?>">
+      <li style="display: none;" class="nav-item <?php if($currentItem=='aircon'){echo 'active';} ?>">
         <a class="nav-link" href="aircon.php">
           <i class="fas fa-fan"></i>
           <span>Air Conditioner</span>
