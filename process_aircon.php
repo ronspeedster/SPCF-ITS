@@ -10,6 +10,6 @@
 		$_SESSION['message'] = "Fixture has been updated!";
 		$_SESSION['msg_type'] = "success";
 
-		//header('location: fixtures.php');
+		header('location: aircon.php');
 	}
 ?>
