@@ -1,7 +1,6 @@
 <?php
   $currentItem = 'dashboard';
   include('sidebar.php');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

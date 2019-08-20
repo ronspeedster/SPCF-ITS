@@ -22,6 +22,9 @@
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap" rel="stylesheet">  
 <style type="text/css">
+.dropdown-menu{
+  padding: 10px !important;
+}
 .topbar {
     height: 3rem !important;
 }
@@ -207,7 +210,8 @@
         <div id="forms" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">SELECT FORMS:</h6>
-            <a class="collapse-item" href="request_maintenance.php">Maintenance Request Form</a>
+            <a class="collapse-item" href="view_maintenance.php">View Request</a>
+            <a class="collapse-item" href="request_maintenance.php">New Maintenance Request</a>
             <a class="collapse-item" href="edit_pc_equipment.php">View PC Equipments</a>
             <a class="collapse-item" href="fixtures.php">Add / Edit Fixtures</a>
             <a class="collapse-item" href="misc_things.php" style="display: none;">Add / Edit Misc. Things</a>

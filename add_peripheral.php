@@ -88,7 +88,7 @@ $isUpdate = false;
 					<th >Date Purchased<font color="red">*</font></th>
 					<th style="display: none;">Amount<font color="red">*</font></th>
 					<th>Date Issued<font color="red">*</font></th>
-					<th style="width: 20%;">Remarks<font color="red">*</font></th>
+					<th style="width: 20%;" colspan="2">Remarks<font color="red">*</font></th>
 			</tr>
 			<?php
 				$getMonitor=$mysqli->query("SELECT * FROM peripherals WHERE unit_id=$PcId AND peripheral_type='Monitor'") or die ($mysqli->error());
@@ -110,13 +110,16 @@ $isUpdate = false;
  				<td style="display: none;"><input class="form-control" type="number" min="0" name="monitor-amount" value="<?php if($isMonitor){echo $newMonitor['peripheral_amount'];}else{echo '1';/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="date" name="monitor-dateissue" value="<?php if($isMonitor){echo $newMonitor['peripheral_date_issued'];}else{/*Do nothing*/}?>" required></td>
  				<td><input style="display: none;" class="form-control" type="text" value="<?php if($isMonitor){echo $newMonitor['remarks'];}else{/*Do nothing*/}?>">
- 					<select class='form-control' name='monitor-remarks'>
+ 					<select class='form-control' name='monitor-remarks'	disabled>
  						<option class='text-danger' value='<?php if($isMonitor){echo $newMonitor['remarks'];}else{echo 'Not For Repair';} ?>' selected><?php if($isMonitor){echo $newMonitor['remarks'];}else{echo 'Not For Repair';} ?></option>
  						<option value='Not For Repair'>Not For Repair</option>
  						<option value='For Repair'>For Repair</option>
  					</select>
  				</td>
  				<td>
+ 					<?php if($isMonitor){ ?>
+ 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newMonitor['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 					<?php } ?>
  				</td>
 			</tr>
 			<!-- End MONITOR -->
@@ -140,11 +143,16 @@ $isUpdate = false;
  				<td style="display: none;"><input class="form-control" type="number" min="0" name="keyboard-amount" value="<?php if($newKeyboard){echo $newKeyboard['peripheral_amount'];}else{echo '1';/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="date" name="keyboard-dateissue" value="<?php if($newKeyboard){echo $newKeyboard['peripheral_date_issued'];}else{/*Do nothing*/}?>" required></td>
  				<td><input style="display: none;" class="form-control" type="text" name="" value="<?php if($newKeyboard){echo $newKeyboard['remarks'];}else{/*Do nothing*/}?>">
-					<select class='form-control' name='keyboard-remarks'>
+					<select class='form-control' name='keyboard-remarks' disabled>
  						<option class='text-danger' value='<?php if($isKeyboard){echo $newKeyboard['remarks'];}else{echo 'Not For Repair';} ?>' selected><?php if($isKeyboard){echo $newKeyboard['remarks'];}else{echo 'Not For Repair';} ?></option>						
  						<option value='Not For Repair'>Not For Repair</option>
  						<option value='For Repair'>For Repair</option>
  					</select>
+ 				</td>
+ 				<td>
+ 					<?php if($isKeyboard){ ?>
+ 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newKeyboard['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 					<?php } ?> 					
  				</td>
 			</tr>
 			<!-- End Keyboard -->
@@ -168,11 +176,16 @@ $isUpdate = false;
  				<td style="display: none;"><input class="form-control" type="number" min="0" name="mouse-amount" value="<?php if($isMouse){echo $newMouse['peripheral_amount'];}else{echo '1';/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="date" name="mouse-dateissue" value="<?php if($isMouse){echo $newMouse['peripheral_date_issued'];}else{/*Do nothing*/}?>" required></td>
  				<td><input style="display: none;" class="form-control" type="text" name="" value="<?php if($isMouse){echo $newMouse['remarks'];}else{/*Do nothing*/}?>">
- 					<select class='form-control' name='mouse-remarks'>
+ 					<select class='form-control' name='mouse-remarks' disabled>
  						<option class='text-danger' value='<?php if($isMouse){echo $newMouse['remarks'];}else{echo 'Not For Repair';} ?>' selected><?php if($isMouse){echo $newMouse['remarks'];}else{echo 'Not For Repair';} ?></option>
  						<option value='Not For Repair'>Not For Repair</option>
  						<option value='For Repair'>For Repair</option>
  					</select>
+ 				</td>
+ 				<td>
+ 					<?php if($isMouse){ ?>
+ 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newMouse['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 					<?php } ?> 					
  				</td>
 			</tr>
 			<!-- End Mouse -->
@@ -196,11 +209,16 @@ $isUpdate = false;
  				<td style="display: none;"><input class="form-control" type="number" min="0" name="AVR-amount" value="<?php if($isAVR){echo $newAVR['peripheral_amount'];}else{echo '1';/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="date" name="AVR-dateissue" value="<?php if($isAVR){echo $newAVR['peripheral_date_issued'];}else{/*Do nothing*/}?>" required></td>
  				<td><input style="display: none;" class="form-control" type="text" name="" value="<?php if($isAVR){echo $newAVR['remarks'];}else{/*Do nothing*/}?>">
- 					<select class='form-control' name='AVR-remarks'>
+ 					<select class='form-control' name='AVR-remarks' disabled>
  						<option class='text-danger' value='<?php if($isAVR){echo $newAVR['remarks'];}else{echo 'Not For Repair';} ?>' selected><?php if($isAVR){echo $newAVR['remarks'];}else{echo 'Not For Repair';} ?></option>
  						<option value='Not For Repair'>Not For Repair</option>
  						<option value='For Repair'>For Repair</option>
  					</select>
+ 				</td>
+ 				<td>
+ 					<?php if($isAVR){ ?>
+ 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newAVR['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 					<?php } ?> 					
  				</td>
 			</tr>
 			<!-- End AVR -->
@@ -224,16 +242,21 @@ $isUpdate = false;
  				<td style="display: none;"><input class="form-control" type="number" min="0" name="headset-amount" value="<?php if($isHeadset){echo $newHeadset['peripheral_amount'];}else{echo '1';/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="date" name="headset-dateissue" value="<?php if($isHeadset){echo $newHeadset['peripheral_date_issued'];}else{/*Do nothing*/}?>" required></td>
  				<td><input style="display: none;" class="form-control" type="text"  value="<?php if($isHeadset){echo $newHeadset['remarks'];}else{/*Do nothing*/}?>">
- 					<select class='form-control' name="headset-remarks">
+ 					<select class='form-control' name="headset-remarks" disabled>
  						<option class='text-danger' value='<?php if($isHeadset){echo $newHeadset['remarks'];}else{echo 'Not For Repair';} ?>' selected><?php if($isHeadset){echo $newHeadset['remarks'];}else{echo 'Not For Repair';} ?></option>
  						<option value='Not For Repair'>Not For Repair</option>
  						<option value='For Repair'>For Repair</option>
  					</select>
  				</td>
+ 				<td>
+ 					<?php if($isHeadset){ ?>
+ 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newHeadset['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 					<?php } ?> 					
+ 				</td>
 			</tr>
 			<!-- End Headset -->
 			<tr>
-				<th colspan="6"><h5 class="" style="color: blue;"><?php echo $PcName." Components</h5>"; ?></th>
+				<th colspan="7"><h5 class="" style="color: blue;"><?php echo $PcName." Components</h5>"; ?></th>
 			</tr>
 			<!-- Start Processor -->
 			<?php
@@ -246,8 +269,6 @@ $isUpdate = false;
 					$isCPU = true;
 				}
 			?>
-			<tr>
-			</tr>
 			<tr>
 					<th>Type</th>
 					<th>Brand<font color="red">*</font></th>
@@ -267,11 +288,16 @@ $isUpdate = false;
  				<td style="display: none;"><input class="form-control" type="number" min="0" name="cpu-amount" value="<?php if($isCPU){echo $newCPU['peripheral_amount'];}else{echo '1';/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="date" name="cpu-dateissue" value="<?php if($isCPU){echo $newCPU['peripheral_date_issued'];}else{/*Do nothing*/}?>" required></td>
  				<td><input style="display: none;" class="form-control" type="text" value="<?php if($isCPU){echo $newCPU['remarks'];}else{/*Do nothing*/}?>">
- 					<select class='form-control' name="cpu-remarks">
+ 					<select class='form-control' name="cpu-remarks" disabled>
  						<option class='text-danger' value='<?php if($isCPU){echo $newCPU['remarks'];}else{echo 'Not For Repair';} ?>' selected><?php if($isCPU){echo $newCPU['remarks'];}else{echo 'Not For Repair';} ?></option>
  						<option value='Not For Repair'>Not For Repair</option>
  						<option value='For Repair'>For Repair</option>
  					</select>
+ 					</td>
+ 					<td>
+ 					<?php if($isCPU){ ?>
+ 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newCPU['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 					<?php } ?> 						
  					</td>
 			</tr>
 			<!-- End Processor -->
@@ -295,11 +321,16 @@ $isUpdate = false;
  				<td style="display: none;"><input class="form-control" type="number" min="0" name="motherboard-amount" value="<?php if($isMotherboard){echo $newMotherboard['peripheral_amount'];}else{echo '1';/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="date" name="motherboard-dateissue" value="<?php if($isMotherboard){echo $newMotherboard['peripheral_date_issued'];}else{/*Do nothing*/}?>" required></td>
  				<td><input style="display: none;" class="form-control" type="text" value="<?php if($isMotherboard){echo $newMotherboard['remarks'];}else{/*Do nothing*/}?>">
- 					<select class='form-control' name="motherboard-remarks">
+ 					<select class='form-control' name="motherboard-remarks" disabled>
  						<option class='text-danger' value='<?php if($isMotherboard){echo $newMotherboard['remarks'];}else{echo 'Not For Repair';} ?>' selected><?php if($isMotherboard){echo $newMotherboard['remarks'];}else{echo 'Not For Repair';} ?></option>
  						<option value='Not For Repair'>Not For Repair</option>
  						<option value='For Repair'>For Repair</option>
  					</select>
+ 				</td>
+ 				<td>
+ 					<?php if($isMotherboard){ ?>
+ 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newMotherboard['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 					<?php } ?> 					
  				</td>
 			</tr>
 			<!-- End Motherboard -->
@@ -323,11 +354,16 @@ $isUpdate = false;
  				<td style="display: none;"><input class="form-control" type="number" min="0" name="gpu-amount" value="<?php if($isGPU){echo $newGPU['peripheral_amount'];}else{echo '1';/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="date" name="gpu-dateissue" value="<?php if($isGPU){echo $newGPU['peripheral_date_issued'];}else{/*Do nothing*/}?>" required></td>
  				<td><input style="display: none;" class="form-control" type="text" value="<?php if($isGPU){echo $newGPU['remarks'];}else{/*Do nothing*/}?>">
- 					<select class='form-control' name="gpu-remarks">
+ 					<select class='form-control' name="gpu-remarks" disabled>
  						<option class='text-danger' value='<?php if($isGPU){echo $newGPU['remarks'];}else{echo 'Not For Repair';} ?>' selected><?php if($isGPU){echo $newGPU['remarks'];}else{echo 'Not For Repair';} ?></option>
  						<option value='Not For Repair'>Not For Repair</option>
  						<option value='For Repair'>For Repair</option>
  					</select>
+ 				</td>
+ 				<td>
+ 					<?php if($isGPU){ ?>
+ 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newGPU['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 					<?php } ?> 					
  				</td>
 			</tr>
 			<!-- End Motherboard -->
@@ -351,11 +387,16 @@ $isUpdate = false;
  				<td style="display: none;"><input class="form-control" type="number" min="0" name="ram-amount" value="<?php if($isRAM){echo $newRAM['peripheral_amount'];}else{echo '1';/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="date" name="ram-dateissue" value="<?php if($isRAM){echo $newRAM['peripheral_date_issued'];}else{/*Do nothing*/}?>" required></td>
  				<td><input style="display: none;" class="form-control" type="text" value="<?php if($isRAM){echo $newRAM['remarks'];}else{/*Do nothing*/}?>">
- 					<select class='form-control' name="ram-remarks">
+ 					<select class='form-control' name="ram-remarks" disabled>
  						<option class='text-danger' value='<?php if($isRAM){echo $newRAM['remarks'];}else{echo 'Not For Repair';} ?>' selected><?php if($isRAM){echo $newRAM['remarks'];}else{echo 'Not For Repair';} ?></option>
  						<option value='Not For Repair'>Not For Repair</option>
  						<option value='For Repair'>For Repair</option>
  					</select>
+ 				</td>
+ 				<td>
+ 					<?php if($isRAM){ ?>
+ 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newRAM['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 					<?php } ?> 	 					
  				</td>
 			</tr>
 			<!-- End RAM -->
@@ -378,12 +419,17 @@ $isUpdate = false;
  				<td><input class="form-control" type="date" name="hdd-datepurchase" value="<?php if($isHDD){echo $newHDD['peripheral_date_purchased'];}else{/*Do nothing*/}?>" required></td>
  				<td style="display: none;"><input class="form-control" type="number" min="0" name="hdd-amount" value="<?php if($isHDD){echo $newHDD['peripheral_amount'];}else{echo '1';/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="date" name="hdd-dateissue" value="<?php if($isHDD){echo $newHDD['peripheral_date_issued'];}else{/*Do nothing*/}?>" required></td>
- 				<td><input style="display: none;" class="form-control" type="text" value="<?php if($isHDD){echo $newHDD['remarks'];}else{/*Do nothing*/}?>">
- 					<select class='form-control' name="hdd-remarks">
+ 				<td><input style="display: none;" class="form-control" type="text" value="<?php if($isHDD){echo $newHDD['remarks'];}else{/*Do nothing*/}?>">	 					
+ 					<select class='form-control' name="hdd-remarks" disabled>
  						<option class='text-danger' value='<?php if($isHDD){echo $newHDD['remarks'];}else{echo 'Not For Repair';} ?>' selected><?php if($isHDD){echo $newHDD['remarks'];}else{echo 'Not For Repair';} ?></option>
  						<option value='Not For Repair'>Not For Repair</option>
  						<option value='For Repair'>For Repair</option>
  					</select>
+ 				</td>
+ 				<td>
+ 					<?php if($isHDD){ ?>
+ 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newHDD['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 					<?php } ?>  					
  				</td>
 			</tr>
 			<!-- End RAM -->

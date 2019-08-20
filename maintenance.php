@@ -88,18 +88,18 @@ $userName='';
 <body id="page-top">
 <a target="_blank" href="request_maintenance.php"><- Get Back</a> Hit CRTL + P to PRINT
 <?php
-if(isset($_GET['department'])){
-	$department = $_GET['department'];
-	$electrical = $_GET['electrical'];
-	$mechanical = $_GET['mechanical'];
-	$carpentry = $_GET['carpentry'];
-	$janitorial = $_GET['janitorial'];
-	$others = $_GET['others'];
-	$others_text = $_GET['others_text'];
-	$request = $_GET['request'];
-	$action_taken = $_GET['action_taken'];
-	$date_requested = $_GET['date'];
-	$userName=$_GET['userName'];
+	if(isset($_GET['department'])){
+		$department = $_GET['department'];
+		$electrical = $_GET['electrical'];
+		$mechanical = $_GET['mechanical'];
+		$carpentry = $_GET['carpentry'];
+		$janitorial = $_GET['janitorial'];
+		$others = $_GET['others'];
+		$others_text = $_GET['others_text'];
+		$request = $_GET['request'];
+		$action_taken = $_GET['action_taken'];
+		$date_requested = $_GET['date'];
+		$userName=$_GET['userName'];
 	}
 while($counter<=3){$counter++;
 ?>

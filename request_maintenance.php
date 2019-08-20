@@ -1,5 +1,5 @@
 <?php
-require_once 'dbh.php';
+require_once 'process_maintenance.php';
 $currentItem = 'forms';
 include('sidebar.php');
 $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
@@ -51,20 +51,22 @@ $currentDate = date('Y/m/d');
 	<div class="row">
 		<table class="table" width="100%">
 			<form action="process_maintenance.php"  method="POST">
+				<input type="text" name="id" value="<?php echo $id; ?>" style='visibility: hidden;'>
+				<input type="text" name="username" value="<?php echo $requested_by; ?>" style='visibility: hidden;'>
 			<tr>
 				<th>Department</th>
 				<th>Date</th>
 			</tr>
 			<tr>
-				<td><input type="text" class="form-control" name="department" placeholder="Department" required></td>
-				<td><input type="text" class="form-control" name="date" value="<?php echo $currentDate; ?>" readonly></td>
+				<td><input type="text" class="form-control" name="department" placeholder="Department Name" <?php if($editMaintenance==true){echo "value='$department' readonly";} ?> required></td>
+				<td><input type="text" class="form-control" name="date" value="<?php if($editMaintenance==false){echo $currentDate; }else{echo $date;}?>" readonly></td>
 			</tr>
 		</table>
 		<table class="table" width="100%">
-			<tr style="text-align: center !important;">
+			<tr style="text-align: center !important; <?php if($editMaintenance==true){echo 'visibility: hidden;';} ?>" >
 				<th colspan="5">Nature</th>
 			</tr>
-			<tr>
+			<tr <?php if($editMaintenance==true){echo "style='visibility: hidden;'";} ?>>
 				<td  style="width: 20%;">
 				<input type="hidden" id="" name="electrical"  value="0">
 				<input type="checkbox" name="electrical" class="form-check-input" value='1' checked>
@@ -85,18 +87,22 @@ $currentDate = date('Y/m/d');
 				<input type="hidden" id="" name="others"  value="0">
 				<input type="checkbox" name="others" value='1' />
 				Others:<br>
-				<textarea name="others_text" class="form-control" placeholder="Sample Text"></textarea>
+				<textarea name="others_text" class="form-control" placeholder="Others Text"></textarea>
 				</td>
 			</tr>
 			<tr>
-				<th colspan="5">Request: <textarea name="request" class="form-control" placeholder="Sample Text"></textarea></th>
+				<th colspan="5">Request: <textarea name="request" class="form-control" placeholder="Sample Text" <?php if($editMaintenance==true){ echo "readonly";} ?>><?php if($editMaintenance==true){ echo $request;} ?></textarea></th>
 			</tr>
 			<tr>
-				<th colspan="5">Action Taken: <textarea name="action_taken" class="form-control" placeholder="Sample Text"></textarea></th>
+				<th colspan="5">Action Taken: <textarea name="action_taken" class="form-control" placeholder="Action Taken to be filled in by PPFO" <?php if($editMaintenance==false){echo "readonly";}?>></textarea></th>
 			</tr>
 			<tr style="text-align: center;">
-				<td colspan="5"><button type="submit" class="btn btn-sm btn-primary" name="save"><i class="far fa-save"></i> Submit Request</button>
-				<a href="request_maintenance.php" class="btn btn-sm btn-danger"><i class="fas as fa-sync"></i> Clear Fields</a></td>
+				<?php if($editMaintenance==false){ ?>
+					<td colspan="5"><button type="submit" class="btn btn-sm btn-primary" name="save"><i class="far fa-save"></i> Submit Request</button>
+					<a href="request_maintenance.php" class="btn btn-sm btn-danger"><i class="fas as fa-sync"></i> Clear Fields</a>
+				<?php } else { ?>
+					<td colspan="5"><button type="submit" class="btn btn-sm btn-success" name="update"><i class="far fa-save"></i> Update Request</button>
+				<?php } ?></td>
 			</tr>
 		</table>
 	</form>
