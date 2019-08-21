@@ -300,4 +300,15 @@
 		$_SESSION['msg_type'] = "success";
 		header('location:'.$getURI);
 	}
+
+	if(isset($_POST['submit_fix_report'])){
+		echo $newPeripheralID = $_POST['peripheral_id'];
+		echo $remarks = $_POST['status'];
+		echo $condition = $_POST['condition'];
+		$mysqli->query("UPDATE peripherals SET remarks='$remarks', peripheral_condition='$condition' WHERE peripheral_id='$newPeripheralID'") or die ($mysqli->error());
+
+		$_SESSION['message'] = "PC Component's new details has been saved!";
+		$_SESSION['msg_type'] = "success";
+		header('location: for_repair.php');
+	}
 ?>

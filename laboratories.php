@@ -72,7 +72,7 @@ include('sidebar.php');
 			echo "<h4>Edit ".$lab_name."</h4>";
 		}
 		else{
-			echo "<h4>Add Laboratories and Rooms</h4>";
+			echo "<h5 style='color: blue;'><center>Add Laboratories and Rooms</center></h5>";
 		}
 		?>
 	</h2>
@@ -130,7 +130,7 @@ include('sidebar.php');
 	</div>		
 	<!-- End Building Here -->
 	<!-- Show Added laboratories Here-->
-	<h4>List of Rooms and Laboratories</h4>	
+	<h4 style='color: blue;' class="form-control">List of Rooms and Laboratories</h4>	
 	<br/>
 	<table class='table' id="dataTable" width="100%" cellspacing="0">
 		<thead>

@@ -85,10 +85,10 @@ $isUpdate = false;
 					<th>Brand<font color="red">*</font></th>
 					<th>Description</th>
 					<th>Serial Number</th>
-					<th >Date Purchased<font color="red">*</font></th>
+					<th>Date Purchased<font color="red" >*</font></th>
 					<th style="display: none;">Amount<font color="red">*</font></th>
 					<th>Date Issued<font color="red">*</font></th>
-					<th style="width: 20%;" colspan="2">Remarks<font color="red">*</font></th>
+					<th style="width: 25%;" colspan="2">Remarks<font color="red">*</font></th>
 			</tr>
 			<?php
 				$getMonitor=$mysqli->query("SELECT * FROM peripherals WHERE unit_id=$PcId AND peripheral_type='Monitor'") or die ($mysqli->error());
@@ -118,7 +118,7 @@ $isUpdate = false;
  				</td>
  				<td>
  					<?php if($isMonitor){ ?>
- 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newMonitor['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 						<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_peripherals.php?peripheral_id=<?php echo $newMonitor['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
  					<?php } ?>
  				</td>
 			</tr>
@@ -151,7 +151,7 @@ $isUpdate = false;
  				</td>
  				<td>
  					<?php if($isKeyboard){ ?>
- 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newKeyboard['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 						<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_peripherals.php?peripheral_id=<?php echo $newKeyboard['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
  					<?php } ?> 					
  				</td>
 			</tr>
@@ -184,7 +184,7 @@ $isUpdate = false;
  				</td>
  				<td>
  					<?php if($isMouse){ ?>
- 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newMouse['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 						<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_peripherals.php?peripheral_id=<?php echo $newMouse['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
  					<?php } ?> 					
  				</td>
 			</tr>
@@ -217,7 +217,7 @@ $isUpdate = false;
  				</td>
  				<td>
  					<?php if($isAVR){ ?>
- 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newAVR['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 						<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_peripherals.php?peripheral_id=<?php echo $newAVR['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
  					<?php } ?> 					
  				</td>
 			</tr>
@@ -250,7 +250,7 @@ $isUpdate = false;
  				</td>
  				<td>
  					<?php if($isHeadset){ ?>
- 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newHeadset['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 						<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_peripherals.php?peripheral_id=<?php echo $newHeadset['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
  					<?php } ?> 					
  				</td>
 			</tr>
@@ -277,7 +277,7 @@ $isUpdate = false;
 					<th>Date Purchased<font color="red">*</font></th>
 					<th style="display: none;">Amount<font color="red">*</font></th>
 					<th>Date Issued<font color="red">*</font></th>
-					<th>Remarks<font color="red">*</font></th>
+					<th style="width: 25%;" colspan="2">Remarks<font color="red">*</font></th>
 			</tr>
 			<tr>
 				<th>Processor (CPU)</th>
@@ -296,7 +296,7 @@ $isUpdate = false;
  					</td>
  					<td>
  					<?php if($isCPU){ ?>
- 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newCPU['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 						<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_peripherals.php?peripheral_id=<?php echo $newCPU['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
  					<?php } ?> 						
  					</td>
 			</tr>
@@ -329,7 +329,7 @@ $isUpdate = false;
  				</td>
  				<td>
  					<?php if($isMotherboard){ ?>
- 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newMotherboard['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 						<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_peripherals.php?peripheral_id=<?php echo $newMotherboard['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
  					<?php } ?> 					
  				</td>
 			</tr>
@@ -362,7 +362,7 @@ $isUpdate = false;
  				</td>
  				<td>
  					<?php if($isGPU){ ?>
- 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newGPU['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 						<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_peripherals.php?peripheral_id=<?php echo $newGPU['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
  					<?php } ?> 					
  				</td>
 			</tr>
@@ -395,7 +395,7 @@ $isUpdate = false;
  				</td>
  				<td>
  					<?php if($isRAM){ ?>
- 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newRAM['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 						<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_peripherals.php?peripheral_id=<?php echo $newRAM['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
  					<?php } ?> 	 					
  				</td>
 			</tr>
@@ -428,7 +428,7 @@ $isUpdate = false;
  				</td>
  				<td>
  					<?php if($isHDD){ ?>
- 						<a class='btn btn-sm btn-danger' href="report_peripherals.php?peripheral_id=<?php echo $newHDD['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+ 						<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_peripherals.php?peripheral_id=<?php echo $newHDD['peripheral_id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
  					<?php } ?>  					
  				</td>
 			</tr>

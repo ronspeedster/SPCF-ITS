@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="b09a2e5f-84bd-4083-9bea-25c95981e4a8" name="http://localhost/spcf-its/" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="C:\xampp\htdocs\SPCF-ITS" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

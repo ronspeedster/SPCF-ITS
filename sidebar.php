@@ -5,11 +5,11 @@
     }
 
     if(!isset($_SESSION['account'])){
-     header("Location: login.php");
+      header("Location: login.php");
     }
 
     if($_SESSION['account'] == 'user'){
-       header("Location: users");
+      header("Location: users");
     }
     else {
       // Do nothing
@@ -128,7 +128,7 @@
         </div>
       </li>
 
-      <!-- Nav Item - Pages Collapse Menu -->
+      <!-- Nav Items - Equipments -->
       <li class="nav-item <?php if($currentItem=='equipments'){echo 'active';} ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#equipments" aria-expanded="true" aria-controls="equipments">
           <i class="fas fa-toolbox"></i>
@@ -136,38 +136,52 @@
         </a>
         <div id="equipments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Customize Computers / Fictures:</h6>
+            <h6 class="collapse-header">Customize Computers:</h6>
             <a class="collapse-item" href="unit_pc.php"><i class="fas fa-laptop"></i> Add PC Units</a>
             <a class="collapse-item" href="edit_pc_equipment.php"><i class="fas fa-eye"></i> View PC Equipments</a>
+            <h6 class="collapse-header">Customize Fixtures:</h6>
             <a class="collapse-item" href="fixtures.php"><i class="fas fa-couch"></i> Add / Edit Fixtures</a>
-            <h6 class="collapse-header">Customize Computers / Fictures:</h6>
             <a class="collapse-item" href="aircon.php"><i class="fas fa-fan"></i> View Air Conditioners</a>
             <a class="collapse-item" href="misc_things.php" style="display: none;">Add / Edit Misc. Things</a>
           </div>
         </div>
       </li>
 
+      <!-- Nav Items - Repair -->
+      <li class="nav-item <?php if($currentItem=='for_repair'){echo 'active';} ?>">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#repair" aria-expanded="true" aria-controls="equipments">
+          <i class="fas fa-tools"></i>
+          <span>For Repairs</span>
+        </a>
+        <div id="repair" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">View For Repairs:</h6>
+            <a class="collapse-item" href="for_repair.php"><i class="fas fa-laptop"></i> View For Repair PC Peripherals</span></a>
+            <a class="collapse-item" href="for_repair_fixtures.php"><i class="fas fa-couch"></i> View For Repair Fixtures</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Items - Fixed Equipment -->
+      <li class="nav-item <?php if($currentItem=='fixed_equipment'){echo 'active';} ?>">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#fixed_equipment" aria-expanded="true" aria-controls="equipments">
+          <i class="fas fa-band-aid"></i>
+          <span>Fixed Equipments</span>
+        </a>
+        <div id="fixed_equipment" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">View Fixed Equioments:</h6>
+            <a class="collapse-item" href="fixed_peripherals.php"><i class="fas fa-laptop"></i> Fixed PC Peripherals</span></a>
+            <a class="collapse-item" href="fixed_fixtures.php"><i class="fas fa-couch"></i> Fixed Fixtures</a>
+          </div>
+        </div>
+      </li>      
       <!-- Nav Item - Pages Collapse Menu -->
       <li style="display: none;" class="nav-item <?php if($currentItem=='aircon'){echo 'active';} ?>">
         <a class="nav-link" href="aircon.php">
           <i class="fas fa-fan"></i>
           <span>Air Conditioner</span>
         </a>
-      </li>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li style="display: none;" class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
-          </div>
-        </div>
       </li>
 
       <!-- Nav Item - Equipment Transfer -->
@@ -184,23 +198,15 @@
       </li>
 
       <!-- Nav Item - Defective Equipment -->
-      <li class="nav-item <?php if($currentItem=='defect_equipment'){echo 'active';} ?>">
+      <li style="display: none;" class="nav-item <?php if($currentItem=='defect_equipment'){echo 'active';} ?>">
         <a class="nav-link" href="defect_equipment.php">
           <i class="fas fa-fw fa-unlink"></i>
           <span>Defective Equipment</span></a>
       </li>
 
-      <!-- Nav Item - For Repair -->
-      <li class="nav-item <?php if($currentItem=='for_repair'){echo 'active';} ?>">
-        <a class="nav-link" href="for_repair.php">
-          <i class="fas fa-tools"></i>
-          <span>For Repair</span></a>
-      </li>
-
       <!-- Nav Item - Fixed Equipment -->
-      <li class="nav-item">
+      <li style="display: none;" class="nav-item">
         <a class="nav-link" href="#">
-          <i class="fas fa-band-aid"></i>
           <span>Fixed Equipment</span></a>
       </li>
 <!-- Nav Item - Pages Collapse Menu -->
@@ -230,7 +236,7 @@
           <span>Accounts</span></a>
       </li>
       <!-- Nav Item - Archived -->
-      <li class="nav-item">
+      <li style="display: none;" class="nav-item">
         <a class="nav-link" href="#">
           <i class="fas fa-archive"></i>
           <span>Archived</span></a>

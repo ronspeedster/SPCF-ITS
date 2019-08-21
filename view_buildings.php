@@ -53,7 +53,7 @@ else{
 	<?php
 		endif;
 		
-		echo "<h5 style=''>View Buildings and Laboratories</h5>";
+		echo "<h5 style='color: blue;'><center>View Buildings and Laboratories</center></h5>";
 	?>
 
 	<ul class="nav">

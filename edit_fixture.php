@@ -61,8 +61,9 @@ $_SESSION['getURI'] = $getURI;
 			else{
 			?>
 			<label class="form-control"><a class="" href='fixtures.php'><-- Back to Fixtures </a></label>
-
-			<h4> Edit <?php echo $id.'. '. strtoupper($type); ?></h4>
+			<br/> <br/> <br/>
+			<h5 style='color: blue;'> Edit <?php echo $id.'. '. strtoupper($type); ?></h5>
+			<br/><br/>
 			<?php
 				$getFixture = mysqli_query($mysqli, "SELECT fe.id, fe.date_added, fe.serial_no, fe.type, fe.batch_code, fe.building_id, fe.lab_id, fe.remarks, bg.building_id, bg.building_name, ly.lab_id, ly.lab_name
 					FROM fixture fe

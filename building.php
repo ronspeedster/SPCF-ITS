@@ -63,14 +63,14 @@ include('sidebar.php');
 			echo "<h4>Edit ".$building_name." Building</h4>";
 		}
 		else{
-			echo "<h4>Add Building</h4>";
+			echo "<h5 style='color: blue;'><center>Add Building</centr></h5>";
 		}
 		?>
 	</h2>
 	<table class='table'>
 		<thead>
 			<tr>
-					<th>ID</th>
+					<th width="10%">ID</th>
 					<th>Building Name</th>
 					<th>Building Description</th>
 					<th colspan="2">Actions </th>
@@ -97,7 +97,7 @@ include('sidebar.php');
 	<!-- End Building Here -->
 	<!-- Show Added Building Here-->
 	<br/>
-	<h4>List of Buildings</h4>
+	<h5 style='color: blue;' class="form-control">List of Buildings</h4>
 	<table class="table" id="dataTable" width="100%" cellspacing="0">
 			<thead>
 				<tr>

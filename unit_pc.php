@@ -48,7 +48,7 @@ include('sidebar.php');
 	<!-- Add Building Here -->
 	<div class="row justify-content-center">
 	<form action="process_unit_pc.php" method="POST">
-	<h3><?php /*
+	<h5 style='color: blue;'><center><?php /*
 		if($update_building==true){
 			echo "<h4>Edit ".$building_name."</h4>";
 		}
@@ -57,7 +57,7 @@ include('sidebar.php');
 		}*/
 		?>
 		Add PC Unit
-	</h3>
+	</h5>
 	<table class='table'>
 		<thead>
 			<tr>
@@ -127,7 +127,7 @@ include('sidebar.php');
 	<!-- End Building Here -->
 	<!-- Show Added Building Here-->
 	<br/>
-	<h4>List of PC Unit (Preview)</h4>
+	<h5 class="form-control" style='color: blue;'>List of PC Unit (Preview)</h5>
 	<?php
 		$getPCResults = $mysqli->query("SELECT unit_pc.unit_no, unit_pc.unit_name, laboratory.lab_name, building.building_name FROM unit_pc JOIN laboratory ON unit_pc.lab_id = laboratory.lab_id JOIN building ON unit_pc.building_id = building.building_id") or die($mysqli->error());
 		//$numberPreview = 1;

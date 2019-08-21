@@ -9,7 +9,7 @@ include('process_misc_things.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>For Repair Peripherals</title>
+	<title>For Repair Fixtures</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<script src="js/demo/datatables-demo.js"></script>
@@ -42,7 +42,7 @@ include('process_misc_things.php');
 	</div>
 	<?php
 		endif;
-		echo "<h5 style='color: blue;'>For Repair PC Components and Peripherals</h5>";
+		echo "<h5 style='color: blue;'>For Repair Fixtures</h5>";
 	?>
 	<!-- Add Building Here -->
 	<div class="row justify-content-center">
@@ -68,7 +68,7 @@ include('process_misc_things.php');
 		}
 	?>
 
-	<table class="table">
+	<table class="table" style="display: none;">
 		<tr>
 			<th style="text-align: right;">Select Type: </th>
 			<th>
@@ -90,49 +90,38 @@ include('process_misc_things.php');
 			</th>
 		</tr>
 	</table>
-	<h5 style="color: blue;" class="form-control">List of Components and Peripherals currentlty in For Repair</h5>
+	<h5 style="color: blue; display: none;" class="form-control">List of Fixtures For Repair</h5>
 	<div class='row justify-content-center'>
 	<?php
-	if($current_type=="*"){
-		//$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE unit_id='StockRoom' AND remarks='ForRepair'");
-		$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE remarks='For Repair'");
-	}
-	else{
-		//$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE unit_id='StockRoom' AND peripheral_type='$current_type' AND remarks='ForRepair'");
-		$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE peripheral_type='$current_type' AND remarks='For Repair'");
-	}
+		$getFixtureForRepair = mysqli_query($mysqli, "SELECT * FROM fixture WHERE remarks='For Repair'");
 	?>
 	<table class="table" id="dataTable" width="100%" cellspacing="0">
 	<thead>
 		<tr>
 			<th>Type</th>
-			<th>Brand</th>
-			<th>Description</th>
+			<th>Batch ID</th>
 			<th>Serial ID</th>
-			<th>Date Purchased</th>
-			<th>Date Issued</th>
+			<th>Last Cleaned</th>
 			<th>Condition</th>
 			<th>For Repair?</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
 			<?php
-			if(mysqli_num_rows($getStockRooms)==0){
-				echo "<div class='alert alert-warning'>No ".$current_type." currently for repair</div>";
+			if(mysqli_num_rows($getFixtureForRepair)==0){
+				echo "<div class='alert alert-warning'>No Fixture(s) currently for repair</div>";
 			}
 			else{
-				while($perripheral_row=$getStockRooms->fetch_assoc()){ ?>
+				while($fixture_row=$getFixtureForRepair->fetch_assoc()){ ?>
 		<tr>
-			<td><?php echo $perripheral_row['peripheral_type']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_brand']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_description']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_serial_no']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_date_purchased']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_date_issued']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_condition']; ?></td>
-			<td><?php echo $perripheral_row['remarks']; ?></td>
+			<td><?php echo strtoupper($fixture_row['type']); ?></td>
+			<td><?php echo $fixture_row['batch_code']; ?></td>
+			<td><?php if($fixture_row['serial_no']==''){echo "<font color='red'>NO SN</font>";}else{echo $fixture_row['serial_no'];} ?></td>
+			<td><?php echo $fixture_row['date_last_clean']; ?></td>
+			<td><?php echo $fixture_row['fixture_condition']; ?></td>
+			<td><?php echo $fixture_row['remarks']; ?></td>
 			<td>
-			<a class="btn btn-success btn-secondary btn-sm" href="<?php echo 'report_peripherals.php?peripheral_id='.$perripheral_row['peripheral_id'].'&is_fix=true'; ?>"><i class="far fa-edit"></i> Edit</a>
+			<a target="_blank" class="btn btn-success btn-secondary btn-sm" href="<?php echo 'report_fixture.php'.'?fixture_id='.$fixture_row['id'].'&is_fix=true'; ?>"><i class="far fa-edit"></i> Edit</a>
 			<button style="display: none;" class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<i class="far fa-trash-alt"></i> Delete
 					</button><div class="dropdown-menu" aria-labelledby="dropdownMenuButton btn-sm">

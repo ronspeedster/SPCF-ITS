@@ -1,20 +1,20 @@
 <?php
-require_once 'process_add_peripheral.php';
+require_once 'process_fixture.php';
 $currentItem = 'equipments';
+
 $currentDate = date_default_timezone_set('Asia/Manila');
 $currentDate = date('Y/m/d');
-$is_fix = false;
-if(isset($_GET['peripheral_id'])){
-	$peripheral_id = $_GET['peripheral_id'];
+$fixture_id=0;
+if(isset($_GET['fixture_id'])){
+	$fixture_id = $_GET['fixture_id'];
 }
 else{
-	header('location: for_repair.php');
+	header('location: for_repair_fixtures.php');
 }
-
+$is_fix=false;
 if(isset($_GET['is_fix'])){
 	$is_fix = $_GET['is_fix'];
 }
-
 include('sidebar.php');
 ?>
 <!DOCTYPE html>
@@ -53,19 +53,19 @@ include('sidebar.php');
 	</div>
 	<?php
 		endif;
-		$getPeripheral = $mysqli->query("SELECT * FROM peripherals WHERE peripheral_id = '$peripheral_id'") or die ($mysqli->error);
-		$newPeripheral = $getPeripheral->fetch_array();
+		$getFixture = $mysqli->query("SELECT * FROM fixture WHERE id = '$fixture_id'") or die ($mysqli->error);
+		$newFixture = $getFixture->fetch_array();
 		if($is_fix==false){
-		echo "<h5 style='color: blue;'>Report Peripheral</h5>";
+			echo "<h5 style='color: blue;'>Report Peripheral</h5>";
 		}
 		else{
-		echo "<h5 style='color: blue;'>Edit Peripheral if fixed. Please add a note</h5>";	
+			echo "<h5 style='color: blue;'>Edit Fixture details. Please add a note</h5>";
 		}
 	?>
 	<!-- Send Report Here -->
 	<div class="row" <?php if($is_fix==true){echo "style='display: none;'";} ?>>
 		<table class="table" width="100%">
-			<form action="process_add_peripheral.php"  method="POST">
+			<form action="process_fixture.php"  method="POST">
 				<table class="table" width="100%">
 					<thead>
 						<th width="10%">ID</th>
@@ -75,22 +75,24 @@ include('sidebar.php');
 						<th>Action</th>
 					</thead>
 					<tr>
-						<td><input type="text" name='peripheral_id' class="form-control" value="<?php echo $newPeripheral['peripheral_id']; ?>" readonly></td>
-						<td><?php echo $newPeripheral['peripheral_type']; ?></td>
+						<td><input type="text" name='fixture_id' class="form-control" value="<?php echo $newFixture['id']; ?>" readonly></td>
+						<td><?php echo strtoupper($newFixture['type']); ?></td>
 						<td>
 							<select class="form-control" name='status'>
-	 						<option value='For Repair'>For Repair</option>
-	 						<option value='Not For Repair'>Not For Repair</option>
-	 						</select></td>
+		 						<option value='For Repair'>For Repair</option>
+		 						<option value='Not For Repair'>Not For Repair</option>
+	 						</select>
+	 					</td>
 						<td><textarea name="condition" class="form-control" style="min-height: 100px;" placeholder="Tell us something what happened to the peripheral" required></textarea></td>
 						<td><button type='submit' name="submit_report" class="btn btn-primary btn-sm"><i class="fas fa-file-import"></i> Send Report</a></td>
 					</tr>
 				</table>
 			</form>
 	</div>
+	<!-- Edit Report Here -->
 	<div class="row" <?php if($is_fix==false){echo "style='display: none;'";} ?>>
 		<table class="table" width="100%">
-			<form action="process_add_peripheral.php"  method="POST">
+			<form action="process_fixture.php"  method="POST">
 				<table class="table" width="100%">
 					<thead>
 						<th width="10%">ID</th>
@@ -100,13 +102,14 @@ include('sidebar.php');
 						<th>Action</th>
 					</thead>
 					<tr>
-						<td><input type="text" name='peripheral_id' class="form-control" value="<?php echo $newPeripheral['peripheral_id']; ?>" readonly></td>
-						<td><?php echo $newPeripheral['peripheral_type']; ?></td>
+						<td><input type="text" name='fixture_id' class="form-control" value="<?php echo $newFixture['id']; ?>" readonly></td>
+						<td><?php echo strtoupper($newFixture['type']); ?></td>
 						<td>
 							<select class="form-control" name='status'>
-	 						<option value='Fixed'>Fixed</option>
-	 						<option value='For Disposal'>For Disposal</option>
-	 						</select></td>
+		 						<option value='Fixed'>Fixed</option>
+		 						<option value='For Disposal'>For Disposal</option>
+	 						</select>
+	 					</td>
 						<td><textarea name="condition" class="form-control" style="min-height: 100px;" placeholder="Tell us something what happened to the peripheral" required></textarea></td>
 						<td><button type='submit' name="submit_fix_report" class="btn btn-primary btn-sm"><i class="fas fa-file-import"></i> Save Details</a></td>
 					</tr>

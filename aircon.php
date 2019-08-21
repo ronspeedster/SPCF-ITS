@@ -1,6 +1,6 @@
 <?php
 require_once 'process_aircon.php';
-$currentItem = 'aircon';
+$currentItem = 'equipments';
 include('sidebar.php');
 $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 $getURI = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -12,7 +12,7 @@ $currentDate = date("Y/m/d");
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Aircon</title>
+	<title>View Air-con</title>
 	<script src="libs/js/bootstrap.min.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -54,12 +54,12 @@ $currentDate = date("Y/m/d");
 
 	<div class="row">
 
-	<label><h4>Air Conditioners</h4></label>
+	<h5 style='color: blue;'>Air Conditioners</h5>
 
 	<table class="table" id="dataTable" width="100%" cellspacing="0">
 		<thead>
-			<th>ID</th>
-			<th>Type</th>
+			<th style="display: none;">ID</th>
+			<th style="display: none;">Type</th>
 			<th>Batch Code</th>
 			<th>Serial No</th>
 			<th>Building</th>
@@ -81,15 +81,18 @@ $currentDate = date("Y/m/d");
 				}
 				?>
 			<tr>
-				<td><?php echo $newFixtures['id']; ?></td>
-				<td><?php echo strtoupper($newFixtures['type']); ?></td>
+				<td style="display: none;"><?php echo $newFixtures['id']; ?></td>
+				<td style="display: none;"><?php echo strtoupper($newFixtures['type']); ?></td>
 				<td><?php echo $newFixtures['batch_code']; ?></td>
-				<td><?php echo $newFixtures['serial_no']; ?></td>
+				<td><?php if($newFixtures['serial_no']==''){echo "<font color='red'>NO SN</font>";} else { echo $newFixtures['serial_no']; }?></td>
 				<td><?php echo $newFixtures['building_name']; ?></td>
 				<td><?php echo $newFixtures['lab_name']; ?></td>
 				<td><?php echo date_format($lastCleanDate, 'F j, Y'); ?></td>
 				<td><?php echo $newDate;?></td>
-				<td><a class="btn btn-info btn-sm" href="edit_aircon.php?id=<?php echo $newFixtures['id'];?>&building_id=<?php echo $newFixtures['building_id']; ?>"><i class="far fa-edit"></i> Edit</a></td>
+				<td>
+					<a class="btn btn-info btn-sm" href="edit_aircon.php?id=<?php echo $newFixtures['id'];?>&building_id=<?php echo $newFixtures['building_id']; ?>"><i class="far fa-edit"></i> Edit</a>
+					<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_fixture.php?fixture_id=<?php echo $newFixtures['id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+				</td>
 			</tr>
 			<?php } ?>
 		</tbody>
@@ -100,8 +103,6 @@ $currentDate = date("Y/m/d");
 
 	<br/>
 	<br/>
-
-
-	<?php
+<?php
 	include('footer.php');
 ?>

@@ -62,7 +62,7 @@ $_SESSION['getURI'] = $getURI;
 	<table class='table'>
 		<thead>
 			<tr>
-				<td colspan="2"><center><h4>Search PC Unit</h4></center></td>
+				<td colspan="2"><center><h5 style='color: blue;'>Search PC Unit</h5></center></td>
 			</tr>
 			<tr>
 					<th><i class="fas fa-fw fa-building"></i> Select Building</th>
@@ -156,7 +156,7 @@ $_SESSION['getURI'] = $getURI;
 	
 
 	?>
-<label class="form-control">List of PC Units</label>
+<label class="form-control" style='color: blue;'>List of PC Units</label>
 		<table class='table' id="dataTable" cellspacing="0">
 			<thead>
 				<tr>
@@ -230,10 +230,13 @@ $_SESSION['getURI'] = $getURI;
 								echo '<br/>'.$newPeripherals['peripheral_type'].': '.$newPeripherals['peripheral_brand'].'<br/>';
 								echo 'Serial ID: ' .$newPeripherals['peripheral_serial_no'].'<br/>';
 							}
+
 						}
+
 					?>
 				  </div>
 				  <div class="modal-footer">
+				  	<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="add_peripheral.php?PcId=<?php echo $unit_id;?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
 					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
 				  </div>
 				</div>

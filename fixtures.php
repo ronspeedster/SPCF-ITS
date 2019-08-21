@@ -45,15 +45,15 @@ $_SESSION['getURI'] = $getURI;
 	//print_r($getBuilding);
 	?>
 
-	<h3>Add / Edit Fixtures</h3>
+	<h5 style='color: blue;'><center>Add / Edit Fixtures</center></h5>
 	<!-- Add Fixtures Here -->
 	<div class="row justify-content-center">
 		<form action="process_fixture.php" method="POST">
 		<table class='table' style="width: 100% !important;">
 			<tr>
-				<th>Building</th>
-				<th>Room / Laboratory</th>
-				<th>Fixture Type</th>
+				<th><i class="fas fa-fw fa-building"></i> Building</th>
+				<th><i class="fa fa-home" aria-hidden="true"></i> Room / Laboratory</th>
+				<th><i class="fas fa-couch"></i> Fixture Type</th>
 				<th>Qty</th>
 				<th>Actions</th>
 			</tr>
@@ -113,7 +113,7 @@ $_SESSION['getURI'] = $getURI;
 			</tr>	
 		</table>
 		</form>
-
+		<label style='color: blue;'class="form-control">List of PC Units</label>
 		<!-- Show Added Fixtures -->
 		<table class="table" id="dataTable" width="100%" cellspacing="0">
 			<thead>
@@ -139,12 +139,14 @@ $_SESSION['getURI'] = $getURI;
 				<tr>
 					<td><?php echo strtoupper($newFixtures['type']); ?></td>
 					<td><?php echo $newFixtures['batch_code']; ?></td>
-					<td><?php echo $newFixtures['serial_no']; ?></td>
+					<td><?php if($newFixtures['serial_no']==''){echo "<font color='red'>NO SN</font>";}else{echo $newFixtures['serial_no'];} ?></td>
 					<td><?php echo $newFixtures['building_name']; ?></td>
 					<td><?php echo $newFixtures['lab_name']; ?></td>
-					<td><?php echo $newFixtures['remarks']; ?></td>
-					<td><a class="btn btn-info btn-sm" target="_blank" href="edit_fixture.php?type=<?php echo $newFixtures['type']; ?>&id=<?php echo $newFixtures['id'];?>&building_id=<?php echo $newFixtures['building_id']; ?>"><i class="far fa-edit"></i> Edit</a>
-					<!-- Start Drop down Delete here -->
+					<td><?php if($newFixtures['remarks']=='For Repair'){echo "<font color='red'>".$newFixtures['remarks']."</font>";}else{echo $newFixtures['remarks'];} ?></td>
+					<td>
+						<a class="btn btn-info btn-sm" target="_blank" href="edit_fixture.php?type=<?php echo $newFixtures['type']; ?>&id=<?php echo $newFixtures['id'];?>&building_id=<?php echo $newFixtures['building_id']; ?>"><i class="far fa-edit"></i> Edit</a>
+						<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_fixture.php?fixture_id=<?php echo $newFixtures['id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+						<!-- Start Drop down Delete here -->
 						<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="far fa-trash-alt"></i> Delete
 						</button>

@@ -1,5 +1,5 @@
 <?php
-$currentItem='for_repair';
+$currentItem='fixed_equipment';
 include('sidebar.php');
 $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 $getURI = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -42,7 +42,7 @@ include('process_misc_things.php');
 	</div>
 	<?php
 		endif;
-		echo "<h5 style='color: blue;'>For Repair PC Components and Peripherals</h5>";
+		echo "<h5 style='color: blue;'>Fixed PC Peripherals and Components</h5>";
 	?>
 	<!-- Add Building Here -->
 	<div class="row justify-content-center">
@@ -90,16 +90,16 @@ include('process_misc_things.php');
 			</th>
 		</tr>
 	</table>
-	<h5 style="color: blue;" class="form-control">List of Components and Peripherals currentlty in For Repair</h5>
+	<h5 style="color: blue;" class="form-control">List of PC Equipments Fixed</h5>
 	<div class='row justify-content-center'>
 	<?php
 	if($current_type=="*"){
 		//$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE unit_id='StockRoom' AND remarks='ForRepair'");
-		$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE remarks='For Repair'");
+		$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE remarks='Fixed'");
 	}
 	else{
 		//$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE unit_id='StockRoom' AND peripheral_type='$current_type' AND remarks='ForRepair'");
-		$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE peripheral_type='$current_type' AND remarks='For Repair'");
+		$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE peripheral_type='$current_type' AND remarks='Fixed'");
 	}
 	?>
 	<table class="table" id="dataTable" width="100%" cellspacing="0">
@@ -112,13 +112,12 @@ include('process_misc_things.php');
 			<th>Date Purchased</th>
 			<th>Date Issued</th>
 			<th>Condition</th>
-			<th>For Repair?</th>
-			<th>Actions</th>
+			<th>Remarks</th>
 		</tr>
 	</thead>
 			<?php
 			if(mysqli_num_rows($getStockRooms)==0){
-				echo "<div class='alert alert-warning'>No ".$current_type." currently for repair</div>";
+				echo "<div class='alert alert-warning'>No ".$current_type." fixed</div>";
 			}
 			else{
 				while($perripheral_row=$getStockRooms->fetch_assoc()){ ?>
@@ -131,15 +130,6 @@ include('process_misc_things.php');
 			<td><?php echo $perripheral_row['peripheral_date_issued']; ?></td>
 			<td><?php echo $perripheral_row['peripheral_condition']; ?></td>
 			<td><?php echo $perripheral_row['remarks']; ?></td>
-			<td>
-			<a class="btn btn-success btn-secondary btn-sm" href="<?php echo 'report_peripherals.php?peripheral_id='.$perripheral_row['peripheral_id'].'&is_fix=true'; ?>"><i class="far fa-edit"></i> Edit</a>
-			<button style="display: none;" class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i class="far fa-trash-alt"></i> Delete
-					</button><div class="dropdown-menu" aria-labelledby="dropdownMenuButton btn-sm">
-					You sure you want to delete? You cannot undo the changes<br/>
-						<a href="process_misc_things.php?delete=<?php echo $perripheral_row['peripheral_id'] ?>" class='btn btn-danger btn-sm'><i class="far fa-trash-alt"></i> Confirm Delete</a>
-						<a href="#" class='btn btn-success btn-sm'><i class="far fa-window-close"></i> Cancel</a> 
-			</div></td>
 		</tr>
 			<?php	
 				}}

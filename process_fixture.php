@@ -24,7 +24,7 @@
 		$_SESSION['msg_type'] = "success";
 		header('location: fixtures.php');
 	}
-	//Update Ficture Details
+	//Update Fixture Details
 	if(isset($_POST['update'])){
 		echo $building_id =  $_POST['building_id'];
 		echo $laboratory_id =  $_POST['lab_id'];
@@ -35,7 +35,34 @@
 		$_SESSION['msg_type'] = "success";
 
 		header('location: fixtures.php');
+	}	
+
+	//Submit Report Fixtures
+	if(isset($_POST['submit_report'])){
+		echo $fixture_id =  $_POST['fixture_id'];
+		echo $status =  $_POST['status'];
+		echo $condition = $_POST['condition'];
+
+		$mysqli->query("UPDATE fixture SET remarks='$status', fixture_condition='$condition' WHERE id='$fixture_id'") or die($mysqli->error());
+
+		$_SESSION['message'] = "Fixture has been reported!";
+		$_SESSION['msg_type'] = "success";
+
+		header('location: fixtures.php');
 	}
+
+	if(isset($_POST['submit_fix_report'])){
+		echo $fixture_id =  $_POST['fixture_id'];
+		echo $status =  $_POST['status'];
+		echo $condition = $_POST['condition'];
+
+		$mysqli->query("UPDATE fixture SET remarks='$status', fixture_condition='$condition' WHERE id='$fixture_id'") or die($mysqli->error());
+
+		$_SESSION['message'] = "Fixture new details has been saved!";
+		$_SESSION['msg_type'] = "success";
+
+		header('location: for_repair_fixtures.php');
+	}	
 	
 	//Delete Fixture
 	if(isset($_GET['delete'])){

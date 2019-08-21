@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="spcf-its">
+  <component name="PublishConfigData" serverName="http://localhost/spcf-its/">
     <serverData>
-      <paths name="spcf-its">
+      <paths name="http://localhost/spcf-its/">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="SPCF-ITS" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
