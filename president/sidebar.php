@@ -14,9 +14,9 @@
     else if($_SESSION['account'] == 'lab_assistant'){
       header("Location: lab_assistant");
     }
-    else if($_SESSION['account'] == 'president'){
-      header("Location: president");
-    }
+    //else if($_SESSION['account'] == 'president'){
+     // header("Location: president");
+    //}
     else if($_SESSION['account'] == 'maintenance'){
       header("Location: maintenance");
     }
@@ -31,7 +31,7 @@
 <html lang="en">
 
 <head>
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap" rel="stylesheet">  
 <style type="text/css">
 .dropdown-menu{
@@ -86,7 +86,7 @@
   
   <link rel="icon" href="img/favicon.png" type="image/gif" sizes="16x16"> 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 

@@ -8,7 +8,7 @@
 		$newAccoount = $checkAccount->fetch_array();
 			$_SESSION['account'] = $newAccoount['account_type'];
 			$_SESSION['username'] = $newAccoount['full_name'];
-			$_SESSION['account_id'] = $newAccoount['id'];
+			
 			if($_SESSION['account']=="admin"){
 				header("location: index.php");
 			}

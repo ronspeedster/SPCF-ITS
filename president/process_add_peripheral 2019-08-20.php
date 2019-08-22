@@ -8,8 +8,6 @@
 	if(isset($_POST['save'])){
 		$unit_id = $_POST['unit_id'];
 		$peripheral_condition  = 'Working';
-		$peripheral_remarks = 'Not For Repair';
-
 		#Monitor
 		$peripheral_type = "Monitor";
 		$peripheral_brand = strtoupper($_POST['monitor-brand']);
@@ -18,7 +16,7 @@
 		$peripheral_date_purchased = $_POST['monitor-datepurchase'];
 		echo $peripheral_amount  = $_POST['monitor-amount'];
 		$peripheral_date_issued = $_POST['monitor-dateissue'];
-		#$peripheral_remarks = $_POST['monitor-remarks'];
+		$peripheral_remarks = $_POST['monitor-remarks'];
 
 		$mysqli->query("INSERT INTO peripherals (peripheral_type, peripheral_brand, peripheral_description, peripheral_serial_no, peripheral_date_purchased , peripheral_amount, peripheral_date_issued, peripheral_condition, remarks, unit_id, added_by) VALUES('$peripheral_type','$peripheral_brand','$peripheral_description','$peripheral_serial_no','$peripheral_date_purchased','$peripheral_amount','$peripheral_date_issued','$peripheral_condition','$peripheral_remarks','$unit_id','$current_username')") or die($mysqli->error());
 
@@ -30,7 +28,7 @@
 		$peripheral_date_purchased = $_POST['keyboard-datepurchase'];
 		$peripheral_amount  = $_POST['keyboard-amount'];
 		$peripheral_date_issued = $_POST['keyboard-dateissue'];
-		#$peripheral_remarks = $_POST['keyboard-remarks'];
+		$peripheral_remarks = $_POST['keyboard-remarks'];
 
 		$mysqli->query("INSERT INTO peripherals (peripheral_type, peripheral_brand, peripheral_description, peripheral_serial_no, peripheral_date_purchased , peripheral_amount, peripheral_date_issued, peripheral_condition, remarks, unit_id, added_by) VALUES('$peripheral_type','$peripheral_brand','$peripheral_description','$peripheral_serial_no','$peripheral_date_purchased','$peripheral_amount','$peripheral_date_issued','$peripheral_condition','$peripheral_remarks','$unit_id','$current_username')") or die($mysqli->error());
 
@@ -42,7 +40,7 @@
 		$peripheral_date_purchased = $_POST['mouse-datepurchase'];
 		$peripheral_amount  = $_POST['mouse-amount'];
 		$peripheral_date_issued = $_POST['mouse-dateissue'];
-		#$peripheral_remarks = $_POST['mouse-remarks'];
+		$peripheral_remarks = $_POST['mouse-remarks'];
 
 		$mysqli->query("INSERT INTO peripherals (peripheral_type, peripheral_brand, peripheral_description, peripheral_serial_no, peripheral_date_purchased , peripheral_amount, peripheral_date_issued, peripheral_condition, remarks, unit_id,added_by) VALUES('$peripheral_type','$peripheral_brand','$peripheral_description','$peripheral_serial_no','$peripheral_date_purchased','$peripheral_amount','$peripheral_date_issued','$peripheral_condition','$peripheral_remarks','$unit_id','$current_username')") or die($mysqli->error());
 
@@ -54,7 +52,7 @@
 		$peripheral_date_purchased = $_POST['AVR-datepurchase'];
 		$peripheral_amount  = $_POST['AVR-amount'];
 		$peripheral_date_issued = $_POST['AVR-dateissue'];
-		#$peripheral_remarks = $_POST['AVR-remarks'];
+		$peripheral_remarks = $_POST['AVR-remarks'];
 
 		$mysqli->query("INSERT INTO peripherals (peripheral_type, peripheral_brand, peripheral_description, peripheral_serial_no, peripheral_date_purchased , peripheral_amount, peripheral_date_issued, peripheral_condition, remarks, unit_id, added_by) VALUES('$peripheral_type','$peripheral_brand','$peripheral_description','$peripheral_serial_no','$peripheral_date_purchased','$peripheral_amount','$peripheral_date_issued','$peripheral_condition','$peripheral_remarks','$unit_id','$current_username')") or die($mysqli->error());
 
@@ -66,7 +64,7 @@
 		$peripheral_date_purchased = $_POST['headset-datepurchase'];
 		$peripheral_amount  = $_POST['headset-amount'];
 		$peripheral_date_issued = $_POST['headset-dateissue'];
-		#$peripheral_remarks = $_POST['headset-remarks'];
+		$peripheral_remarks = $_POST['headset-remarks'];
 
 		$mysqli->query("INSERT INTO peripherals (peripheral_type, peripheral_brand, peripheral_description, peripheral_serial_no, peripheral_date_purchased , peripheral_amount, peripheral_date_issued, peripheral_condition, remarks, unit_id,added_by) VALUES('$peripheral_type','$peripheral_brand','$peripheral_description','$peripheral_serial_no','$peripheral_date_purchased','$peripheral_amount','$peripheral_date_issued','$peripheral_condition','$peripheral_remarks','$unit_id','$current_username')") or die($mysqli->error());
 
@@ -78,7 +76,7 @@
 		$peripheral_date_purchased = $_POST['cpu-datepurchase'];
 		$peripheral_amount  = $_POST['cpu-amount'];
 		$peripheral_date_issued = $_POST['cpu-dateissue'];
-		#$peripheral_remarks = $_POST['cpu-remarks'];
+		$peripheral_remarks = $_POST['cpu-remarks'];
 
 		$mysqli->query("INSERT INTO peripherals (peripheral_type, peripheral_brand, peripheral_description, peripheral_serial_no, peripheral_date_purchased , peripheral_amount, peripheral_date_issued, peripheral_condition, remarks, unit_id,added_by) VALUES('$peripheral_type','$peripheral_brand','$peripheral_description','$peripheral_serial_no','$peripheral_date_purchased','$peripheral_amount','$peripheral_date_issued','$peripheral_condition','$peripheral_remarks','$unit_id','$current_username')") or die($mysqli->error());
 
@@ -90,7 +88,7 @@
 		$peripheral_date_purchased = $_POST['motherboard-datepurchase'];
 		$peripheral_amount  = $_POST['motherboard-amount'];
 		$peripheral_date_issued = $_POST['motherboard-dateissue'];
-		#$peripheral_remarks = $_POST['motherboard-remarks'];
+		$peripheral_remarks = $_POST['motherboard-remarks'];
 
 		$mysqli->query("INSERT INTO peripherals (peripheral_type, peripheral_brand, peripheral_description, peripheral_serial_no, peripheral_date_purchased , peripheral_amount, peripheral_date_issued, peripheral_condition, remarks, unit_id,added_by) VALUES('$peripheral_type','$peripheral_brand','$peripheral_description','$peripheral_serial_no','$peripheral_date_purchased','$peripheral_amount','$peripheral_date_issued','$peripheral_condition','$peripheral_remarks','$unit_id','$current_username')") or die($mysqli->error());
 
@@ -102,7 +100,7 @@
 		$peripheral_date_purchased = $_POST['gpu-datepurchase'];
 		$peripheral_amount  = $_POST['gpu-amount'];
 		$peripheral_date_issued = $_POST['gpu-dateissue'];
-		#$peripheral_remarks = $_POST['gpu-remarks'];
+		$peripheral_remarks = $_POST['gpu-remarks'];
 
 		$mysqli->query("INSERT INTO peripherals (peripheral_type, peripheral_brand, peripheral_description, peripheral_serial_no, peripheral_date_purchased , peripheral_amount, peripheral_date_issued, peripheral_condition, remarks, unit_id,added_by) VALUES('$peripheral_type','$peripheral_brand','$peripheral_description','$peripheral_serial_no','$peripheral_date_purchased','$peripheral_amount','$peripheral_date_issued','$peripheral_condition','$peripheral_remarks','$unit_id','$current_username')") or die($mysqli->error());
 		
@@ -114,7 +112,7 @@
 		$peripheral_date_purchased = $_POST['ram-datepurchase'];
 		$peripheral_amount  = $_POST['ram-amount'];
 		$peripheral_date_issued = $_POST['ram-dateissue'];
-		#$peripheral_remarks = $_POST['ram-remarks'];
+		$peripheral_remarks = $_POST['ram-remarks'];
 
 		$mysqli->query("INSERT INTO peripherals (peripheral_type, peripheral_brand, peripheral_description, peripheral_serial_no, peripheral_date_purchased , peripheral_amount, peripheral_date_issued, peripheral_condition, remarks, unit_id,added_by) VALUES('$peripheral_type','$peripheral_brand','$peripheral_description','$peripheral_serial_no','$peripheral_date_purchased','$peripheral_amount','$peripheral_date_issued','$peripheral_condition','$peripheral_remarks','$unit_id','$current_username')") or die($mysqli->error());
 
@@ -127,7 +125,7 @@
 		$peripheral_date_purchased = $_POST['hdd-datepurchase'];
 		$peripheral_amount  = $_POST['hdd-amount'];
 		$peripheral_date_issued = $_POST['hdd-dateissue'];
-		#s$peripheral_remarks = $_POST['hdd-remarks'];
+		$peripheral_remarks = $_POST['hdd-remarks'];
 
 		$mysqli->query("INSERT INTO peripherals (peripheral_type, peripheral_brand, peripheral_description, peripheral_serial_no, peripheral_date_purchased , peripheral_amount, peripheral_date_issued, peripheral_condition, remarks, unit_id,added_by) VALUES('$peripheral_type','$peripheral_brand','$peripheral_description','$peripheral_serial_no','$peripheral_date_purchased','$peripheral_amount','$peripheral_date_issued','$peripheral_condition','$peripheral_remarks','$unit_id','$current_username')") or die($mysqli->error());
 		
@@ -181,8 +179,9 @@
 		$peripheral_date_purchased = $_POST['monitor-datepurchase'];
 		$peripheral_amount  = $_POST['monitor-amount'];
 		$peripheral_date_issued = $_POST['monitor-dateissue'];
+		$peripheral_remarks = $_POST['monitor-remarks'];
 
-		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
+		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued', remarks='$peripheral_remarks' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
 
 		#Keyboard
 		$peripheral_type = "Keyboard";
@@ -192,8 +191,9 @@
 		$peripheral_date_purchased = $_POST['keyboard-datepurchase'];
 		$peripheral_amount  = $_POST['keyboard-amount'];
 		$peripheral_date_issued = $_POST['keyboard-dateissue'];
+		$peripheral_remarks = $_POST['keyboard-remarks'];
 		
-		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
+		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued', remarks='$peripheral_remarks' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
 		
 		#Mouse
 		$peripheral_type = "Mouse";
@@ -203,8 +203,9 @@
 		$peripheral_date_purchased = $_POST['mouse-datepurchase'];
 		$peripheral_amount  = $_POST['mouse-amount'];
 		$peripheral_date_issued = $_POST['mouse-dateissue'];
+		$peripheral_remarks = $_POST['mouse-remarks'];
 
-		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
+		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued', remarks='$peripheral_remarks' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
 
 		#AVR
 		$peripheral_type = "AVR";
@@ -214,8 +215,9 @@
 		$peripheral_date_purchased = $_POST['AVR-datepurchase'];
 		$peripheral_amount  = $_POST['AVR-amount'];
 		$peripheral_date_issued = $_POST['AVR-dateissue'];
+		$peripheral_remarks = $_POST['AVR-remarks'];
 
-		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
+		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued', remarks='$peripheral_remarks' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
 
 		#Headset
 		$peripheral_type = "Headset";
@@ -225,8 +227,9 @@
 		$peripheral_date_purchased = $_POST['headset-datepurchase'];
 		$peripheral_amount  = $_POST['headset-amount'];
 		$peripheral_date_issued = $_POST['headset-dateissue'];
+		$peripheral_remarks = $_POST['headset-remarks'];
 
-		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
+		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued', remarks='$peripheral_remarks' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
 
 		#CPU
 		$peripheral_type = "CPU";
@@ -236,8 +239,9 @@
 		$peripheral_date_purchased = $_POST['cpu-datepurchase'];
 		$peripheral_amount  = $_POST['cpu-amount'];
 		$peripheral_date_issued = $_POST['cpu-dateissue'];
+		$peripheral_remarks = $_POST['cpu-remarks'];
 
-		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
+		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued', remarks='$peripheral_remarks' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
 
 		#Motherboard
 		$peripheral_type = "Motherboard";
@@ -247,8 +251,9 @@
 		$peripheral_date_purchased = $_POST['motherboard-datepurchase'];
 		$peripheral_amount  = $_POST['motherboard-amount'];
 		$peripheral_date_issued = $_POST['motherboard-dateissue'];
+		$peripheral_remarks = $_POST['motherboard-remarks'];
 
-		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
+		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued', remarks='$peripheral_remarks' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
 
 		#GPU
 		$peripheral_type = "GPU";
@@ -258,8 +263,9 @@
 		$peripheral_date_purchased = $_POST['gpu-datepurchase'];
 		$peripheral_amount  = $_POST['gpu-amount'];
 		$peripheral_date_issued = $_POST['gpu-dateissue'];
+		$peripheral_remarks = $_POST['gpu-remarks'];
 
-		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());				
+		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued', remarks='$peripheral_remarks' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());				
 
 		#RAM
 		$peripheral_type = "RAM";
@@ -269,9 +275,10 @@
 		$peripheral_date_purchased = $_POST['ram-datepurchase'];
 		$peripheral_amount  = $_POST['ram-amount'];
 		$peripheral_date_issued = $_POST['ram-dateissue'];
+		$peripheral_remarks = $_POST['ram-remarks'];
 
 
-		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
+		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued', remarks='$peripheral_remarks' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
 
 		#HDD
 		$peripheral_type = "HDD";
@@ -281,37 +288,13 @@
 		$peripheral_date_purchased = $_POST['hdd-datepurchase'];
 		$peripheral_amount  = $_POST['hdd-amount'];
 		$peripheral_date_issued = $_POST['hdd-dateissue'];
+		$peripheral_remarks = $_POST['hdd-remarks'];
 		
-		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
+		$mysqli->query("UPDATE peripherals SET peripheral_brand='$peripheral_brand',peripheral_description='$peripheral_description', peripheral_serial_no='$peripheral_serial_no', peripheral_date_purchased='$peripheral_date_purchased', peripheral_amount='$peripheral_amount', peripheral_date_issued='$peripheral_date_issued', remarks='$peripheral_remarks' WHERE peripheral_type='$peripheral_type' AND unit_id='$unit_id'") or die ($mysqli->error());
 
 
 		$_SESSION['message'] = "Update success!";
 		$_SESSION['msg_type'] = "success";
 		header('location:'.$getURI);
-	}
-
-	//Submit Peripheral Report
-	if(isset($_POST['submit_report'])){
-		echo $newPeripheralID = $_POST['peripheral_id'];
-		echo $remarks = $_POST['status'];
-		echo $condition = $_POST['condition'];
-
-		$mysqli->query("UPDATE peripherals SET remarks='$remarks', peripheral_condition='$condition' WHERE peripheral_id='$newPeripheralID'") or die ($mysqli->error());
-
-		$_SESSION['message'] = "Problem Reported Successfully!";
-		$_SESSION['msg_type'] = "success";
-		header('location:'.$getURI);
-	}
-	//Submit Peripheral Fix Report
-	if(isset($_POST['submit_fix_report'])){
-		echo $newPeripheralID = $_POST['peripheral_id'];
-		echo $remarks = $_POST['status'];
-		echo $condition = $_POST['condition'];
-		
-		$mysqli->query("UPDATE peripherals SET remarks='$remarks', peripheral_condition='$condition' WHERE peripheral_id='$newPeripheralID'") or die ($mysqli->error());
-
-		$_SESSION['message'] = "PC Component's new details has been saved!";
-		$_SESSION['msg_type'] = "success";
-		header('location: for_repair.php');
 	}
 ?>

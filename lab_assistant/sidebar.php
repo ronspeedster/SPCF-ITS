@@ -1,19 +1,20 @@
-<?php
+<?php 
     if(!isset($_SESSION)) 
     { 
         session_start(); 
     }
 
     if(!isset($_SESSION['account'])){
-      header("Location: login.php");
+      header("Location: ../login.php");
     }
 
     if($_SESSION['account'] == 'user'){
       header("Location: users");
     }
-    else if($_SESSION['account'] == 'lab_assistant'){
-      header("Location: lab_assistant");
-    }
+    //Remove Lab assistant here if Lab Assistant is logged in
+    //else if($_SESSION['account'] == 'lab_assistant'){
+     // header("Location: index.php");
+    //}
     else if($_SESSION['account'] == 'president'){
       header("Location: president");
     }
@@ -31,7 +32,7 @@
 <html lang="en">
 
 <head>
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap" rel="stylesheet">  
 <style type="text/css">
 .dropdown-menu{
@@ -86,7 +87,7 @@
   
   <link rel="icon" href="img/favicon.png" type="image/gif" sizes="16x16"> 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -115,7 +116,6 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -124,8 +124,21 @@
         Actions
       </div>
 
+      <!-- Nav Item - PC Equipments -->
+      <li class="nav-item <?php if($currentItem=='equipments'){echo 'active';}?>">
+        <a class="nav-link" href="edit_pc_equipment.php">
+          <i class="fas fa-laptop"></i>
+          <span>PC Equipments</span></a>
+      </li>
+
+      <!-- Nav Item - Fixtures -->
+      <li class="nav-item <?php if($currentItem=='fixtures'){echo 'active';}?>">
+        <a class="nav-link" href="fixtures.php">
+          <i class="fas fa-couch"></i>
+          <span>Fixtures</span></a>
+      </li>
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item <?php if($currentItem=='building'){echo 'active';} ?>">
+      <li style="display: none;" class="nav-item <?php if($currentItem=='building'){echo 'active';} ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#buildings" aria-expanded="true" aria-controls="buildings">
           <i class="fas fa-fw fa-building"></i>
           <span>Buildings</span>
@@ -141,7 +154,7 @@
       </li>
 
       <!-- Nav Items - Equipments -->
-      <li class="nav-item <?php if($currentItem=='equipments'){echo 'active';} ?>">
+      <li style="display: none;" class="nav-item <?php if($currentItem=='equipments'){echo 'active';} ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#equipments" aria-expanded="true" aria-controls="equipments">
           <i class="fas fa-toolbox"></i>
           <span>Equipments</span>
@@ -203,7 +216,7 @@
           <span>Equipment Transfer</span></a>
       </li>
       <!-- Nav Item - Stock Rooms -->
-      <li class="nav-item <?php if($currentItem=='stock_room'){echo 'active';} ?>">
+      <li style="display: none;" class="nav-item <?php if($currentItem=='stock_room'){echo 'active';} ?>">
         <a class="nav-link" href="stock_room.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Stock Room</span></a>
@@ -235,8 +248,7 @@
           </div>
         </div>
       </li>      
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+
 
       <!-- Nav Item - Archived -->
       <li style="display: none;" class="nav-item">
@@ -244,25 +256,13 @@
           <i class="far fa-user-circle"></i>
           <span>Accounts</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="far fa-user-circle"></i>
-          <span>Accounts</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">CUSROMIZE USER ACCOUNTS:</h6>
-            <a class="collapse-item" href="accounts.php"><i class="fas fa-plus"></i> Add / Edit Accounts</a>
-            <a class="collapse-item" href="account_designation.php"><i class="fas fa-info"></i> Designate Accounts</a>
-          </div>
-        </div>
-      </li>
       <!-- Nav Item - Archived -->
       <li style="display: none;" class="nav-item">
         <a class="nav-link" href="#">
           <i class="fas fa-archive"></i>
           <span>Archived</span></a>
       </li>
+
       <!-- Nav Item - Utilities Collapse Menu -->
       <li style="display: none;" class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
