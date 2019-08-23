@@ -16,7 +16,7 @@ include('sidebar.php');
 <body id="page-top">
 
   <!-- Page Wrapper -->
-  <div id="wrapper" style="width: 100% !important;">
+  <div class="" id="wrapper" style="width: 100% !important;">
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 

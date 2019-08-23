@@ -123,42 +123,6 @@
       <div class="sidebar-heading">
         Actions
       </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item <?php if($currentItem=='building'){echo 'active';} ?>">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#buildings" aria-expanded="true" aria-controls="buildings">
-          <i class="fas fa-fw fa-building"></i>
-          <span>Buildings</span>
-        </a>
-        <div id="buildings" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Customize Buildings:</h6>
-            <a class="collapse-item" href="building.php"><i class="fas fa-fw fa-building"></i> Add / Edit Buildings</a>
-            <a class="collapse-item" href="laboratories.php"><i class="fas fa-person-booth"></i> Add / Edit Laboratories and Rooms</a>
-             <a class="collapse-item" href="view_buildings.php"><i class="fas fa-eye"></i> View Buildings, Labs and Rooms</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Items - Equipments -->
-      <li class="nav-item <?php if($currentItem=='equipments'){echo 'active';} ?>">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#equipments" aria-expanded="true" aria-controls="equipments">
-          <i class="fas fa-toolbox"></i>
-          <span>Equipments</span>
-        </a>
-        <div id="equipments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Customize Computers:</h6>
-            <a class="collapse-item" href="unit_pc.php"><i class="fas fa-laptop"></i> Add PC Units</a>
-            <a class="collapse-item" href="edit_pc_equipment.php"><i class="fas fa-eye"></i> View PC Equipments</a>
-            <h6 class="collapse-header">Customize Fixtures:</h6>
-            <a class="collapse-item" href="fixtures.php"><i class="fas fa-couch"></i> Add / Edit Fixtures</a>
-            <a class="collapse-item" href="aircon.php"><i class="fas fa-fan"></i> View Air Conditioners</a>
-            <a class="collapse-item" href="misc_things.php" style="display: none;">Add / Edit Misc. Things</a>
-          </div>
-        </div>
-      </li>
-
       <!-- Nav Items - Repair -->
       <li class="nav-item <?php if($currentItem=='for_repair'){echo 'active';} ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#repair" aria-expanded="true" aria-controls="equipments">
@@ -187,7 +151,64 @@
             <a class="collapse-item" href="fixed_fixtures.php"><i class="fas fa-couch"></i> Fixed Fixtures</a>
           </div>
         </div>
-      </li>      
+      </li>  
+      <!-- Nav Item - Stock Rooms -->
+      <li class="nav-item <?php if($currentItem=='stock_room'){echo 'active';} ?>">
+        <a class="nav-link" href="view_stock_room.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Stock Room</span></a>
+      </li>
+
+      <!-- Nav Item - Aircon -->
+      <li class="nav-item <?php if($currentItem=='equipments'){echo 'active';} ?>">
+        <a class="nav-link" href="aircon.php">
+          <i class="fas fa-fan"></i>
+          <span>Aircon</span></a>
+      </li>
+
+      <!-- Nav Item - Requests -->
+      <li class="nav-item <?php if($currentItem=='forms'){echo 'active';} ?>">
+        <a class="nav-link" href="view_maintenance.php">
+          <i class="fas fa-print"></i>
+          <span>Requests</span></a>
+      </li>
+      
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item <?php if($currentItem=='building'){echo 'active';} ?>" style='display: none;'>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#buildings" aria-expanded="true" aria-controls="buildings">
+          <i class="fas fa-fw fa-building"></i>
+          <span>Buildings</span>
+        </a>
+        <div id="buildings" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Customize Buildings:</h6>
+            <a class="collapse-item" href="building.php"><i class="fas fa-fw fa-building"></i> Add / Edit Buildings</a>
+            <a class="collapse-item" href="laboratories.php"><i class="fas fa-person-booth"></i> Add / Edit Laboratories and Rooms</a>
+             <a class="collapse-item" href="view_buildings.php"><i class="fas fa-eye"></i> View Buildings, Labs and Rooms</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Items - Equipments -->
+      <li class="nav-item <?php if($currentItem=='equipments'){echo 'active';} ?>" style='display: none;'>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#equipments" aria-expanded="true" aria-controls="equipments">
+          <i class="fas fa-toolbox"></i>
+          <span>Equipments</span>
+        </a>
+        <div id="equipments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Customize Computers:</h6>
+            <a class="collapse-item" href="unit_pc.php"><i class="fas fa-laptop"></i> Add PC Units</a>
+            <a class="collapse-item" href="edit_pc_equipment.php"><i class="fas fa-eye"></i> View PC Equipments</a>
+            <h6 class="collapse-header">Customize Fixtures:</h6>
+            <a class="collapse-item" href="fixtures.php"><i class="fas fa-couch"></i> Add / Edit Fixtures</a>
+            <a class="collapse-item" href="aircon.php"><i class="fas fa-fan"></i> View Air Conditioners</a>
+            <a class="collapse-item" href="misc_things.php" style="display: none;">Add / Edit Misc. Things</a>
+          </div>
+        </div>
+      </li>
+
+    
       <!-- Nav Item - Pages Collapse Menu -->
       <li style="display: none;" class="nav-item <?php if($currentItem=='aircon'){echo 'active';} ?>">
         <a class="nav-link" href="aircon.php">
@@ -202,12 +223,7 @@
           <i class="fas fa-dolly-flatbed"></i>
           <span>Equipment Transfer</span></a>
       </li>
-      <!-- Nav Item - Stock Rooms -->
-      <li class="nav-item <?php if($currentItem=='stock_room'){echo 'active';} ?>">
-        <a class="nav-link" href="stock_room.php">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Stock Room</span></a>
-      </li>
+
 
       <!-- Nav Item - Defective Equipment -->
       <li style="display: none;" class="nav-item <?php if($currentItem=='defect_equipment'){echo 'active';} ?>">
@@ -222,10 +238,10 @@
           <span>Fixed Equipment</span></a>
       </li>
 <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item <?php if($currentItem=='forms'){echo 'active';} ?>">
+      <li class="nav-item <?php if($currentItem=='forms'){echo 'active';} ?>" style='display: none;'>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#forms" aria-expanded="true" aria-controls="equipments">
           <i class="fas fa-print"></i>
-          <span>Forms</span>
+          <span>Form</span>
         </a>
         <div id="forms" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -244,7 +260,7 @@
           <i class="far fa-user-circle"></i>
           <span>Accounts</span></a>
       </li>
-      <li class="nav-item">
+      <li style="display: none;" class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="far fa-user-circle"></i>
           <span>Accounts</span>
@@ -311,8 +327,6 @@
         </div>
       </li>   
 
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

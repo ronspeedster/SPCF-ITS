@@ -12,8 +12,8 @@ include('process_misc_things.php');
 	<title>For Repair Peripherals</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	<script src="js/demo/datatables-demo.js"></script>
-	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<script src="../js/demo/datatables-demo.js"></script>
+	<link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
 
@@ -40,14 +40,14 @@ include('process_misc_things.php');
 
 		?>
 	</div>
-	<?php
-		endif;
-		echo "<h5 style='color: blue;'>Fixed PC Peripherals and Components</h5>";
-	?>
+	<?php endif; ?>
+<div class='card shadow row justify-content-center' style="padding: 20px;">
+	<h5 style='color: blue;'>Fixed PC Peripherals and Components</h5>
+
+
 	<!-- Add Building Here -->
 	<div class="row justify-content-center">
-	<form action="process_misc_things.php" method="POST">
-	</form>
+
 	</div>
 	<br/>
 	
@@ -90,8 +90,6 @@ include('process_misc_things.php');
 			</th>
 		</tr>
 	</table>
-	<h5 style="color: blue;" class="form-control">List of PC Equipments Fixed</h5>
-	<div class='row justify-content-center'>
 	<?php
 	if($current_type=="*"){
 		//$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE unit_id='StockRoom' AND remarks='ForRepair'");

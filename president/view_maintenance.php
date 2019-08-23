@@ -13,10 +13,10 @@ $currentDate = date('Y/m/d');
 <head>
 	<title>View Maintenance Request</title>
 
-	<script src="libs/js/bootstrap.min.min.js"></script>
+	<script src="../libs/js/bootstrap.min.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 <body id="page-top">
@@ -33,7 +33,7 @@ $currentDate = date('Y/m/d');
 ?>
 <div class="container-fluid">
 	<?php
-		if(isset($_SESSION['message'])):
+		if(isset($_SESSION['message'])){
 	?>
 	<div class="alert alert-<?=$_SESSION['msg_type']?> alert-dismissible">
 	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -43,13 +43,13 @@ $currentDate = date('Y/m/d');
 
 		?>
 	</div>
-	<?php
-		endif;
+	<?php }
 		$getMaintenanceRequests = $mysqli->query('SELECT * FROM maintenance') or die ($mysqli->error);
-		echo "<h5>View Maintenance Request</h5>";
-	?>
+		?>
+
+<div class="card shadow row" style="padding: 20px;">
+	<h5 class="text-primary">View Maintenance Request</h5>
 	<!-- Add Building Here -->
-	<div class="row">
 		<table id="dataTable" class="table" width="100%">
 			<thead>
 				<th>ID</th>
@@ -58,7 +58,7 @@ $currentDate = date('Y/m/d');
 				<th>Request</th>
 				<th>Action Taken</th>
 				<th>Requested by</th>
-				<th>Actions</th>
+				<th style="display: none;">Actions</th>
 			</thead>
 			<?php while($newMaintenanceRequest=$getMaintenanceRequests->fetch_assoc()){?>
 			<tr>
@@ -68,7 +68,7 @@ $currentDate = date('Y/m/d');
 				<td><?php echo $newMaintenanceRequest['request']; ?></td>
 				<td><?php echo $newMaintenanceRequest['action_taken']; ?></td>
 				<td><?php echo $newMaintenanceRequest['requested_by']; ?></td>
-				<td><a target='_blank' href="request_maintenance.php?edit=<?php echo $newMaintenanceRequest['id']; ?>" class="btn btn-info btn-sm"><i class="far fa-edit"></i> Edit</a>
+				<td style="display: none;"><a target='_blank' href="request_maintenance.php?edit=<?php echo $newMaintenanceRequest['id']; ?>" class="btn btn-info btn-sm"><i class="far fa-edit"></i> Edit</a>
 					<!-- Start Drop down Delete here -->
 					<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="far fa-trash-alt"></i> Delete

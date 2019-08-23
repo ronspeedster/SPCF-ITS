@@ -12,8 +12,8 @@ include('process_misc_things.php');
 	<title>For Repair Peripherals</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	<script src="js/demo/datatables-demo.js"></script>
-	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<script src="../js/demo/datatables-demo.js"></script>
+	<link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
 
@@ -42,16 +42,10 @@ include('process_misc_things.php');
 	</div>
 	<?php
 		endif;
-		echo "<h5 style='color: blue;'>For Repair PC Components and Peripherals</h5>";
-	?>
-	<!-- Add Building Here -->
-	<div class="row justify-content-center">
-	<form action="process_misc_things.php" method="POST">
-	</form>
-	</div>
-	<br/>
-	
-	<?php
+		?>
+	<div class='card shadow row justify-content-center' style="padding: 20px;">
+		<h5 style='color: blue;'>For Repair PC Components and Peripherals</h5>
+		<?php
 		$fileName = basename($_SERVER['PHP_SELF']);
 		if(!isset($_GET['type'])){
 			$current_type = '*';
@@ -90,8 +84,6 @@ include('process_misc_things.php');
 			</th>
 		</tr>
 	</table>
-	<h5 style="color: blue;" class="form-control">List of Components and Peripherals currentlty in For Repair</h5>
-	<div class='row justify-content-center'>
 	<?php
 	if($current_type=="*"){
 		//$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE unit_id='StockRoom' AND remarks='ForRepair'");
@@ -112,8 +104,7 @@ include('process_misc_things.php');
 			<th>Date Purchased</th>
 			<th>Date Issued</th>
 			<th>Condition</th>
-			<th>For Repair?</th>
-			<th>Actions</th>
+			<th style="display: none;">>Actions</th>
 		</tr>
 	</thead>
 			<?php
@@ -130,8 +121,7 @@ include('process_misc_things.php');
 			<td><?php echo $perripheral_row['peripheral_date_purchased']; ?></td>
 			<td><?php echo $perripheral_row['peripheral_date_issued']; ?></td>
 			<td><?php echo $perripheral_row['peripheral_condition']; ?></td>
-			<td><?php echo $perripheral_row['remarks']; ?></td>
-			<td>
+			<td style="display: none;">
 			<a class="btn btn-success btn-secondary btn-sm" href="<?php echo 'report_peripherals.php?peripheral_id='.$perripheral_row['peripheral_id'].'&is_fix=true'; ?>"><i class="far fa-edit"></i> Edit</a>
 			<button style="display: none;" class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<i class="far fa-trash-alt"></i> Delete

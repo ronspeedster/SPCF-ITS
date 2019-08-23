@@ -12,8 +12,8 @@ include('process_misc_things.php');
 	<title>For Repair Fixtures</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	<script src="js/demo/datatables-demo.js"></script>
-	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<script src="../js/demo/datatables-demo.js"></script>
+	<link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
 
@@ -28,7 +28,7 @@ include('process_misc_things.php');
 	include('topbar.php');
 ?>
 <div class="container-fluid">
-
+	<div class='card shadow row justify-content-center' style="padding: 20px;">
 	<?php
 		if(isset($_SESSION['message'])):
 	?>
@@ -68,7 +68,7 @@ include('process_misc_things.php');
 		}
 	?>
 
-	<table class="table" style="display: none;">
+	<table class="card shadow table" style="display: none;">
 		<tr>
 			<th style="text-align: right;">Select Type: </th>
 			<th>
@@ -90,8 +90,9 @@ include('process_misc_things.php');
 			</th>
 		</tr>
 	</table>
+
 	<h5 style="color: blue; display: none;" class="form-control">List of Fixtures For Repair</h5>
-	<div class='row justify-content-center'>
+	
 	<?php
 		$getFixtureForRepair = mysqli_query($mysqli, "SELECT * FROM fixture WHERE remarks='For Repair'");
 	?>
@@ -103,8 +104,8 @@ include('process_misc_things.php');
 			<th>Serial ID</th>
 			<th>Last Cleaned</th>
 			<th>Condition</th>
-			<th>For Repair?</th>
-			<th>Actions</th>
+			<th style="display: none;">For Repair?</th>
+			<th style="display: none;">Actions</th>
 		</tr>
 	</thead>
 			<?php
@@ -119,8 +120,8 @@ include('process_misc_things.php');
 			<td><?php if($fixture_row['serial_no']==''){echo "<font color='red'>NO SN</font>";}else{echo $fixture_row['serial_no'];} ?></td>
 			<td><?php echo $fixture_row['date_last_clean']; ?></td>
 			<td><?php echo $fixture_row['fixture_condition']; ?></td>
-			<td><?php echo $fixture_row['remarks']; ?></td>
-			<td>
+			<td style="display: none;"><?php echo $fixture_row['remarks']; ?></td>
+			<td style="display: none;">
 			<a target="_blank" class="btn btn-success btn-secondary btn-sm" href="<?php echo 'report_fixture.php'.'?fixture_id='.$fixture_row['id'].'&is_fix=true'; ?>"><i class="far fa-edit"></i> Edit</a>
 			<button style="display: none;" class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<i class="far fa-trash-alt"></i> Delete

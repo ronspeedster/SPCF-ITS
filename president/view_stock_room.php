@@ -12,10 +12,10 @@ $_SESSION['getURI'] = $getURI;
 <head>
 	<title>View - Stock Room</title>
 
-	<script src="libs/js/bootstrap.min.min.js"></script>
+	<script src="../libs/js/bootstrap.min.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 <body id="page-top">
@@ -43,11 +43,7 @@ $_SESSION['getURI'] = $getURI;
 	<?php
 		endif;
 	?>
-	<!-- Add Stock Item(s) Here -->
-	<div class="row justify-content-center">
-
-	</div>
-	<br/>
+	<div class=' card shadow row justify-content-center' style="padding: 1%;">
 	<h5 style="color: blue;">Stock Room Log View</h5>
 	<?php
 		$fileName = basename($_SERVER['PHP_SELF']);
@@ -87,7 +83,6 @@ $_SESSION['getURI'] = $getURI;
 			</td>
 		</tr>
 	</table>
-	<div class='row justify-content-center'>
 	<?php
 	if($current_type=="*"){
 		$getStockRooms = mysqli_query($mysqli, "SELECT * FROM stock_room");
@@ -134,7 +129,6 @@ $_SESSION['getURI'] = $getURI;
 				}}
 			?>
 	</table>
-		<center><a class='btn btn-info btn-sm' href="stock_room.php">Stock Room</a></center>
 	</div>
 <div class="separator" style="height: 200px;">
 	

@@ -13,10 +13,10 @@ $currentDate = date("Y/m/d");
 <html>
 <head>
 	<title>View Air-con</title>
-	<script src="libs/js/bootstrap.min.min.js"></script>
+	<script src="../libs/js/bootstrap.min.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
 
@@ -52,7 +52,7 @@ $currentDate = date("Y/m/d");
 			");
 	?>
 
-	<div class="row">
+	<div class="card shadow row" style="padding: 20px;">
 
 	<h5 style='color: blue;'>Air Conditioners</h5>
 
@@ -66,7 +66,7 @@ $currentDate = date("Y/m/d");
 			<th>Room</th>
 			<th>Date Last Cleaned</th>
 			<th>Next Cleaning</th>
-			<th>Actions</th>
+			<th style="display: none;">Actions</th>
 		</thead>
 		<tbody>
 			<?php while($newFixtures=$getFixtures->fetch_assoc()){
@@ -89,7 +89,7 @@ $currentDate = date("Y/m/d");
 				<td><?php echo $newFixtures['lab_name']; ?></td>
 				<td><?php echo date_format($lastCleanDate, 'F j, Y'); ?></td>
 				<td><?php echo $newDate;?></td>
-				<td>
+				<td style="display: none;">
 					<a class="btn btn-info btn-sm" href="edit_aircon.php?id=<?php echo $newFixtures['id'];?>&building_id=<?php echo $newFixtures['building_id']; ?>"><i class="far fa-edit"></i> Edit</a>
 					<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_fixture.php?fixture_id=<?php echo $newFixtures['id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
 				</td>
