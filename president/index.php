@@ -322,7 +322,7 @@
                       <th>Serial Code</th>
                       <th>Laboratory</th>
                       <th>Building</th>
-                      <th>Due Date<th>
+                      <th>Cleaning Date<th>
                     </thead>
                     <?php while($newAirconCleaning =$getAirconCleaning->fetch_assoc()){ ?>
                     <tr>
