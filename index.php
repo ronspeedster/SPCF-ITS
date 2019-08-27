@@ -403,24 +403,44 @@
                ?>
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Requests</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Pending Requests</h6>
                 </div>
                 <div class="card-body">
                   <table class="table">
                     <thead class="thead-dark">
                       <th>ID</th>
                       <th>Department</th>
-                      <th>Request</th>
-                      <th>Submitted by</th>
+                      <th>Date</th>
 
                     </thead>
                     <?php while($newRequest=$getRequest->fetch_assoc()){ ?>
                     <tr>
-                      <td><?php echo $newRequest['id']; ?></td>
-                      <td><?php echo ucfirst($newRequest['department']); ?></td>
-                      <td><?php echo $newRequest['request']; ?></td>
-                      <td><?php echo $newRequest['requested_by']; ?></td>
+                      <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#ModalID<?php echo $newRequest['id'];?>"><?php echo $newRequest['id']; ?></button></td>
+                      <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#ModalID<?php echo $newRequest['id'];?>"><?php echo ucfirst($newRequest['department']); ?></button></td>
+                      <td><?php echo ucfirst($newRequest['date_requested']); ?></td>
                     </tr>
+                    <!-- Modal For Request Here -->
+                    <div class="modal fade" id="ModalID<?php echo $newRequest['id'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Request ID: <?php echo $newRequest['id'].' by '.$newRequest['requested_by']; ?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        <!-- Contents Here -->
+                        <u>Note:</u><br/>
+                        <?php echo $newRequest['request']; ?>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="far fa-window-close"></i> Close</button>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                    <!-- End Modal For PC Equipments -->                    
                     <?php } ?>
                     <tr>
                       <?php if($requestMoreThan3){ ?>
@@ -449,5 +469,5 @@
 
       </div>
 
-      <?php include('footer.php');?>
-      <!-- End of Footer -->
+<?php include('footer.php');?>
+<!-- End of Footer -->

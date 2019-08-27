@@ -104,7 +104,7 @@ $currentDate = date('Y/m/d');
 				</div>
 			  </div>
 			</div>
-			<!-- End Modal For PC Equipments -->
+			<!-- End Modal For Request Here -->
 			<?php } ?>
 		</table>
 
