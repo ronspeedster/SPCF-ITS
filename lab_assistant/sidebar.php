@@ -16,13 +16,13 @@
      // header("Location: index.php");
     //}
     else if($_SESSION['account'] == 'president'){
-      header("Location: president");
+      header("Location: ../president");
     }
     else if($_SESSION['account'] == 'maintenance'){
-      header("Location: maintenance");
+      header("Location: ../maintenance");
     }
     else if($_SESSION['account'] == 'ppfo'){
-      header("Location: ppfo");
+      header("Location: ../ppfo");
     }
     else {
       // Do nothing

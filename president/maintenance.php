@@ -20,7 +20,7 @@ $userName='';
 <html>
 <head>
 	<title>Maintenance Print Forms</title>
-	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap" rel="stylesheet">  
 	<style type="text/css">
 	.topbar {
@@ -78,12 +78,12 @@ $userName='';
 	<meta name="author" content="">
 	<link rel="icon" href="img/favicon.png" type="image/gif" sizes="16x16"> 
 	<!-- Custom styles for this template-->
-	<link href="css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
-	<script src="libs/js/bootstrap.min.min.js"></script>
+	<script src="../libs/js/bootstrap.min.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
 <a target="_blank" href="request_maintenance.php"><- Get Back</a> Hit CRTL + P to PRINT

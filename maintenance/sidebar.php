@@ -9,17 +9,17 @@
     }
 
     if($_SESSION['account'] == 'user'){
-      header("Location: users");
+      header("Location: ../users");
     }
     else if($_SESSION['account'] == 'lab_assistant'){
       header("Location: ../lab_assistant");
     }
-    //else if($_SESSION['account'] == 'president'){
-     // header("Location: president");
-    //}
-    else if($_SESSION['account'] == 'maintenance'){
-      header("Location: ../maintenance");
+    else if($_SESSION['account'] == 'president'){
+      header("Location: ../resident");
     }
+    //else if($_SESSION['account'] == 'maintenance'){
+   //   header("Location: maintenance");
+    //}
     else if($_SESSION['account'] == 'ppfo'){
       header("Location: ../ppfo");
     }
@@ -152,12 +152,7 @@
           </div>
         </div>
       </li>  
-      <!-- Nav Item - Stock Rooms -->
-      <li class="nav-item <?php if($currentItem=='stock_room'){echo 'active';} ?>">
-        <a class="nav-link" href="view_stock_room.php">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Stock Room</span></a>
-      </li>
+
 
       <!-- Nav Item - Aircon -->
       <li class="nav-item <?php if($currentItem=='equipments'){echo 'active';} ?>">
@@ -165,7 +160,12 @@
           <i class="fas fa-fan"></i>
           <span>Aircon</span></a>
       </li>
-
+      <!-- Nav Item - Stock Rooms -->
+      <li class="nav-item <?php if($currentItem=='stock_room'){echo 'active';} ?>">
+        <a class="nav-link" href="stock_room.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Stock Room</span></a>
+      </li>
       <!-- Nav Item - Requests -->
       <li class="nav-item <?php if($currentItem=='forms'){echo 'active';} ?>">
         <a class="nav-link" href="view_maintenance.php">
