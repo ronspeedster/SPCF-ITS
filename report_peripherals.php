@@ -63,7 +63,7 @@ include('sidebar.php');
 		}
 	?>
 	<!-- Send Report Here -->
-	<div class="row" <?php if($is_fix==true){echo "style='display: none;'";} ?>>
+	<div class="card shadow row" <?php if($is_fix==true){echo "style='display: none;'";} ?>>
 		<table class="table" width="100%">
 			<form action="process_add_peripheral.php"  method="POST">
 				<table class="table" width="100%">
@@ -88,7 +88,7 @@ include('sidebar.php');
 				</table>
 			</form>
 	</div>
-	<div class="row" <?php if($is_fix==false){echo "style='display: none;'";} ?>>
+	<div class="card shadow row" <?php if($is_fix==false){echo "style='display: none;'";} ?>>
 		<table class="table" width="100%">
 			<form action="process_add_peripheral.php"  method="POST">
 				<table class="table" width="100%">

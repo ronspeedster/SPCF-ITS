@@ -33,7 +33,7 @@ $currentDate = date('Y/m/d');
 ?>
 <div class="container-fluid">
 	<?php
-		if(isset($_SESSION['message'])):
+		if(isset($_SESSION['message'])){
 	?>
 	<div class="alert alert-<?=$_SESSION['msg_type']?> alert-dismissible">
 	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -44,12 +44,13 @@ $currentDate = date('Y/m/d');
 		?>
 	</div>
 	<?php
-		endif;
+		}
 		$getMaintenanceRequests = $mysqli->query('SELECT * FROM maintenance') or die ($mysqli->error);
-		echo "<h5>View Maintenance Request</h5>";
+		
 	?>
 	<!-- Add Building Here -->
-	<div class="row">
+	<div class="card shadow row" style="padding: 1%">
+		<h5>View Maintenance Request</h5>
 		<table id="dataTable" class="table" width="100%">
 			<thead>
 				<th>ID</th>

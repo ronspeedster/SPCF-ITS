@@ -59,7 +59,7 @@ else{
 	<ul class="nav">
 		<?php //echo $tab_menu; ?>
 	</ul>
-	<!-- Add Building Here -->
+	<!-- Show Building Here -->
 	<div class="row">
 	<select class="form-control" onchange="location = this.value;">
 		<option selected disabled>Select Building</option>

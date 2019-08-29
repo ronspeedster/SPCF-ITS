@@ -38,14 +38,14 @@
 		echo $request = $_POST['request'];
 		echo $action_taken = $_POST['action_taken'];
 		echo $id = $_POST['id'];
-		echo $username = $_POST['username'];
+		echo $requested_by = $_POST['requested_by'];
 		
 		$mysqli->query("UPDATE maintenance SET action_taken='$action_taken' WHERE id='$id'") or die($mysqli->error());
 
 		$_SESSION['message'] = "Request has been updated! ";
 		$_SESSION['msg_type'] = "success";
 
-		$newURL = "maintenance.php?department=".$department."&electrical=".$electrical."&mechanical=".$mechanical."&carpentry=".$carpentry."&janitorial=".$janitorial."&others=".$others."&others_text=".$others_text."&request=".$request."&action_taken=".$action_taken."&date=".$currentDate."&userName=".$userName;
+		$newURL = "maintenance.php?department=".$department."&electrical=".$electrical."&mechanical=".$mechanical."&carpentry=".$carpentry."&janitorial=".$janitorial."&others=".$others."&others_text=".$others_text."&request=".$request."&action_taken=".$action_taken."&date=".$currentDate."&userName=".$requested_by;
 		header('location: '.$newURL);
 	}
 

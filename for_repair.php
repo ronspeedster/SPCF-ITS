@@ -27,7 +27,7 @@ include('process_misc_things.php');
 	<?php
 	include('topbar.php');
 ?>
-<div class="container-fluid">
+<div class="card shadow row justify-content-center" style="padding: 1%; margin: 1%;">
 
 	<?php
 		if(isset($_SESSION['message'])):
@@ -45,10 +45,6 @@ include('process_misc_things.php');
 		echo "<h5 style='color: blue;'>For Repair PC Components and Peripherals</h5>";
 	?>
 	<!-- Add Building Here -->
-	<div class="row justify-content-center">
-	<form action="process_misc_things.php" method="POST">
-	</form>
-	</div>
 	<br/>
 	
 	<?php
@@ -146,7 +142,7 @@ include('process_misc_things.php');
 			?>
 	</table>
 	</div>
-
+</div>
 	<!-- End Here-->
 	<?php
 	include('footer.php');

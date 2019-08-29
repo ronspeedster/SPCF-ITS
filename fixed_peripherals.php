@@ -30,25 +30,23 @@ include('process_misc_things.php');
 <div class="container-fluid">
 
 	<?php
-		if(isset($_SESSION['message'])):
+		if(isset($_SESSION['message'])){
 	?>
 	<div class="alert alert-<?=$_SESSION['msg_type']?> alert-dismissible">
 	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<?php
 			echo $_SESSION['message'];
 			unset($_SESSION['message']);
-
 		?>
 	</div>
-	<?php
-		endif;
-		echo "<h5 style='color: blue;'>Fixed PC Peripherals and Components</h5>";
-	?>
-	<!-- Add Building Here -->
-	<div class="row justify-content-center">
+	<?php } ?>
+	<!-- Fixed PC Peripherals and Components -->
+
+	<div class="card shadow row justify-content-center" style="padding: 1%;">
+	<h5 style='color: blue;'>Fixed PC Peripherals and Components</h5>
 	<form action="process_misc_things.php" method="POST">
 	</form>
-	</div>
+
 	<br/>
 	
 	<?php
@@ -91,7 +89,6 @@ include('process_misc_things.php');
 		</tr>
 	</table>
 	<h5 style="color: blue;" class="form-control">List of PC Equipments Fixed</h5>
-	<div class='row justify-content-center'>
 	<?php
 	if($current_type=="*"){
 		//$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE unit_id='StockRoom' AND remarks='ForRepair'");
@@ -135,8 +132,7 @@ include('process_misc_things.php');
 				}}
 			?>
 	</table>
-	</div>
-
+</div>
 	<!-- End Here-->
 	<?php
 	include('footer.php');

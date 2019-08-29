@@ -60,7 +60,7 @@ $isUpdate = false;
 <?php
 	}
 	?>
-	<div class="row justify-content-center">
+	<div class="car shadow row justify-content-center" style="padding: 1%;">
 	<form action="process_add_peripheral.php" method="POST">
 	<h5 style="color: blue;" >
 	<?php 

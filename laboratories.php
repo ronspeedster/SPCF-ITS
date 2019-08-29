@@ -57,7 +57,7 @@ include('sidebar.php');
 	?>
 	
 	<!-- Add Building Here -->
-	<div class="row justify-content-center">
+	<div class="card shadow row justify-content-center" style="padding: 1%;">
 	<form action="process_laboratories.php" method="POST">
 	<h2><?php
 		
@@ -127,7 +127,7 @@ include('sidebar.php');
 	</table>
 		
 	</form>
-	</div>		
+			
 	<!-- End Building Here -->
 	<!-- Show Added laboratories Here-->
 	<h4 style='color: blue;' class="form-control">List of Rooms and Laboratories</h4>	
@@ -169,8 +169,7 @@ include('sidebar.php');
 			<?php } ?>
 		</tbody>
 	</table>
-	<div class='row justify-content-center'>
-	</div>
+</div>
 	
 	<br/>
 	<!-- End Added Building Here-->

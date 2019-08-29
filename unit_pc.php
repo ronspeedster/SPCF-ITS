@@ -46,7 +46,7 @@ include('sidebar.php');
 	?>
 	
 	<!-- Add Building Here -->
-	<div class="row justify-content-center">
+	<div class="card shadow row justify-content-center" style="padding: 1%;">
 	<form action="process_unit_pc.php" method="POST">
 	<h5 style='color: blue;'><center><?php /*
 		if($update_building==true){
@@ -123,7 +123,7 @@ include('sidebar.php');
 		
 		
 	</form>
-	</div>		
+	
 	<!-- End Building Here -->
 	<!-- Show Added Building Here-->
 	<br/>
@@ -143,7 +143,7 @@ include('sidebar.php');
 		$thisPageFirstResult = ($page-1)*$resultsPerPage;
 		$getPCResults = $mysqli->query("SELECT unit_pc.unit_id, unit_pc.unit_no, unit_pc.unit_name, unit_pc.date_added, laboratory.lab_name, building.building_name FROM unit_pc JOIN laboratory ON unit_pc.lab_id = laboratory.lab_id JOIN building ON unit_pc.building_id = building.building_id ORDER BY unit_pc.date_added DESC") or die($mysqli->error());
 	 ?>
-	<div class='row justify-content-center'>
+
 		<table class='table' id="dataTable" width="100%" cellspacing="0">
 			<thead>
 				<tr>
@@ -176,8 +176,8 @@ include('sidebar.php');
  			</tr>
  			<?php endwhile; ?>
 		</table>
-	</div>
-	
+
+</div>			
 	<br/>
 	<?php
 		function pre_r($array){

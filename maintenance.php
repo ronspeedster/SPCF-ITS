@@ -99,7 +99,7 @@ $userName='';
 		$request = $_GET['request'];
 		$action_taken = $_GET['action_taken'];
 		$date_requested = $_GET['date'];
-		$userName=$_GET['userName'];
+		$userName = $_GET['userName'];
 	}
 while($counter<=3){$counter++;
 ?>

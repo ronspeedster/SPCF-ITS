@@ -56,7 +56,7 @@ include('sidebar.php');
 	?>
 	
 	<!-- Add Building Here -->
-	<div class="row justify-content-center">
+	<div class="card shadow row justify-content-center" style="padding: 1%;">
 	<form action="process_building.php" method="POST">
 	<h2><?php
 		if($update_building==true){
@@ -92,12 +92,11 @@ include('sidebar.php');
 		</thead>
 	</table>
 
-	</form>
-	</div>		
+	</form>	
 	<!-- End Building Here -->
 	<!-- Show Added Building Here-->
 	<br/>
-	<h5 style='color: blue;' class="form-control">List of Buildings</h4>
+	<h5 style='color: blue;' class="form-control">List of Buildings</h5>
 	<table class="table" id="dataTable" width="100%" cellspacing="0">
 			<thead>
 				<tr>
@@ -131,8 +130,7 @@ include('sidebar.php');
 		<?php } ?>
 		</tbody>
 	</table>
-
-	
+</div>
 	<br/>
 	<?php
 		function pre_r($array){

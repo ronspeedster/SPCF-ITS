@@ -55,7 +55,7 @@ $_SESSION['getURI'] = $getURI;
 	?>
 	
 	<!-- Add Building Here -->
-	<div class="row justify-content-center">
+	<div class="card shadow row justify-content-center" style="padding: 2%;">
 	<form action="#" method="POST">
 	<h3>
 	</h3>
@@ -127,7 +127,7 @@ $_SESSION['getURI'] = $getURI;
 		
 		
 	</form>
-	</div>		
+	
 	<!-- End Building Here -->
 	<!-- Show Added Building Here-->
 	<br/>
@@ -156,7 +156,7 @@ $_SESSION['getURI'] = $getURI;
 	
 
 	?>
-<label class="form-control" style='color: blue;'>List of PC Units</label>
+	<label class="form-control" style='color: blue;'>List of PC Units</label>
 		<table class='table' id="dataTable" cellspacing="0">
 			<thead>
 				<tr>
@@ -246,7 +246,9 @@ $_SESSION['getURI'] = $getURI;
  			<?php endwhile; ?>
 
 		</table>
-	</div><?php
+	</div>
+</div>
+<?php
 }
 else{
 		echo "<h5 class='alert alert-warning'>Select Building and Laboratory First</h5>";

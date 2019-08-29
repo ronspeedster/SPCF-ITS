@@ -86,7 +86,7 @@ $userName='';
 	<link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
-<a target="_blank" href="request_maintenance.php"><- Get Back</a> Hit CRTL + P to PRINT
+<a target="_blank" href="view_maintenance.php"><- Get Back</a> Hit CRTL + P to PRINT
 <?php
 	if(isset($_GET['department'])){
 		$department = $_GET['department'];
@@ -99,7 +99,7 @@ $userName='';
 		$request = $_GET['request'];
 		$action_taken = $_GET['action_taken'];
 		$date_requested = $_GET['date'];
-		$userName=$_GET['userName'];
+		$userName = $_GET['userName'];
 	}
 while($counter<=3){$counter++;
 ?>

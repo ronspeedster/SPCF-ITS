@@ -54,7 +54,7 @@ include('sidebar.php');
 	?>
 	
 	<!-- Add Building Here -->
-	<div class="row justify-content-center">
+	<div class="card shadow row justify-content-center" style="padding: 1%;">
 	<form action="process_accounts.php" method="POST">
 		<?php if($update_account){ ?>
 			<input type="text" name="account_id" value="<?php echo $account_id; ?>" class='form-control' readonly style='visibility: hidden;'>
@@ -99,7 +99,7 @@ include('sidebar.php');
 	</table>
 
 	</form>
-	</div>		
+	
 	<!-- End Building Here -->
 	<!-- Show Added Building Here-->
 	<br/>
@@ -137,8 +137,7 @@ include('sidebar.php');
 		<?php } ?>
 		</tbody>
 	</table>
-
-	
+	</div>
 	<br/>
 	<?php
 		function pre_r($array){

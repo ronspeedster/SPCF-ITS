@@ -52,7 +52,7 @@ $currentDate = date("Y/m/d");
 			");
 	?>
 
-	<div class="row">
+	<div class="car shadow row" style="padding: 1%;">
 
 	<h5 style='color: blue;'>Air Conditioners</h5>
 

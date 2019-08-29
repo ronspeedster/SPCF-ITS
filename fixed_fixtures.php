@@ -30,7 +30,7 @@ include('process_misc_things.php');
 <div class="container-fluid">
 
 	<?php
-		if(isset($_SESSION['message'])):
+		if(isset($_SESSION['message'])){
 	?>
 	<div class="alert alert-<?=$_SESSION['msg_type']?> alert-dismissible">
 	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -41,14 +41,11 @@ include('process_misc_things.php');
 		?>
 	</div>
 	<?php
-		endif;
-		echo "<h5 style='color: blue;'>Fixed Fixtures</h5>";
+		}
 	?>
 	<!-- Add Building Here -->
-	<div class="row justify-content-center">
-	<form action="process_misc_things.php" method="POST">
-	</form>
-	</div>
+	<div class="card shadow row justify-content-center" style="padding: 1%;">
+		<h5 style='color: blue;'>Fixed Fixtures</h5>
 	<br/>
 	
 	<?php
@@ -91,7 +88,6 @@ include('process_misc_things.php');
 		</tr>
 	</table>
 	<h5 class="form-control" style="color: blue;">List of Fixtures For Repair</h5>
-	<div class='row justify-content-center'>
 	<?php
 		$getFixtureForRepair = mysqli_query($mysqli, "SELECT * FROM fixture WHERE remarks='Fixed'");
 	?>
@@ -124,7 +120,7 @@ include('process_misc_things.php');
 				}}
 			?>
 	</table>
-	</div>
+</div>
 
 	<!-- End Here-->
 	<?php

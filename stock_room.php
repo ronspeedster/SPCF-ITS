@@ -42,7 +42,7 @@ $_SESSION['getURI'] = $getURI;
 		endif;
 	?>
 	<!-- Add Stock Item(s) Here -->
-	<div class="row justify-content-center">
+	<div class="card shadow row justify-content-center" style="padding: 1%;">
 
 	<form action="process_stock_room.php" method="POST">
 		
@@ -118,7 +118,7 @@ $_SESSION['getURI'] = $getURI;
 			</tr>
 		</table>
 	</form>
-	</div>
+	
 	<br/>
 	<h5 style="color: blue;">List of Equipments in Stock Room</h5>
 	<?php
@@ -159,7 +159,6 @@ $_SESSION['getURI'] = $getURI;
 			</td>
 		</tr>
 	</table>
-	<div class='row justify-content-center'>
 	<?php
 	if($current_type=="*"){
 		$getStockRooms = mysqli_query($mysqli, "SELECT * FROM stock_room WHERE remarks='new'");
@@ -207,8 +206,8 @@ $_SESSION['getURI'] = $getURI;
 			?>
 	</table>
 		<center><a href='view_stock_room.php' class='btn btn-info btn-sm' href="#">View All Stock Room Logs</a></center>
-	</div>
-
+	
+</div>
 <div class="separator" style="height: 200px;">
 	
 </div>

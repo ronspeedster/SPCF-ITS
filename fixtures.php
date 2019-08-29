@@ -47,7 +47,7 @@ $_SESSION['getURI'] = $getURI;
 
 	<h5 style='color: blue;'><center>Add / Edit Fixtures</center></h5>
 	<!-- Add Fixtures Here -->
-	<div class="row justify-content-center">
+	<div class="card shadow row justify-content-center" style="padding: 1%;">
 		<form action="process_fixture.php" method="POST">
 		<table class='table' style="width: 100% !important;">
 			<tr>

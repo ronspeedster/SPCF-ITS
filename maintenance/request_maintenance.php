@@ -52,7 +52,7 @@ $currentDate = date('Y/m/d');
 		<table class="table" width="100%">
 			<form action="process_maintenance.php"  method="POST">
 				<input type="text" name="id" value="<?php echo $id; ?>" style='visibility: hidden;'>
-				<input type="text" name="username" value="<?php echo $requested_by; ?>" style='visibility: hidden;'>
+				<input type="text" name="requested_by" value="<?php echo $requested_by; ?>" style='visibility: hidden;'>
 			<tr>
 				<th>Department</th>
 				<th>Date</th>

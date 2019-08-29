@@ -32,7 +32,7 @@ $currentDate = date('Y/m/d');
 ?>
 <div class="container-fluid">
 	<?php
-		if(isset($_SESSION['message'])):
+		if(isset($_SESSION['message'])){
 	?>
 	<div class="alert alert-<?=$_SESSION['msg_type']?> alert-dismissible">
 	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -43,16 +43,15 @@ $currentDate = date('Y/m/d');
 		?>
 	</div>
 	<?php
-		endif;
-		
-		echo "<h5>Maintenance Request</h5>";
+		}
 	?>
 	<!-- Add Building Here -->
-	<div class="row">
+	<div class="card shadow row" style="padding: 1%;">
+		<h5>Maintenance Request</h5>
 		<table class="table" width="100%">
 			<form action="process_maintenance.php"  method="POST">
 				<input type="text" name="id" value="<?php echo $id; ?>" style='visibility: hidden;'>
-				<input type="text" name="username" value="<?php echo $requested_by; ?>" style='visibility: hidden;'>
+				<input type="text" name="requested_by" value="<?php echo $requested_by; ?>" style='visibility: hidden;'>
 			<tr>
 				<th>Department</th>
 				<th>Date</th>
