@@ -246,6 +246,11 @@ $_SESSION['getURI'] = $getURI;
  			<?php endwhile; ?>
 
 		</table>
+		<?php
+		if(mysqli_num_rows($getPCResults)>=1){ ?>
+			<a href="lab_report.php?<?php echo'building='.$buildingId.'&laboratory='.$labId; ?>" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print" aria-hidden="true"></i>
+ Generate Lab Report</a>
+		<?php }  ?>
 	</div>
 </div>
 <?php
