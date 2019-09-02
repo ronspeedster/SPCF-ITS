@@ -123,6 +123,14 @@
       <div class="sidebar-heading">
         Actions
       </div>
+     
+     <!-- Nav Item - Requests -->
+      <li class="nav-item <?php if($currentItem=='equipments'){echo 'active';} ?>">
+        <a class="nav-link" href="edit_pc_equipment.php">
+          <i class="fas fa-laptop"></i>
+          <span>PC Reports</span></a>
+      </li>
+
       <!-- Nav Items - Repair -->
       <li class="nav-item <?php if($currentItem=='for_repair'){echo 'active';} ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#repair" aria-expanded="true" aria-controls="equipments">

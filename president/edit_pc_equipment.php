@@ -55,14 +55,14 @@ $_SESSION['getURI'] = $getURI;
 	?>
 	
 	<!-- Add Building Here -->
-	<div class="row justify-content-center">
+	<div class="card shadow row justify-content-center" style="padding: 2%;">
 	<form action="#" method="POST">
 	<h3>
 	</h3>
 	<table class='table'>
 		<thead>
 			<tr>
-				<td colspan="2"><center><h5 style='color: blue;'>Search PC Unit</h5></center></td>
+				<td colspan="2"><center><h5 style='color: blue;'>Search PC Unit(s)</h5></center></td>
 			</tr>
 			<tr>
 					<th><i class="fas fa-fw fa-building"></i> Select Building</th>
@@ -127,7 +127,7 @@ $_SESSION['getURI'] = $getURI;
 		
 		
 	</form>
-	</div>		
+	
 	<!-- End Building Here -->
 	<!-- Show Added Building Here-->
 	<br/>
@@ -156,7 +156,7 @@ $_SESSION['getURI'] = $getURI;
 	
 
 	?>
-<label class="form-control" style='color: blue;'>List of PC Units</label>
+	<label class="form-control" style='color: blue;'>List of PC Units</label>
 		<table class='table' id="dataTable" cellspacing="0">
 			<thead>
 				<tr>
@@ -165,7 +165,7 @@ $_SESSION['getURI'] = $getURI;
 					<th>Laboratory</th>
 					<th>Building</th>
 					<th style="display: none;">Status</th>
-					<th>Actions</th>
+					<th style="display: none;">Actions</th>
 				</tr>
 			</thead>
 			
@@ -177,7 +177,7 @@ $_SESSION['getURI'] = $getURI;
  				<td><?php echo $newGetPCResults['lab_name']; ?></td>
  				<td><?php echo $newGetPCResults['building_name'];?></td>
  				<td style="display: none;"><?php echo ucfirst($newGetPCResults['status']);?></td>
-				 <td>
+				<td style="display: none;">
 		<?php
 				$getUnitID =  $newGetPCResults['unit_id'];
 				$checkPeripheralExistence = $mysqli->query("SELECT * FROM peripherals WHERE unit_id = $getUnitID") or die ($mysqli->error);
@@ -246,7 +246,14 @@ $_SESSION['getURI'] = $getURI;
  			<?php endwhile; ?>
 
 		</table>
-	</div><?php
+		<?php
+		if(mysqli_num_rows($getPCResults)>=1){ ?>
+			<a href="lab_report.php?<?php echo'building='.$buildingId.'&laboratory='.$labId; ?>" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print" aria-hidden="true"></i>
+ Generate Lab Report</a>
+		<?php }  ?>
+	</div>
+</div>
+<?php
 }
 else{
 		echo "<h5 class='alert alert-warning'>Select Building and Laboratory First</h5>";
