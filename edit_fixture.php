@@ -100,7 +100,7 @@ $_SESSION['getURI'] = $getURI;
 						<td><?php echo strtoupper($newFixture['type']); ?></td>
 						<td><input type="text" name="serial_no" class="form-control" placeholder="Serial-No" value="<?php echo $serial_no; ?>" required>
 							<input type="text" name="fixture_id" style="visibility: hidden;" value="<?php echo $id; ?>"></td>
-						<td><select class="form-control" onchange="location = this.value;">
+						<td><select class="form-control" onchange="location = this.value;" disabled>
 							<?php while ($newBuilding = $getBuilding->fetch_assoc()){
 								$new_building_id = $newBuilding['building_id'];
 								?> 
@@ -110,7 +110,7 @@ $_SESSION['getURI'] = $getURI;
 						<input type="text" class="form-control" style="visibility: hidden;"  name="building_id" value="<?php echo $building_id; ?>">
 					</td>
 						<td>
-							<select name="lab_id" class="form-control">
+							<select name="lab_id" class="form-control" disabled>
 							<?php
 								if($noLab==true){ echo "<option disabled selected>WARNING: NO LAB / ROOM</option>"; } 
 								while ($newLaboratory = $getLaboratories->fetch_assoc()){

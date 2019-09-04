@@ -113,7 +113,7 @@ $_SESSION['getURI'] = $getURI;
 			</tr>	
 		</table>
 		</form>
-		<label style='color: blue;'class="form-control">List of PC Units</label>
+		<label style='color: blue;'class="form-control">List of Fixtures</label>
 		<!-- Show Added Fixtures -->
 		<table class="table" id="dataTable" width="100%" cellspacing="0">
 			<thead>

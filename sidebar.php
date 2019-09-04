@@ -182,7 +182,7 @@
         </a>
         <div id="fixed_equipment" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">View Fixed Equioments:</h6>
+            <h6 class="collapse-header">View Fixed Equipments:</h6>
             <a class="collapse-item" href="fixed_peripherals.php"><i class="fas fa-laptop"></i> Fixed PC Peripherals</span></a>
             <a class="collapse-item" href="fixed_fixtures.php"><i class="fas fa-couch"></i> Fixed Fixtures</a>
           </div>
@@ -196,12 +196,24 @@
         </a>
       </li>
 
-      <!-- Nav Item - Equipment Transfer -->
-      <li class="nav-item" style="display: none;">
-        <a class="nav-link" href="#">
+      <!-- Nav Items - Fixed Equipment -->
+      <li class="nav-item <?php if($currentItem=='transfer'){echo 'active';} ?>">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#equipment_transfer" aria-expanded="true" aria-controls="equipments">
           <i class="fas fa-dolly-flatbed"></i>
-          <span>Equipment Transfer</span></a>
+          <span>Equipment Transfer</span>
+        </a>
+        <div id="equipment_transfer" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Pull Out Equipments:</h6>
+            <a class="collapse-item" href="transfer_pc.php"><i class="fas fa-laptop"></i> Pullout PC Unit </span></a>
+            <a class="collapse-item" href="transfer_fixtures.php"><i class="fas fa-couch"></i> Pullout Fixtures</a>
+            <h6 class="collapse-header">Transfer Equipments:</h6>
+            <a class="collapse-item" href="pulled_out.php"><i class="fas fa-eye"></i> View Pulled out Equipments</a>
+            <a class="collapse-item" href="completed_transfer.php"><i class="fas fa-eye"></i> View Completed Transfer</a>
+          </div>
+        </div>
       </li>
+
       <!-- Nav Item - Stock Rooms -->
       <li class="nav-item <?php if($currentItem=='stock_room'){echo 'active';} ?>">
         <a class="nav-link" href="stock_room.php">
@@ -221,7 +233,8 @@
         <a class="nav-link" href="#">
           <span>Fixed Equipment</span></a>
       </li>
-<!-- Nav Item - Pages Collapse Menu -->
+
+      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item <?php if($currentItem=='forms'){echo 'active';} ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#forms" aria-expanded="true" aria-controls="equipments">
           <i class="fas fa-print"></i>
@@ -244,6 +257,7 @@
           <i class="far fa-user-circle"></i>
           <span>Accounts</span></a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="far fa-user-circle"></i>
