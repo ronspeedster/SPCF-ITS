@@ -5,6 +5,8 @@
 	$currentDate = date_default_timezone_set('Asia/Manila');
 	$currentDate = date('Y-m-d');
 
+	$mysqli->query("CREATE TABLE IF NOT EXISTS ppfo_inventory.equipmen_transfer ( id INT NOT NULL AUTO_INCREMENT , equipment_id VARCHAR(12) NOT NULL , type VARCHAR(128) NOT NULL , from_building VARCHAR(12) NOT NULL , from_lab VARCHAR(12) NOT NULL , to_building VARCHAR(12) NOT NULL , to_laboratory VARCHAR(12) NOT NULL , date_added DATE NOT NULL , status VARCHAR(32) NOT NULL , PRIMARY KEY (id))") or die($mysqli->error());
+
 	if(isset($_GET['pull_out'])){
 
 		echo $unit_id = $_GET['unit_id'];
