@@ -12,7 +12,7 @@ $currentDate = date("Y/m/d");
 <!DOCTYPE html>
 <html>
 <head>
-	<title>View Pulled Out Equipments</title>
+	<title>Completed Transfer</title>
 	<script src="libs/js/bootstrap.min.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -51,19 +51,18 @@ $currentDate = date("Y/m/d");
 	<div class="car shadow row" style="padding: 1%;">
 
 	<h5 style='color: blue;'>Completed Transfer</h5>
-	<?php $getPulledOutPC = mysqli_query($mysqli, "SELECT et.equipment_id, et.date_added, b1.building_name AS from_building, b2.building_name as to_building, l1.lab_name AS from_lab, l2.lab_name as to_lab, up.unit_name FROM equipment_transfer et  
+	<?php $getPulledOutPC = mysqli_query($mysqli, "SELECT et.equipment_id, et.type, et.date_added, b1.building_name AS from_building, b2.building_name as to_building, l1.lab_name AS from_lab, l2.lab_name as to_lab FROM equipment_transfer et  
 			JOIN building b1 ON b1.building_id = et.from_building
             JOIN building b2 ON b2.building_id = et.to_building
 			JOIN laboratory l1 ON l1.lab_id = et.from_lab
             JOIN laboratory l2 ON l2.lab_id = et.to_laboratory
-			JOIN unit_pc up ON up.unit_id =  et.equipment_id
 			WHERE et.status='completed' ");
 	 ?>
 
 	<table class="table display" id="dataTable" width="100%" cellspacing="0">
 		<thead>
 			<th>ID</th>
-			<th>Name</th>
+			<th>Type</th>
 			<th>From Building</th>
 			<th>From Room</th>
 			<th>To Building</th>
@@ -75,7 +74,7 @@ $currentDate = date("Y/m/d");
 				?>
 			<tr>
 				<td><?php echo $newPulledOutPC['equipment_id']; ?></td>
-				<td><?php echo $newPulledOutPC['unit_name']; ?></td>
+				<td><?php echo $newPulledOutPC['type']; ?></td>
 				<td><?php echo $newPulledOutPC['from_building']; ?></td>
 				<td><?php echo $newPulledOutPC['from_lab']; ?></td>
 				<td><?php echo $newPulledOutPC['to_building']; ?></td>
