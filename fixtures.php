@@ -1,4 +1,4 @@
-<?php
+	<?php
 require_once 'process_fixture.php';
 $currentItem = 'equipments';
 include('sidebar.php');
@@ -97,6 +97,8 @@ $_SESSION['getURI'] = $getURI;
 			<td>
 				<select name="type" class="form-control">
 					<option value="airconditioner">Air Conditioner</option>
+					<option value="computerTable">Computer Table</option>
+					<option value="monoBlocChair">Mono Bloc Chair</option>
 					<option value="officeTable">Office Table</option>
 					<option value="officeChair">Office Chair</option>
 					<option value="flourescentLights">Flourescent Lights</option>

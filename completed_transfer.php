@@ -17,6 +17,13 @@ $currentDate = date("Y/m/d");
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<script type="text/javascript">
+		$(document).ready(function() {
+    $('#dataTable').DataTable( {
+        "order": [[ 6, "desc" ]]
+	    } );
+	} );
+	</script>
 </head>
 <body id="page-top">
 
@@ -70,7 +77,9 @@ $currentDate = date("Y/m/d");
 			<th>Date</th>
 		</thead>
 		<tbody>
-			<?php while($newPulledOutPC=$getPulledOutPC->fetch_assoc()){ 
+			<?php while($newPulledOutPC=$getPulledOutPC->fetch_assoc()){
+				$date_added = date_create($newPulledOutPC['date_added']);
+
 				?>
 			<tr>
 				<td><?php echo $newPulledOutPC['equipment_id']; ?></td>
@@ -79,7 +88,7 @@ $currentDate = date("Y/m/d");
 				<td><?php echo $newPulledOutPC['from_lab']; ?></td>
 				<td><?php echo $newPulledOutPC['to_building']; ?></td>
 				<td><?php echo $newPulledOutPC['to_lab']; ?></td>
-				<td><?php echo $newPulledOutPC['date_added']; ?></td>
+				<td><?php echo date_format($date_added, 'F j, Y'); ?></td>
 			</tr>
 			<?php } ?>
 		</tbody>

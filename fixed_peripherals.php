@@ -9,7 +9,7 @@ include('process_misc_things.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>For Repair Peripherals</title>
+	<title>Fixed Peripherals</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<script src="js/demo/datatables-demo.js"></script>
@@ -92,11 +92,17 @@ include('process_misc_things.php');
 	<?php
 	if($current_type=="*"){
 		//$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE unit_id='StockRoom' AND remarks='ForRepair'");
-		$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE remarks='Fixed'");
+		$getStockRooms = mysqli_query($mysqli, "SELECT p.*, fr.* FROM peripherals p
+			/* LEFT */ JOIN fix_report fr
+			ON p.peripheral_id = fr.item_id
+			/* WHERE remarks='Fixed' */ ");
 	}
 	else{
 		//$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE unit_id='StockRoom' AND peripheral_type='$current_type' AND remarks='ForRepair'");
-		$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE peripheral_type='$current_type' AND remarks='Fixed'");
+		$getStockRooms = mysqli_query($mysqli, "SELECT p.*, fr.* FROM peripherals p 
+			/* LEFT */ JOIN fix_report fr 
+			ON p.peripheral_id = fr.item_id 
+			WHERE /*remarks='Fixed' AND */ peripheral_type='$current_type' ");
 	}
 	?>
 	<table class="table" id="dataTable" width="100%" cellspacing="0">
@@ -106,10 +112,14 @@ include('process_misc_things.php');
 			<th>Brand</th>
 			<th>Description</th>
 			<th>Serial ID</th>
-			<th>Date Purchased</th>
+			<th style="display: none;">Date Purchased</th>
 			<th>Date Issued</th>
 			<th>Condition</th>
 			<th>Remarks</th>
+			<th>Date Fixed</th>
+			<th>Cost</th>
+			<th>Receipt</th>
+
 		</tr>
 	</thead>
 			<?php
@@ -123,10 +133,13 @@ include('process_misc_things.php');
 			<td><?php echo $perripheral_row['peripheral_brand']; ?></td>
 			<td><?php echo $perripheral_row['peripheral_description']; ?></td>
 			<td><?php echo $perripheral_row['peripheral_serial_no']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_date_purchased']; ?></td>
+			<td style="display: none;"><?php echo $perripheral_row['peripheral_date_purchased']; ?></td>
 			<td><?php echo $perripheral_row['peripheral_date_issued']; ?></td>
 			<td><?php echo $perripheral_row['peripheral_condition']; ?></td>
-			<td><?php echo $perripheral_row['remarks']; ?></td>
+			<td><?php echo $perripheral_row['remarks'] ?></td>
+			<td><?php echo $perripheral_row['date_added']; ?></td>
+			<td style="text-align: right !important;"><?php echo "₱ ".number_format($perripheral_row['repair_cost'],2,".",","); ?></td>
+			<td><a class="btn btn-sm btn-info" href="img/assets/<?php echo $perripheral_row['file_name'] ?>" target="_blank"><i class="far fa-image"></i> Image</a></td>
 		</tr>
 			<?php	
 				}}

@@ -17,7 +17,13 @@ $currentDate = date('Y/m/d');
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+	<script type="text/javascript">
+		$(document).ready(function() {
+    $('#dataTable').DataTable( {
+        "order": [[ 2, "desc" ]]
+    } );
+} );
+	</script>
 </head>
 <body id="page-top">
 
@@ -59,9 +65,14 @@ $currentDate = date('Y/m/d');
 				<th>Request</th>
 				<th>Action Taken</th>
 				<th>Requested by</th>
+				<th>Date Action Taken</th>
+				<th>No of Days</th>
 				<th>Actions</th>
 			</thead>
-			<?php while($newMaintenanceRequest=$getMaintenanceRequests->fetch_assoc()){?>
+			<?php while($newMaintenanceRequest=$getMaintenanceRequests->fetch_assoc()){
+				$date1 = date_create($newMaintenanceRequest['date_requested']);
+				$date2 = date_create($newMaintenanceRequest['date_action_taken']);
+				?>
 			<tr>
 				<td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#ModalID<?php echo $newMaintenanceRequest['id'];?>"><?php echo $newMaintenanceRequest['id']; ?></button></td>
 				<td><?php echo $newMaintenanceRequest['department']; ?></td>
@@ -69,6 +80,8 @@ $currentDate = date('Y/m/d');
 				<td><?php echo $newMaintenanceRequest['request']; ?></td>
 				<td><?php echo $newMaintenanceRequest['action_taken']; ?></td>
 				<td><?php echo $newMaintenanceRequest['requested_by']; ?></td>
+				<td><?php echo $newMaintenanceRequest['date_action_taken']; ?></td>
+				<td><?php echo ($diff = date_diff($date1,$date2))->format('%a');?></td>
 				<td><a target='_blank' href="request_maintenance.php?edit=<?php echo $newMaintenanceRequest['id']; ?>" class="btn btn-info btn-sm"><i class="far fa-edit"></i> Edit</a>
 					<!-- Start Drop down Delete here -->
 					<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -90,14 +90,18 @@ include('sidebar.php');
 	</div>
 	<div class="card shadow row" <?php if($is_fix==false){echo "style='display: none;'";} ?>>
 		<table class="table" width="100%">
-			<form action="process_add_peripheral.php"  method="POST">
+			<form action="process_add_peripheral.php" method="POST" enctype="multipart/form-data">
 				<table class="table" width="100%">
 					<thead>
-						<th width="10%">ID</th>
-						<th>Type</th>
-						<th>Status</th>
-						<th width="40%">Note / Condition</th>
-						<th>Action</th>
+						<tr>
+							<th width="8%">ID</th>
+							<th>Type</th>
+							<th>Status</th>
+							<th width="40%">Note / Condition</th>
+							<th width="8%">Repair Cost</th>
+							<th>Upload Receipt</th>
+							<th>Action</th>
+						</tr>
 					</thead>
 					<tr>
 						<td><input type="text" name='peripheral_id' class="form-control" value="<?php echo $newPeripheral['peripheral_id']; ?>" readonly></td>
@@ -108,6 +112,8 @@ include('sidebar.php');
 	 						<option value='For Disposal'>For Disposal</option>
 	 						</select></td>
 						<td><textarea name="condition" class="form-control" style="min-height: 100px;" placeholder="Tell us something what happened to the peripheral" required></textarea></td>
+						<td><input type="number" name='repair_cost' class="form-control" placeholder="0.00" min="0" step="0.01" required></td>
+						<td><input type="file" name="image_receipt" accept="image/*" value="Upload Receipt"></td>
 						<td><button type='submit' name="submit_fix_report" class="btn btn-primary btn-sm"><i class="fas fa-file-import"></i> Save Details</a></td>
 					</tr>
 				</table>

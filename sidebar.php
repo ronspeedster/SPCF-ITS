@@ -50,6 +50,10 @@
 #dataTable_wrapper {
     width: 100% !important;
 }
+
+#fixtureTable_wrapper {
+    width: 100% !important;
+}
 .bg-gradient-primary {
     background-color: #0f1e5d !important;
     background-image: none !important;
@@ -154,7 +158,7 @@
             <h6 class="collapse-header">Customize Fixtures:</h6>
             <a class="collapse-item" href="fixtures.php"><i class="fas fa-couch"></i> Add / Edit Fixtures</a>
             <a class="collapse-item" href="aircon.php"><i class="fas fa-fan"></i> View Air Conditioners</a>
-            <a class="collapse-item" href="misc_things.php" style="display: none;">Add / Edit Misc. Things</a>
+            <a class="collapse-item" href="view_fixtures.php"><i class="fas fa-eye"></i> View Other Fixtures</a>
           </div>
         </div>
       </li>

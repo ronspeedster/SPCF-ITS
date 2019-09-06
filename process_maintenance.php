@@ -40,7 +40,10 @@
 		echo $id = $_POST['id'];
 		echo $requested_by = $_POST['requested_by'];
 		
-		$mysqli->query("UPDATE maintenance SET action_taken='$action_taken' WHERE id='$id'") or die($mysqli->error());
+		//New update from Chairman
+		$date_action_taken = date_default_timezone_set('Asia/Manila');
+		$date_action_taken = date('Y-m-d');
+		$mysqli->query("UPDATE maintenance SET action_taken='$action_taken', date_action_taken='$date_action_taken' WHERE id='$id'") or die($mysqli->error());
 
 		$_SESSION['message'] = "Request has been updated! ";
 		$_SESSION['msg_type'] = "success";

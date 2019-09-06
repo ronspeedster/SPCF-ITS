@@ -5,18 +5,22 @@ $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERV
 $getURI = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $_SESSION['getURI'] = $getURI;
 include('process_misc_things.php');
-
-$account_id = $_SESSION['account_id'];
-
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>For Repair Peripherals</title>
+	<title>View Other Fixtures</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	<script src="../js/demo/datatables-demo.js"></script>
-	<link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<script src="js/demo/datatables-demo.js"></script>
+	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<script type="text/javascript">
+		$(document).ready(function() {
+    $('#fixtureTable').DataTable( {
+        "order": [[ 4, "desc" ]]
+	    } );
+	} );
+	</script>	
 </head>
 <body id="page-top">
 
@@ -30,7 +34,7 @@ $account_id = $_SESSION['account_id'];
 	<?php
 	include('topbar.php');
 ?>
-<div class="container-fluid">
+<div class="card shadow row justify-content-center" style="padding: 1%; margin: 1%;">
 
 	<?php
 		if(isset($_SESSION['message'])):
@@ -45,12 +49,9 @@ $account_id = $_SESSION['account_id'];
 	</div>
 	<?php
 		endif;
+		echo "<h5 style='color: blue;'>View Other Fixtures</h5>";
 	?>
 	<!-- Add Building Here -->
-	<div class="row justify-content-center">
-	<form action="process_misc_things.php" method="POST">
-	</form>
-	</div>
 	<br/>
 	
 	<?php
@@ -68,83 +69,73 @@ $account_id = $_SESSION['account_id'];
 				$type = $current_type;	
 			}	
 		}
+
+
+		// Get Categories
+		$getCategories = mysqli_query($mysqli, "SELECT DISTINCT type FROM fixture WHERE type <> 'airconditioner' ");
 	?>
 
 	<table class="table">
 		<tr>
-			<th style="text-align: right; color: blue;">Select Type: </th>
+			<th style="text-align: right;">Select Type: </th>
 			<th>
-					
 				<select class="form-control" onchange="location = this.value;">
-					<option class="text-danger" disabled selected><?php echo $type; ?></option>
-					<option value="<?php echo $fileName.'?type=*';?>">All Types</option>
-					<option value="<?php echo $fileName.'?type=Monitor';?>">Monitor</option>
-					<option value="<?php echo $fileName.'?type=Keyboard';?>">Keyboard</option>
-					<option value="<?php echo $fileName.'?type=Mouse';?>">Mouse</option>
-					<option value="<?php echo $fileName.'?type=AVR';?>">AVR</option>
-					<option value="<?php echo $fileName.'?type=Headset';?>">Headset</option>
-					<option value="<?php echo $fileName.'?type=CPU';?>">CPU</option>
-					<option value="<?php echo $fileName.'?type=Motherboard';?>">Motherboard</option>
-					<option value="<?php echo $fileName.'?type=GPU';?>">GPU</option>
-					<option value="<?php echo $fileName.'?type=RAM';?>">RAM</option>
-					<option value="<?php echo $fileName.'?type=HDD';?>">HDD</option>
+					<option disabled selected>Select Fixture</option>
+					<?php while($newCategories=$getCategories->fetch_assoc()){  ?>
+					<option value="<?php echo $fileName.'?type='.$newCategories['type'];?>"><?php echo strtoupper($newCategories['type']); ?></option>
+					<?php } ?>
+					<option value="<?php echo $fileName.'?type=*';?>">All Type</option>
 				</select>
 			</th>
 		</tr>
 	</table>
-	<h5 style="color: blue;" class="form-control">List of Components and Peripherals currentlty in For Repair</h5>
+	<h5 style="color: blue;" class="form-control">List of Components</h5>
 	<div class='row justify-content-center'>
 	<?php
 	if($current_type=="*"){
 		//$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE unit_id='StockRoom' AND remarks='ForRepair'");
-		$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals p
-			JOIN unit_pc u ON p.unit_id = u.unit_id
-			JOIN laboratory l ON u.lab_id = l.lab_id
-			JOIN building b ON b.building_id = l.building_id
-			JOIN designation d ON d.building_id = b.building_id
-			WHERE p.remarks = 'For Repair' AND d.account_id='$account_id'
-			");
+		$getFixture = mysqli_query($mysqli, "SELECT f.*, b.building_name, l.lab_name FROM fixture f
+		JOIN building b
+		ON b.building_id = f.building_id
+		JOIN laboratory l
+		ON l.lab_id = f.lab_id WHERE type <> 'airconditioner' ");
 	}
 	else{
 		//$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE unit_id='StockRoom' AND peripheral_type='$current_type' AND remarks='ForRepair'");
-		$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals p
-			JOIN unit_pc u ON p.unit_id = u.unit_id
-			JOIN laboratory l ON u.lab_id = l.lab_id
-			JOIN building b ON b.building_id = l.building_id
-			JOIN designation d ON d.building_id = b.building_id
-			WHERE p.remarks = 'For Repair' AND d.account_id='$account_id' AND peripheral_type='$current_type'");
+		$getFixture = mysqli_query($mysqli, "SELECT f.*, b.building_name, l.lab_name FROM fixture f
+		JOIN building b
+		ON b.building_id = f.building_id
+		JOIN laboratory l
+		ON l.lab_id = f.lab_id
+		WHERE type='$current_type' AND type <> 'airconditioner' ");
 	}
 	?>
-	<table class="table" id="dataTable" width="100%" cellspacing="0">
+	<table class="table" id="fixtureTable" width="100%" cellspacing="0">
 	<thead>
 		<tr>
 			<th>Type</th>
-			<th>Brand</th>
-			<th>Description</th>
-			<th>Serial ID</th>
+			<th>Batch Code</th>
+			<th>Serial Code</th>
 			<th>Building</th>
-			<th>Laboratory</th>
+			<th>Room / Laboratory</th>
 			<th>Condition</th>
-			<th>For Repair?</th>
-			<th style="display: none;">Actions</th>
+			<th>Actions</th>
 		</tr>
 	</thead>
 			<?php
-			if(mysqli_num_rows($getStockRooms)==0){
+			if(mysqli_num_rows($getFixture)==0){
 				echo "<div class='alert alert-warning'>No ".$current_type." currently for repair</div>";
 			}
 			else{
-				while($perripheral_row=$getStockRooms->fetch_assoc()){ ?>
+				while($newFixture=$getFixture->fetch_assoc()){ ?>
 		<tr>
-			<td><?php echo $perripheral_row['peripheral_type']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_brand']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_description']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_serial_no']; ?></td>
-			<td><?php echo $perripheral_row['building_name']; ?></td>
-			<td><?php echo $perripheral_row['lab_name']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_condition']; ?></td>
-			<td><?php echo $perripheral_row['remarks']; ?></td>
-			<td style="display: none;">
+			<td><?php echo strtoupper($newFixture['type']); ?></td>
+			<td><?php echo $newFixture['batch_code']; ?></td>
+			<td><?php if($newFixture['serial_no']==''){echo "<span class='text-danger'>NO SC</span>";}else{echo $newFixture['serial_no'];} //echo $newFixture['serial_no']; ?></td>
+			<td><?php echo $newFixture['building_name']; ?></td>
+			<td><?php echo $newFixture['lab_name']; ?></td>
+			<td><?php echo strtoupper($newFixture['fixture_condition']); ?></td>
+			<td>
 			<a class="btn btn-success btn-secondary btn-sm" href="<?php echo 'report_peripherals.php?peripheral_id='.$perripheral_row['peripheral_id'].'&is_fix=true'; ?>"><i class="far fa-edit"></i> Edit</a>
 			<button style="display: none;" class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<i class="far fa-trash-alt"></i> Delete
@@ -159,7 +150,7 @@ $account_id = $_SESSION['account_id'];
 			?>
 	</table>
 	</div>
-
+</div>
 	<!-- End Here-->
 	<?php
 	include('footer.php');
