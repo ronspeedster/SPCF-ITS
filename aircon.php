@@ -17,6 +17,15 @@ $currentDate = date("Y/m/d");
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+    $('#airconTable').DataTable( {
+        "order": [[ 7, "DESC" ]]
+	    } );
+	} );
+	</script>
+
 </head>
 <body id="page-top">
 
@@ -56,9 +65,9 @@ $currentDate = date("Y/m/d");
 
 	<h5 style='color: blue;'>Air Conditioners</h5>
 
-	<table class="table" id="dataTable" width="100%" cellspacing="0">
+	<table class="table" id="airconTable" cellspacing="0">
 		<thead>
-			<th style="display: none;">ID</th>
+			<th >ID</th>
 			<th style="display: none;">Type</th>
 			<th>Batch Code</th>
 			<th>Serial No</th>
@@ -81,7 +90,7 @@ $currentDate = date("Y/m/d");
 				}
 				?>
 			<tr>
-				<td style="display: none;"><?php echo $newFixtures['id']; ?></td>
+				<td><?php echo $newFixtures['id']; ?></td>
 				<td style="display: none;"><?php echo strtoupper($newFixtures['type']); ?></td>
 				<td><?php echo $newFixtures['batch_code']; ?></td>
 				<td><?php if($newFixtures['serial_no']==''){echo "<font color='red'>NO SN</font>";} else { echo $newFixtures['serial_no']; }?></td>

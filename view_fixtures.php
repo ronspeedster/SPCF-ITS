@@ -1,5 +1,5 @@
 <?php
-$currentItem='for_repair';
+$currentItem='equipments';
 include('sidebar.php');
 $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 $getURI = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -89,7 +89,7 @@ include('process_misc_things.php');
 			</th>
 		</tr>
 	</table>
-	<h5 style="color: blue;" class="form-control">List of Components</h5>
+	<h5 style="color: blue;" class="form-control">List of Fixtures</h5>
 	<div class='row justify-content-center'>
 	<?php
 	if($current_type=="*"){

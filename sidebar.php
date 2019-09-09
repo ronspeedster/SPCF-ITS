@@ -47,13 +47,11 @@
   input.date{
     width: 10px;
   }
-#dataTable_wrapper {
+
+#dataTable_wrapper,#fixtureTable_wrapper {
     width: 100% !important;
 }
 
-#fixtureTable_wrapper {
-    width: 100% !important;
-}
 .bg-gradient-primary {
     background-color: #0f1e5d !important;
     background-image: none !important;

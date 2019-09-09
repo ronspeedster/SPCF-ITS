@@ -14,6 +14,13 @@ include('process_misc_things.php');
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<script src="js/demo/datatables-demo.js"></script>
 	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<script type="text/javascript">
+		$(document).ready(function() {
+    $('#periheralTable').DataTable( {
+        "order": [[ 7, "desc" ]]
+	    } );
+	} );
+	</script>
 </head>
 <body id="page-top">
 
@@ -105,7 +112,7 @@ include('process_misc_things.php');
 			WHERE /*remarks='Fixed' AND */ peripheral_type='$current_type' ");
 	}
 	?>
-	<table class="table" id="dataTable" width="100%" cellspacing="0">
+	<table class="table" id="periheralTable" width="100%" cellspacing="0">
 	<thead>
 		<tr>
 			<th>Type</th>

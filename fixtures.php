@@ -115,7 +115,7 @@ $_SESSION['getURI'] = $getURI;
 			</tr>	
 		</table>
 		</form>
-		<label style='color: blue;'class="form-control">List of Fixtures</label>
+		<label style='color: blue;'class="form-control">List of Fixtures (Preview)</label>
 		<!-- Show Added Fixtures -->
 		<table class="table" id="dataTable" width="100%" cellspacing="0">
 			<thead>
@@ -135,6 +135,7 @@ $_SESSION['getURI'] = $getURI;
 			JOIN laboratory ly
 			ON ly.lab_id = fe.lab_id
 			ORDER BY fe.date_added DESC
+			LIMIT 10
 			"); 
 			while($newFixtures=$getFixtures->fetch_assoc()){
 			?>
