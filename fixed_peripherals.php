@@ -102,26 +102,29 @@ include('process_misc_things.php');
 		$getStockRooms = mysqli_query($mysqli, "SELECT p.*, fr.* FROM peripherals p
 			/* LEFT */ JOIN fix_report fr
 			ON p.peripheral_id = fr.item_id
-			/* WHERE remarks='Fixed' */ ");
+			WHERE remarks='Fixed'
+			AND fr.type='peripheral' ");
 	}
 	else{
 		//$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE unit_id='StockRoom' AND peripheral_type='$current_type' AND remarks='ForRepair'");
 		$getStockRooms = mysqli_query($mysqli, "SELECT p.*, fr.* FROM peripherals p 
 			/* LEFT */ JOIN fix_report fr 
 			ON p.peripheral_id = fr.item_id 
-			WHERE /*remarks='Fixed' AND */ peripheral_type='$current_type' ");
+			WHERE remarks='Fixed'
+			AND peripheral_type='$current_type'
+			AND fr.type='peripheral' ");
 	}
 	?>
 	<table class="table" id="periheralTable" width="100%" cellspacing="0">
 	<thead>
 		<tr>
+			<th>ID</th>
 			<th>Type</th>
 			<th>Brand</th>
 			<th>Description</th>
 			<th>Serial ID</th>
 			<th style="display: none;">Date Purchased</th>
 			<th>Date Issued</th>
-			<th>Condition</th>
 			<th>Remarks</th>
 			<th>Date Fixed</th>
 			<th>Cost</th>
@@ -136,13 +139,13 @@ include('process_misc_things.php');
 			else{
 				while($perripheral_row=$getStockRooms->fetch_assoc()){ ?>
 		<tr>
+			<td><?php echo $perripheral_row['id']; ?></td>
 			<td><?php echo $perripheral_row['peripheral_type']; ?></td>
 			<td><?php echo $perripheral_row['peripheral_brand']; ?></td>
 			<td><?php echo $perripheral_row['peripheral_description']; ?></td>
 			<td><?php echo $perripheral_row['peripheral_serial_no']; ?></td>
 			<td style="display: none;"><?php echo $perripheral_row['peripheral_date_purchased']; ?></td>
 			<td><?php echo $perripheral_row['peripheral_date_issued']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_condition']; ?></td>
 			<td><?php echo $perripheral_row['remarks'] ?></td>
 			<td><?php echo $perripheral_row['date_added']; ?></td>
 			<td style="text-align: right !important;"><?php echo "₱ ".number_format($perripheral_row['repair_cost'],2,".",","); ?></td>

@@ -81,6 +81,7 @@ include('sidebar.php');
 				<td><input type="password" name="confirmPassword" class="form-control" placeholder="*****" minlength="4" required></td>
 				<td><select name='account_type' class="form-control" <?php if($update_account){echo 'disabled';} ?>>
 						<option value='lab_assistant'>Lab Assistant</option>
+						<option value='lab_assistant'>Dean</option>
 						<option value='admin'>Administrator</option>
 						<option value='ppfo'>PPFO</option>
 						<option value='maintenance'>Maintenance</option>

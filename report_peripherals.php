@@ -98,7 +98,7 @@ include('sidebar.php');
 							<th>Type</th>
 							<th>Status</th>
 							<th width="40%">Note / Condition</th>
-							<th width="8%">Repair Cost</th>
+							<th width="8%">Repair Cost (₱)</th>
 							<th>Upload Receipt</th>
 							<th>Action</th>
 						</tr>

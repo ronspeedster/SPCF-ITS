@@ -352,14 +352,14 @@
               <?php
                 //For Repair Peripherals
                 $fixturesMoreThan3=false;
-                $getFixtures = $mysqli->query("SELECT * FROM fixture WHERE remarks='For Repair'") or die ($mysqli->error);
+                $getFixtures = $mysqli->query("SELECT * FROM fixture WHERE remarks='For Repair' AND type <> 'airconditioner' ") or die ($mysqli->error);
                 if(mysqli_num_rows($getFixtures)>3){
                    $fixturesMoreThan3=true;
                 }
                 $getFixtures = $mysqli->query("SELECT * FROM fixture f 
                   JOIN laboratory l ON f.lab_id = l.lab_id
                   JOIN building b ON b.building_id = l.building_id
-                  WHERE remarks='For Repair' AND f.type<>'airconditioner' LIMIT 3") or die ($mysqli->error);
+                  WHERE remarks='For Repair' AND f.type<>'airconditioner' LIMIT 3 ") or die ($mysqli->error);
                ?>
               <div class="card shadow mb-4">
                 <div class="card-header py-3">

@@ -55,12 +55,45 @@
 		echo $fixture_id =  $_POST['fixture_id'];
 		echo $status =  $_POST['status'];
 		echo $condition = $_POST['condition'];
+		echo $repair_cost = $_POST['repair_cost'];
 
-		$mysqli->query("UPDATE fixture SET remarks='$status', fixture_condition='$condition' WHERE id='$fixture_id'") or die($mysqli->error());
+		$currentDate = date_default_timezone_set('Asia/Manila');
+		$currentDate = date('Y-m-d-H-i-s');
+		
+		echo $newName = 'ItemID-'.$fixture_id.$status.$repair_cost.$currentDate;
 
-		$_SESSION['message'] = "Fixture new details has been saved!";
-		$_SESSION['msg_type'] = "success";
+		// get details of the uploaded file
+		$fileTmpPath = $_FILES['image_receipt']['tmp_name'];
+		$fileName = $_FILES['image_receipt']['name'];
+		$fileSize = $_FILES['image_receipt']['size'];
+		$fileType = $_FILES['image_receipt']['type'];
+		$fileNameCmps = explode(".", $fileName);
+		$fileExtension = strtolower(end($fileNameCmps));
+		print_r($fileNameCmps);
+		$newFileName = $newName . '.' . $fileExtension;
+		print_r($newFileName); 
+		// directory in which the uploaded file will be moved
+		$uploadFileDir = 'img/assets/';
+		$dest_path = $uploadFileDir . $newFileName;
+		
+		if(move_uploaded_file($fileTmpPath, $dest_path))
+		{		
+			$_SESSION['message'] = "Fixture new details has been saved!";
+			$_SESSION['msg_type'] = "success";
+			$mysqli->query("UPDATE fixture SET remarks='$status', fixture_condition='$condition' WHERE id='$fixture_id'") or die($mysqli->error());
 
+			$mysqli->query("INSERT INTO fix_report (type, item_id, repair_cost, date_added, file_name) VALUES ('fixture', '$fixture_id', '$repair_cost', '$currentDate', '$newFileName') ") or die ($mysqli->error());
+
+			// Save Transcation
+			$mysqli->query("INSERT INTO transaction_record (type, type_id, cost, date_added) VALUES ('fixed_fixture', '$fixture_id', '$repair_cost', '$currentDate') ") or die ($mysqli->error());
+		}
+		else{
+
+			$_SESSION['message'] = "There was an error uploading the image receipt!";
+			$_SESSION['msg_type'] = "danger";
+
+		}
+		
 		header('location: for_repair_fixtures.php');
 	}	
 	

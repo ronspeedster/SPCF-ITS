@@ -1,5 +1,5 @@
 <?php
-$currentItem='for_repair';
+$currentItem='fixed_equipment';
 include('sidebar.php');
 $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 $getURI = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -14,6 +14,13 @@ include('process_misc_things.php');
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<script src="js/demo/datatables-demo.js"></script>
 	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<script type="text/javascript">
+		$(document).ready(function() {
+		$('#dataTable').DataTable( {
+		    responsive: true
+			} );
+		};
+	</script>
 </head>
 <body id="page-top">
 
@@ -89,32 +96,45 @@ include('process_misc_things.php');
 	</table>
 	<h5 class="form-control" style="color: blue;">List of Fixtures For Repair</h5>
 	<?php
-		$getFixtureForRepair = mysqli_query($mysqli, "SELECT * FROM fixture WHERE remarks='Fixed'");
+		$getFixtureForRepair = mysqli_query($mysqli, "SELECT f.*, fr.*
+				FROM fixture f
+				JOIN fix_report fr
+				ON fr.item_id = f.id
+				WHERE f.remarks = 'Fixed'
+				AND fr.type = 'fixture' ");
 	?>
 	<table class="table" id="dataTable" width="100%" cellspacing="0">
 	<thead>
 		<tr>
+			<th>ID</th>
 			<th>Type</th>
 			<th>Batch ID</th>
 			<th>Serial ID</th>
 			<th>Last Cleaned</th>
 			<th>Condition</th>
 			<th>Remarks</th>
+			<th>Date Fixed</th>
+			<th>Cost</th>
+			<th>Receipt</th>
 		</tr>
 	</thead>
 			<?php
 			if(mysqli_num_rows($getFixtureForRepair)==0){
-				echo "<div class='alert alert-warning'>No Fixture(s) currently for repair</div>";
+				echo "<div class='alert alert-warning'>No Fixture(s) currently fixed</div>";
 			}
 			else{
 				while($fixture_row=$getFixtureForRepair->fetch_assoc()){ ?>
 		<tr>
+			<td><?php echo strtoupper($fixture_row['id']); ?></td>
 			<td><?php echo strtoupper($fixture_row['type']); ?></td>
 			<td><?php echo $fixture_row['batch_code']; ?></td>
 			<td><?php if($fixture_row['serial_no']==''){echo "<font color='red'>NO SN</font>";}else{echo $fixture_row['serial_no'];} ?></td>
 			<td><?php echo $fixture_row['date_last_clean']; ?></td>
 			<td><?php echo $fixture_row['fixture_condition']; ?></td>
 			<td><?php echo $fixture_row['remarks']; ?></td>
+			<td><?php echo $fixture_row['date_added']; ?></td>
+			<td style="text-align: right !important;"><?php echo "₱ ".number_format($fixture_row['repair_cost'],2,".",","); ?></td>
+			<td><a class="btn btn-sm btn-info" href="img/assets/<?php echo $fixture_row['file_name'] ?>" target="_blank"><i class="far fa-image"></i> Image</a></td>
 		</tr>
 			<?php	
 				}}

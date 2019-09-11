@@ -17,6 +17,8 @@ include('process_misc_things.php');
 	<script type="text/javascript">
 		$(document).ready(function() {
     $('#fixtureTable').DataTable( {
+    	responsive: true,
+    	"pageLength": 25,	
         "order": [[ 4, "desc" ]]
 	    } );
 	} );
@@ -111,7 +113,7 @@ include('process_misc_things.php');
 	}
 	?>
 	<table class="table" id="fixtureTable" width="100%" cellspacing="0">
-	<thead>
+	<thead> 
 		<tr>
 			<th>Type</th>
 			<th>Batch Code</th>

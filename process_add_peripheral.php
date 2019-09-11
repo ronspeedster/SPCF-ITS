@@ -335,10 +335,10 @@
 			$_SESSION['msg_type'] = "success";
 			$mysqli->query("UPDATE peripherals SET remarks='$remarks', peripheral_condition='$condition' WHERE peripheral_id='$newPeripheralID'") or die ($mysqli->error());
 			
-			$mysqli->query("INSERT INTO fix_report (item_id, repair_cost, date_added, file_name) VALUES ('$newPeripheralID','$repair_cost','$currentDate','$newFileName') ") or die ($mysqli->error());
+			$mysqli->query("INSERT INTO fix_report (type, item_id, repair_cost, date_added, file_name) VALUES ('peripheral','$newPeripheralID','$repair_cost','$currentDate','$newFileName') ") or die ($mysqli->error());
 
 			// Save Transcation
-			$mysqli->query("INSERT INTO transaction_record (type, cost, date_added) VALUES ('peripheral_fix','$repair_cost','$currentDate') ") or die ($mysqli->error());
+			$mysqli->query("INSERT INTO transaction_record (type, type_id, cost, date_added) VALUES ('fixed_peripheral', '$newPeripheralID', '$repair_cost', '$currentDate') ") or die ($mysqli->error());
 
 		}
 		else
