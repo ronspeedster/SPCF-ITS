@@ -110,7 +110,7 @@ $_SESSION['getURI'] = $getURI;
 						<input type="text" class="form-control" style="visibility: hidden;"  name="building_id" value="<?php echo $building_id; ?>">
 					</td>
 						<td>
-							<select name="lab_id" class="form-control" disabled>
+							<select name="lab_id" class="form-control">
 							<?php
 								if($noLab==true){ echo "<option disabled selected>WARNING: NO LAB / ROOM</option>"; } 
 								while ($newLaboratory = $getLaboratories->fetch_assoc()){

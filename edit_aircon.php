@@ -94,16 +94,26 @@ $_SESSION['getURI'] = $getURI;
 					<tr>
 						<th>Type</th>
 						<th>Serial No.</th>
+						<th>Brand</th>
+						<th>AC Type</th>
 						<th>Building</th>
 						<th>Laboratories</th>
 						<th>Date Last Cleaned</th>
 						<th>Actions</th>
 					</tr>
 					<tr>
-						<td><?php echo strtoupper($newFixture['type']); ?></td>
+						<td width="5%"><?php echo strtoupper($newFixture['type']); ?></td>
 						<td><input type="text" name="serial_no" class="form-control" placeholder="Serial-No" value="<?php echo $serial_no; ?>" required>
 							<input type="text" name="fixture_id" style="visibility: hidden;" value="<?php echo $id; ?>"></td>
-						<td><select class="form-control" onchange="location = this.value;" disabled>
+						<td ><input type="text" name="brand" class="form-control"></td>
+						<td><select name="ac_type" class="form-control">
+							<option value="window">Window</option>
+							<option value="split_air">Split Air</option>
+							<option value="duct_less">Ductless</option>
+							<option value="central">Central Air</option>
+							<option value="tower">Tower</option>
+						</select></td>
+						<td width="5%"><select class="form-control" onchange="location = this.value;" disabled>
 							<?php while ($newBuilding = $getBuilding->fetch_assoc()){
 								$new_building_id = $newBuilding['building_id'];
 								?> 
@@ -112,7 +122,7 @@ $_SESSION['getURI'] = $getURI;
 						</select>
 						<input type="text" class="form-control" style="visibility: hidden;"  name="building_id" value="<?php echo $building_id; ?>">
 					</td>
-						<td>
+						<td width="5%">
 							<select name="lab_id" class="form-control" disabled>
 							<?php
 								if($noLab==true){ echo "<option disabled selected>WARNING: NO LAB / ROOM</option>"; } 
