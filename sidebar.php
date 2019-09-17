@@ -48,7 +48,7 @@
     width: 10px;
   }
 
-#dataTable_wrapper,#fixtureTable_wrapper {
+#dataTable_wrapper,#fixtureTable_wrapper, #airconTable_wrapper {
     width: 100% !important;
 }
 
