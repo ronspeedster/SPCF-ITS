@@ -133,11 +133,13 @@ include('process_misc_things.php');
 		</tr>
 	</thead>
 			<?php
+			$totalRepairCost = 0;
 			if(mysqli_num_rows($getStockRooms)==0){
 				echo "<div class='alert alert-warning'>No ".$current_type." fixed</div>";
 			}
 			else{
-				while($perripheral_row=$getStockRooms->fetch_assoc()){ ?>
+				while($perripheral_row=$getStockRooms->fetch_assoc()){
+					$totalRepairCost += $perripheral_row['repair_cost'];?>
 		<tr>
 			<td><?php echo $perripheral_row['id']; ?></td>
 			<td><?php echo $perripheral_row['peripheral_type']; ?></td>
@@ -155,6 +157,7 @@ include('process_misc_things.php');
 				}}
 			?>
 	</table>
+	<span class="text-danger"><center>Total Repair Cost: ₱ <?php echo $totalRepairCost; ?></center></span>
 </div>
 	<!-- End Here-->
 	<?php

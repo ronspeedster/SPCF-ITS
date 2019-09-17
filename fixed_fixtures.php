@@ -119,11 +119,14 @@ include('process_misc_things.php');
 		</tr>
 	</thead>
 			<?php
+			$totalRepairCost=0;
 			if(mysqli_num_rows($getFixtureForRepair)==0){
 				echo "<div class='alert alert-warning'>No Fixture(s) currently fixed</div>";
 			}
 			else{
-				while($fixture_row=$getFixtureForRepair->fetch_assoc()){ ?>
+				while($fixture_row=$getFixtureForRepair->fetch_assoc()){
+					$totalRepairCost += $fixture_row['repair_cost'];
+				 ?>
 		<tr>
 			<td><?php echo strtoupper($fixture_row['id']); ?></td>
 			<td><?php echo strtoupper($fixture_row['type']); ?></td>
@@ -140,6 +143,7 @@ include('process_misc_things.php');
 				}}
 			?>
 	</table>
+	<span class="text-danger"><center>Total Repair Cost: ₱ <?php echo number_format($totalRepairCost,2,".",","); ?></center></span>
 </div>
 
 	<!-- End Here-->
