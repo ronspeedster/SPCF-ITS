@@ -69,7 +69,7 @@ $currentDate = date("Y/m/d");
 		<thead>
 			<th >ID</th>
 			<th style="display: none;">Type</th>
-			<th>Batch Code</th>
+			<th style="display: none;">Batch Code</th>
 			<th>Serial No</th>
 			<th>Building</th>
 			<th>Room</th>
@@ -92,7 +92,7 @@ $currentDate = date("Y/m/d");
 			<tr>
 				<td><?php echo $newFixtures['id']; ?></td>
 				<td style="display: none;"><?php echo strtoupper($newFixtures['type']); ?></td>
-				<td><?php echo $newFixtures['batch_code']; ?></td>
+				<td style="display: none;"><?php echo $newFixtures['batch_code']; ?></td>
 				<td><?php if($newFixtures['serial_no']==''){echo "<font color='red'>NO SN</font>";} else { echo $newFixtures['serial_no']; }?></td>
 				<td><?php echo $newFixtures['building_name']; ?></td>
 				<td><?php echo $newFixtures['lab_name']; ?></td>
