@@ -168,7 +168,7 @@
                       <!-- End Progress -->                      
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-fan fa-5x text-gray-500 fa-spin"></i>
+                      <i class="fas fa-fan fa-5x text-gray-500 fa-spin" style="-webkit-animation: fa-spin 0.5s infinite linear; animation: fa-spin 0.5s infinite linear;"></i>
                     </div>
                   </div>
                 </div>
