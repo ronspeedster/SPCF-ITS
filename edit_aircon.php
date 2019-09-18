@@ -92,17 +92,17 @@ $_SESSION['getURI'] = $getURI;
 				<table class="table" width="100%;">
 				<form action="process_aircon.php" method="POST">
 					<tr>
-						<th>Type</th>
+						<th style="display: none;">Type</th>
 						<th>Serial No.</th>
 						<th>Brand</th>
 						<th>AC Type</th>
 						<th>Building</th>
 						<th>Laboratories</th>
-						<th>Date Last Cleaned</th>
+						<th style="width: 5%;">Date Last Cleaned</th>
 						<th>Actions</th>
 					</tr>
 					<tr>
-						<td width="5%"><?php echo strtoupper($newFixture['type']); ?></td>
+						<td width="5%" style="display: none;"><?php echo strtoupper($newFixture['type']); ?></td>
 						<td><input type="text" name="serial_no" class="form-control" placeholder="Serial-No" value="<?php echo $serial_no; ?>" required>
 							<input type="text" name="fixture_id" style="visibility: hidden;" value="<?php echo $id; ?>"></td>
 						<td ><input type="text" name="brand" class="form-control"></td>
