@@ -21,7 +21,8 @@ $currentDate = date("Y/m/d");
 	<script type="text/javascript">
 		$(document).ready(function() {
     $('#airconTable').DataTable( {
-        "order": [[ 7, "DESC" ]]
+        "order": [[ 7, "asc" ]],
+        "pageLength": 50
 	    } );
 	} );
 	</script>
@@ -67,26 +68,29 @@ $currentDate = date("Y/m/d");
 
 	<table class="table" id="airconTable" cellspacing="0">
 		<thead>
-			<th >ID</th>
+			<th style="width: 5%;">ID</th>
 			<th style="display: none;">Type</th>
 			<th style="display: none;">Batch Code</th>
-			<th>Serial No</th>
-			<th>Building</th>
-			<th>Room</th>
-			<th>Date Last Cleaned</th>
-			<th>Next Cleaning</th>
-			<th>Actions</th>
+			<th style="width: 10%;">Serial No</th>
+			<th style="width: 10%;">Building</th>
+			<th style="width: 10%;">Room</th>
+			<th style="width: 15%;">Date Last Cleaned</th>
+			<th style="width: 15%;">Next Cleaning</th>
+			<th style="width: 15%;">Actions</th>
 		</thead>
 		<tbody>
 			<?php while($newFixtures=$getFixtures->fetch_assoc()){
 				$lastCleanDate = date_create($newFixtures['date_last_clean']);
 				$lastCleanDateA = $newFixtures['date_last_clean'];
 				$newDate = date('Y/m/d', strtotime($lastCleanDateA. ' + 166 days'));
+				//echo $newDate;
 				if($currentDate>=$newDate){
-					$newDate = "<span class='text-danger'>".date_format(date_create($newDate), 'F j, Y')."</span>";
+					$newDate = "<span class='text-danger'>".$newDate.' ('.date_format(date_create($newDate), 'F j, Y').')'."</span>";
+					//$newDate = "<span class='text-danger'>".$newDate."</span>";
 				}
 				else{
-					$newDate = "<span class='text-primary'>".date_format(date_create($newDate), 'F j, Y')."</span>";
+					//$newDate = "<span class='text-primary'>".date_format(date_create($newDate), 'F j, Y')."</span>";
+					$newDate = "<span class='text-primary'>".$newDate."</span>";
 				}
 				?>
 			<tr>

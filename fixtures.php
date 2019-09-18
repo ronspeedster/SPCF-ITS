@@ -120,7 +120,7 @@ $_SESSION['getURI'] = $getURI;
 		<table class="table" id="dataTable" width="100%" cellspacing="0">
 			<thead>
 				<th>Type</th>
-				<th>Batch ID</th>
+				<th style="display: none;">Batch ID</th>
 				<th>Serial No</th>
 				<th>Building</th>
 				<th>Room / Laboratory</th>
@@ -141,7 +141,7 @@ $_SESSION['getURI'] = $getURI;
 			?>
 				<tr>
 					<td><?php echo strtoupper($newFixtures['type']); ?></td>
-					<td><?php echo $newFixtures['batch_code']; ?></td>
+					<td style="display: none;"><?php echo $newFixtures['batch_code']; ?></td>
 					<td><?php if($newFixtures['serial_no']==''){echo "<font color='red'>NO SN</font>";}else{echo $newFixtures['serial_no'];} ?></td>
 					<td><?php echo $newFixtures['building_name']; ?></td>
 					<td><?php echo $newFixtures['lab_name']; ?></td>

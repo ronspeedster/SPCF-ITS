@@ -138,8 +138,9 @@ include('process_misc_things.php');
 			<td><?php echo $newFixture['lab_name']; ?></td>
 			<td><?php echo strtoupper($newFixture['fixture_condition']); ?></td>
 			<td>
-			<a class="btn btn-success btn-secondary btn-sm" href="<?php echo 'report_peripherals.php?peripheral_id='.$perripheral_row['peripheral_id'].'&is_fix=true'; ?>"><i class="far fa-edit"></i> Edit</a>
-			<button style="display: none;" class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<a class="btn btn-success btn-secondary btn-sm" href="edit_fixture.php?type=<?php echo $newFixture['type']; ?>&id=<?php echo $newFixture['id'];?>&building_id=<?php echo $newFixture['building_id']; ?>"><i class="far fa-edit"></i> Edit</a>
+			<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_fixture.php?fixture_id=<?php echo $newFixture['id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>			
+			<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<i class="far fa-trash-alt"></i> Delete
 					</button><div class="dropdown-menu" aria-labelledby="dropdownMenuButton btn-sm">
 					You sure you want to delete? You cannot undo the changes<br/>
