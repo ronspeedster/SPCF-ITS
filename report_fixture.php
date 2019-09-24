@@ -95,10 +95,10 @@ include('sidebar.php');
 			<form action="process_fixture.php"  method="POST" enctype="multipart/form-data">
 				<table class="table" width="100%">
 					<thead>
-						<th width="10%">ID</th>
+						<th width="5%">ID</th>
 						<th>Type</th>
-						<th>Status</th>
-						<th width="40%">Note / Condition</th>
+						<th width="10%">Status</th>
+						<th width="30%">Note / Condition</th>
 						<th width="8%">Repair Cost (₱)</th>
 						<th>Upload Receipt</th>
 						<th>Action</th>
@@ -114,7 +114,7 @@ include('sidebar.php');
 	 					</td>
 						<td><textarea name="condition" class="form-control" style="min-height: 100px;" placeholder="Tell us something what happened to the peripheral" required></textarea></td>
 						<td><input type="number" name='repair_cost' class="form-control" placeholder="0.00" min="0" step="0.01" required></td>
-						<td><input type="file" name="image_receipt" accept="image/*" value="Upload Receipt"></td>
+						<td><input class="form-control-file" type="file" name="image_receipt" accept="image/*" value="Upload Receipt"></td>
 						<td><button type='submit' name="submit_fix_report" class="btn btn-primary btn-sm"><i class="fas fa-file-import"></i> Save Details</a></td>
 					</tr>
 				</table>
