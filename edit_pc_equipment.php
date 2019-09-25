@@ -165,7 +165,7 @@ $_SESSION['getURI'] = $getURI;
 					<th>Laboratory</th>
 					<th>Building</th>
 					<th style="display: none;">Status</th>
-					<th>Actions</th>
+					<th width="30%">Actions</th>
 				</tr>
 			</thead>
 			
@@ -177,7 +177,7 @@ $_SESSION['getURI'] = $getURI;
  				<td><?php echo $newGetPCResults['lab_name']; ?></td>
  				<td><?php echo $newGetPCResults['building_name'];?></td>
  				<td style="display: none;"><?php echo ucfirst($newGetPCResults['status']);?></td>
-				 <td>
+				<td>
 		<?php
 				$getUnitID =  $newGetPCResults['unit_id'];
 				$checkPeripheralExistence = $mysqli->query("SELECT * FROM peripherals WHERE unit_id = $getUnitID") or die ($mysqli->error);
@@ -188,11 +188,13 @@ $_SESSION['getURI'] = $getURI;
 				}
 				else{
 		?>
-				<a target="_blank" href="add_peripheral.php?PcId=<?php echo $newGetPCResults['unit_id']; ?>" class="btn btn-success btn-sm"><i class="far fa-edit"></i> Edit PC Parts</a>					
+				<a target="_blank" href="add_peripheral.php?PcId=<?php echo $newGetPCResults['unit_id']; ?>" class="btn btn-success btn-sm"><i class="far fa-edit"></i> Edit PC Parts</a>
 		<?php			
 				}
-		?>		
-				
+		?>
+					<!-- Update 2019-09-25 add QR -->
+					<!-- While the subdomain is not available, change the ip address -->
+					<a target="_blank" class="btn btn-primary btn-sm" href="generate_qr.php?data=https://192.168.2.2/spcf-its/scan_qr.php?ispc=true$id=<?php echo $getUnitID; ?>">Generate QR</a>
 					<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="far fa-trash-alt"></i> Delete
 					</button>
@@ -202,6 +204,7 @@ $_SESSION['getURI'] = $getURI;
 						?><i class="far fa-trash-alt"></i> Confirm Delete</a>
 						<a href="#" class='btn btn-success btn-sm'><i class="far fa-window-close"></i> Cancel</a> 
 					</div>
+
  				</td>
  			</tr>
  			<!-- Modal For PC Equipments -->

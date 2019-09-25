@@ -146,7 +146,8 @@ include('process_misc_things.php');
 					You sure you want to delete? You cannot undo the changes<br/>
 						<a href="process_misc_things.php?delete=<?php echo $perripheral_row['peripheral_id'] ?>" class='btn btn-danger btn-sm'><i class="far fa-trash-alt"></i> Confirm Delete</a>
 						<a href="#" class='btn btn-success btn-sm'><i class="far fa-window-close"></i> Cancel</a> 
-			</div></td>
+			</div>
+		</td>
 		</tr>
 			<?php	
 				}}

@@ -73,7 +73,7 @@
     echo '<form action="generate_qr.php" method="post">
     <table width="100%">
         <tr>
-        <td> Data:&nbsp;<input class="form-control" name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp; </td>
+        <td> Data:&nbsp;<input class="form-control" name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" readonly/>&nbsp; </td>
         <td> ECC:&nbsp;<select class="form-control" name="level">
             <option value="H"'.(($errorCorrectionLevel=='H')?' selected':'').'>H - best</option>
         </select>&nbsp; </td>
