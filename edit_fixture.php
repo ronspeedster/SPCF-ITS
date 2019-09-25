@@ -109,8 +109,8 @@ $_SESSION['getURI'] = $getURI;
 						</select>
 						<input type="text" class="form-control" style="visibility: hidden;"  name="building_id" value="<?php echo $building_id; ?>">
 					</td>
-						<td>
-							<select name="lab_id" class="form-control">
+						<td> 
+							<select class="form-control" disabled>
 							<?php
 								if($noLab==true){ echo "<option disabled selected>WARNING: NO LAB / ROOM</option>"; } 
 								while ($newLaboratory = $getLaboratories->fetch_assoc()){
@@ -118,6 +118,8 @@ $_SESSION['getURI'] = $getURI;
 								<option value='<?php echo $lab_id; ?>' <?php if($lab_id==$fixture_lab_id){ echo "Selected";} ?> ><?php echo $newLaboratory['lab_name']; ?></option>
 							<?php } ?>
 						</select>
+						<!-- 2019-09-24 Used this field instead of building Select -->
+						<input name="lab_id" value="<?php echo $fixture_lab_id; ?>" style="visibility: hidden;">
 						</td>
 						<td>
 							
