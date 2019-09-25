@@ -93,7 +93,7 @@ $_SESSION['getURI'] = $getURI;
 						<th>Type</th>
 						<th>Serial No.</th>
 						<th>Building</th>
-						<th>Laboratories</th>
+						<th>Room / Laboratory</th>
 						<th>Actions</th>
 					</tr>
 					<tr>

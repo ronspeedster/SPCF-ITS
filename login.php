@@ -71,14 +71,14 @@
                   </div>
                   <form class="user" action="process_login.php" method="POST">
                     <div class="form-group">
-                      <input type="name" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Username" name="username">
+                      <input type="name" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Username" name="username">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="password">
+                      <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" name="password">
                     </div>
                     <div class="form-group">
                     </div>
-                    <button class="btn btn-primary btn-user btn-block" name="login">Login</button>
+                    <button class="btn btn-primary btn-block" name="login" style="background-color: #0f1e5d; border-color: #0f1e5d;">Login</button>
                     <hr>
                   </form>
                   <hr>

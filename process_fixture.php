@@ -30,7 +30,7 @@
 		echo $laboratory_id =  $_POST['lab_id'];
 		echo $serial_no = strtoupper($_POST['serial_no']);
 		echo $fixture_id = $_POST['fixture_id'];
-		$mysqli->query("UPDATE fixture SET building_id = '$building_id', serial_no = '$serial_no', lab_id='$laboratory_id' WHERE id='$fixture_id' ") or die($mysqli->error());
+		$mysqli->query("UPDATE fixture SET /*building_id = '$building_id',*/ serial_no = '$serial_no' /*, lab_id='$laboratory_id' */ WHERE id='$fixture_id' ") or die($mysqli->error());
 		$_SESSION['message'] = "Fixture has been updated!";
 		$_SESSION['msg_type'] = "success";
 

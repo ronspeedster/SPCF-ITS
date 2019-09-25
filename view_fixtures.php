@@ -116,12 +116,12 @@ include('process_misc_things.php');
 	<thead> 
 		<tr>
 			<th>Type</th>
-			<th>Batch Code</th>
+			<th style="display: none;">Batch Code</th>
 			<th>Serial Code</th>
 			<th>Building</th>
 			<th>Room / Laboratory</th>
 			<th>Condition</th>
-			<th>Actions</th>
+			<th width="20%">Actions</th>
 		</tr>
 	</thead>
 			<?php
@@ -132,7 +132,7 @@ include('process_misc_things.php');
 				while($newFixture=$getFixture->fetch_assoc()){ ?>
 		<tr>
 			<td><?php echo strtoupper($newFixture['type']); ?></td>
-			<td><?php echo $newFixture['batch_code']; ?></td>
+			<td style="display: none;"><?php echo $newFixture['batch_code']; ?></td>
 			<td><?php if($newFixture['serial_no']==''){echo "<span class='text-danger'>NO SC</span>";}else{echo $newFixture['serial_no'];} //echo $newFixture['serial_no']; ?></td>
 			<td><?php echo $newFixture['building_name']; ?></td>
 			<td><?php echo $newFixture['lab_name']; ?></td>

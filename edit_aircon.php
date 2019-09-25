@@ -96,9 +96,9 @@ $_SESSION['getURI'] = $getURI;
 						<th>Serial No.</th>
 						<th>Brand</th>
 						<th>AC Type</th>
-						<th>Building</th>
-						<th>Laboratories</th>
-						<th style="width: 5%;">Date Last Cleaned</th>
+						<th style="display: none;">Building</th>
+						<th style="display: none;">Laboratories</th>
+						<th style="width: 5%;">Last Cleaned (Date)</th>
 						<th>Actions</th>
 					</tr>
 					<tr>
@@ -113,7 +113,8 @@ $_SESSION['getURI'] = $getURI;
 							<option value="central">Central Air</option>
 							<option value="tower">Tower</option>
 						</select></td>
-						<td width="5%"><select class="form-control" onchange="location = this.value;" disabled>
+						<td width="5%" style="display: none;">
+							<select class="form-control" onchange="location = this.value;" disabled>
 							<?php while ($newBuilding = $getBuilding->fetch_assoc()){
 								$new_building_id = $newBuilding['building_id'];
 								?> 
@@ -122,7 +123,7 @@ $_SESSION['getURI'] = $getURI;
 						</select>
 						<input type="text" class="form-control" style="visibility: hidden;"  name="building_id" value="<?php echo $building_id; ?>">
 					</td>
-						<td width="5%">
+						<td width="5%" style="display: none;">
 							<select name="lab_id" class="form-control" disabled>
 							<?php
 								if($noLab==true){ echo "<option disabled selected>WARNING: NO LAB / ROOM</option>"; } 
