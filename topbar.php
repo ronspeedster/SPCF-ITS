@@ -22,7 +22,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="text-white mr-2 d-none d-lg-inline text-white-600 medium"><?php echo ucfirst($_SESSION['username']); ?> <i class="fas fa-user-circle"></i></span>
+                <span class="text-white mr-2 d-none d-lg-inline text-white-600 medium"><?php echo ucfirst($_SESSION['username']); ?></span><i class="text-white fas fa-user-circle"></i>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
