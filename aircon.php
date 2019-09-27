@@ -94,7 +94,7 @@ $currentDate = date("Y/m/d");
 				}
 				?>
 			<tr>
-				<td><?php echo $newFixtures['id']; ?></td>
+				<td><?php echo $getAirconID = $newFixtures['id']; ?></td>
 				<td style="display: none;"><?php echo strtoupper($newFixtures['type']); ?></td>
 				<td style="display: none;"><?php echo $newFixtures['batch_code']; ?></td>
 				<td><?php if($newFixtures['serial_no']==''){echo "<font color='red'>NO SN</font>";} else { echo $newFixtures['serial_no']; }?></td>
@@ -103,8 +103,11 @@ $currentDate = date("Y/m/d");
 				<td><?php echo date_format($lastCleanDate, 'F j, Y'); ?></td>
 				<td><?php echo $newDate;?></td>
 				<td>
-					<a class="btn btn-info btn-sm" href="edit_aircon.php?id=<?php echo $newFixtures['id'];?>&building_id=<?php echo $newFixtures['building_id']; ?>"><i class="far fa-edit"></i> Edit</a>
-					<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_fixture.php?fixture_id=<?php echo $newFixtures['id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+					<a class="btn btn-info btn-sm mb-1" href="edit_aircon.php?id=<?php echo $newFixtures['id'];?>&building_id=<?php echo $newFixtures['building_id']; ?>"><i class="far fa-edit"></i> Edit</a>
+					<!-- Update 2019-09-25 add QR -->
+					<!-- While the subdomain is not available, change the ip address -->
+					<a class="btn btn-primary btn-sm mb-1" href="generate_qr.php?data=https://192.168.2.1/spcf-its/scan_qr.php?isaircon=true$id=<?php echo $getAirconID; ?>"><i class="fas fa-qrcode"></i> Generate QR</a>
+					<a style='color: #5D4037;' class='btn btn-sm btn-warning mb-1' href="report_fixture.php?fixture_id=<?php echo $newFixtures['id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
 				</td>
 			</tr>
 			<?php } ?>

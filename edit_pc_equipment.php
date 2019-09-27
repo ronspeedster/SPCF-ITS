@@ -183,19 +183,19 @@ $_SESSION['getURI'] = $getURI;
 				$checkPeripheralExistence = $mysqli->query("SELECT * FROM peripherals WHERE unit_id = $getUnitID") or die ($mysqli->error);
 				if(mysqli_num_rows($checkPeripheralExistence)==0){
 		?>
-				<a target="_blank" href="add_peripheral.php?PcId=<?php echo $newGetPCResults['unit_id']; ?>" class="btn btn-primary btn-sm"><i class="far fa-plus-square"></i> Add PC Parts</a>
+				<a target="_blank" href="add_peripheral.php?PcId=<?php echo $newGetPCResults['unit_id']; ?>" class="btn btn-primary btn-sm mb-1"><i class="far fa-plus-square"></i> Add PC Parts</a>
 		<?php
 				}
 				else{
 		?>
-				<a target="_blank" href="add_peripheral.php?PcId=<?php echo $newGetPCResults['unit_id']; ?>" class="btn btn-success btn-sm"><i class="far fa-edit"></i> Edit PC Parts</a>
+				<a target="_blank" href="add_peripheral.php?PcId=<?php echo $newGetPCResults['unit_id']; ?>" class="btn btn-success btn-sm mb-1"><i class="far fa-edit"></i> Edit PC Parts</a>
 		<?php			
 				}
 		?>
 					<!-- Update 2019-09-25 add QR -->
 					<!-- While the subdomain is not available, change the ip address -->
-					<a target="_blank" class="btn btn-primary btn-sm" href="generate_qr.php?data=https://192.168.2.2/spcf-its/scan_qr.php?ispc=true$id=<?php echo $getUnitID; ?>">Generate QR</a>
-					<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<a target="_blank" class="btn btn-primary btn-sm mb-1" href="generate_qr.php?data=https://192.168.2.1/spcf-its/scan_qr.php?ispc=true$id=<?php echo $getUnitID; ?>"><i class="fas fa-qrcode"></i> Generate QR</a>
+					<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm mb-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="far fa-trash-alt"></i> Delete
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton btn-sm">
