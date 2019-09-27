@@ -5,20 +5,17 @@ $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERV
 $getURI = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $_SESSION['getURI'] = $getURI;
 
-//echo $getURI = str_replace('$', '&', $getURI);
-//echo $getURI = str_replace('scan_qr', 'view_qr', $getURI);
+echo $getURI = str_replace('$', '&', $getURI);
+echo $getURI = str_replace('scan_qr', 'view_qr', $getURI);
 
-//header("location: ".$getURI);
+header("location: ".$getURI);
 
 $currentDate = date_default_timezone_set('Asia/Manila');
 $currentDate = date('Y/m/d');
-$ispc = false;
-$isaircon = false;
-$isfixture = false;
+
 if(isset($_GET['ispc'])){
   $ispc = true;
   $id = $_GET['id'];
-
 }
 else if(isset($_GET['isfixture'])){
   $isfixture = true;
@@ -266,7 +263,7 @@ else{
 <!DOCTYPE html>
 <html>
 <head>
-  <title>View QR Code</title>
+  <title>Scan QR Code</title>
   <script src="libs/js/bootstrap.min.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -332,149 +329,17 @@ else{
   <?php
     }
   
-    
+    $getMaintenanceRequests = $mysqli->query('SELECT * FROM maintenance') or die ($mysqli->error);
 
   ?>
   <!-- Add Building Here -->
-  <div class="card shadow row" style="padding: 2%">
-    <h3>QR Code Result</h3>
-    <div style="<?php if(!$ispc){echo 'display: none;';} ?>">
-    <h4 class="btn btn-lg btn-block btn-success text-uppercase font-weight-bold"><center>Specs</center></h4>
+  <div class="card shadow row" style="padding: 1%">
+    <h5>QR Code Result</h5>
   <?php
-
-        $getPCInformation = $mysqli->query("SELECT *
-          FROM peripherals p
-          JOIN unit_pc up
-          ON p.unit_id = up.unit_id
-          JOIN laboratory l
-          ON l.lab_id = up.lab_id
-          JOIN building b
-          ON b.building_id = up.building_id
-          WHERE p.unit_id = '$id'
-        ") or die ($mysqli->error);
-
-        while($newPCInformation=$getPCInformation->fetch_assoc()){ ?>
-          <h6 style="margin-top: 1rem; text-align: center;">
-            <?php echo $newPCInformation['peripheral_type'].': '.$newPCInformation['peripheral_brand']; ?>
-            <?php if($newPCInformation['remarks']=='For Repair'){echo "<font color='red'>".$newPCInformation['remarks']."</font>";}else{echo "<font color='green'>".'Working'."</font>";} ?>     
-          </h6>
-      <?php
-      $buildingName = $newPCInformation['building_name'];
-      $roomName = $newPCInformation['lab_name'];
-      $unitName = $newPCInformation['unit_name'];
-    } ?>
-    
-    <span style="text-align: center; margin-top: 2rem;"> 
-      <h4 class="btn btn-block btn-lg btn-success"><b>PC: <?php echo $unitName; ?></b></h4><br/>
-      <h5 class="btn btn btn-block btn-warning btn-lg text-uppercase"  style="color: #5D4037 !important;">Building: <b><?php echo $buildingName; ?></b>
-        ,Room: <b><?php echo $roomName; ?></b></h5>
-    </span>
-    </div>
-    <div style="<?php if(!$isaircon){echo 'display: none;';} ?>">
-      <?php
-
-      $getAirconInformation = $mysqli->query("SELECT a.brand, a.type, f.batch_code, f.serial_no, f.fixture_condition, f.remarks
-          FROM aircon a
-          JOIN fixture f
-          ON f.id = a.aircon_id
-          WHERE f.id = '$id'
-        ") or die ($mysqli->error);
-      $newAirconInformation = $getAirconInformation->fetch_array();
-        ?>
-      <h4 class="btn btn-lg btn-block btn-success text-uppercase font-weight-bold"><center>Aircon Details</center></h4><hr/>
-      <center>
-          <h5 class="">Brand: <?php echo $newAirconInformation['brand']; ?></h5>
-          <h5 class="">Type: <?php echo $newAirconInformation['type']; ?></h5>
-          <h5 class="">Serial ID: <?php if($newAirconInformation['serial_no']==''){echo "<span class='text-danger'>NO SN</span>";}else{echo $newAirconInformation['serial_no'];} ?></h5>
-        <hr/>
-        <?php
-              $getAirconBuilding = $mysqli->query("SELECT * from fixture f
-                  JOIN building b
-                  ON b.building_id = f.building_id
-                  JOIN laboratory l
-                  ON l.lab_id = f.lab_id
-                  WHERE f.id = '$id'
-              ") or die ($mysqli->error);
-              $newAirconBuilding = $getAirconBuilding->fetch_array(); ?>
-          <h5 class="">Remarks: <?php echo $newAirconBuilding['remarks']; ?></h5>
-          <h5 class="">Condition: <?php echo $newAirconBuilding['fixture_condition']; ?></h5>
-        <hr/>
-      <?php
-      ?>
-          <span class="text-primary">Current Location</span>
-          <h5 class="text-uppercase btn btn-block btn-lg btn-warning font-weight-bold" style="color: #5D4037 !important;">Building: <?php echo $newAirconBuilding['building_name']; ?>, Room: <?php echo $newAirconBuilding['lab_name']; ?></h5>
-        <hr/>
-      <?php
-        $getAirconTransfer = $mysqli->query(" SELECT * FROM equipment_transfer e
-          JOIN fixture f
-          ON f.id = e.equipment_id
-          JOIN building b
-          ON b.building_id = e.from_building
-          JOIN laboratory l
-          ON l.lab_id = e.from_lab
-          WHERE e.type = 'AIRCONDITIONER' AND e.equipment_id = '$id' ") or die ($mysqli->error);
-        $noPulledOutInformation = true;
-        if(mysqli_num_rows($getAirconTransfer)>0){
-          $noPulledOutInformation = false;
-        }
-      ?>
-      <span class="text-primary">Previous Location</span>
-      <?php if($noPulledOutInformation){ ?>
-        <h5 class="text-uppercase btn btn-block btn-lg btn-secondary font-weight-bold" style="">No previous location</h5>
-      <?php } else {
-        $newAirconTransfer = $getAirconTransfer->fetch_array();
-        ?>
-        <h5 class="text-uppercase btn btn-block btn-lg bg-gradient-primary font-weight-bold" style="color: white;">Building:  <?php echo $newAirconTransfer['building_name']; ?>, Room: <?php echo $newAirconTransfer['lab_name']; ?></h5>
-      <?php } ?>
-      </center>
-    </div>
-    <div style="<?php if(!$isfixture){echo 'display: none;';} ?>">
-      <?php
-      $getFixtures = $mysqli->query("SELECT * from fixture f 
-        JOIN building b ON b.building_id = f.building_id 
-        JOIN laboratory l ON l.lab_id = f.lab_id 
-        WHERE f.id = '$id' ") or die ($mysqli->error);
-      $newFixtures = $getFixtures->fetch_array();
-      //print_r($newFixtures);
-      ?>
-      <h4 class="btn btn-lg btn-block btn-success text-uppercase font-weight-bold"><center><?php echo $newFixtures['type']; ?> Details</center></h4><hr/>
-      <center>
-          <h5 class="">Serial No: <?php if($newFixtures['serial_no']==''){echo "<font class='text-danger'>NO SN</font>";}else{echo $newFixtures['serial_no'];} ?></h5>
-          <h5 class="">Remarks: <?php if($newFixtures['remarks']=='For Repair'){ echo "<font class='text-danger'>".$newFixtures['remarks']."</font>"; } else { echo $newFixtures['remarks']; } ?></h5>
-          <h5 class="">Condition: <?php echo $newFixtures['fixture_condition']; ?></h5>
-        <hr/>
-          <span class="text-primary">Current Location</span>
-          <h5 class="text-uppercase btn btn-block btn-lg btn-warning font-weight-bold" style="color: #5D4037 !important;">Building: <?php echo $newFixtures['building_name']; ?>, Room: <?php echo $newFixtures['lab_name']; ?></h5>
-        <hr/>
-        <?php
-
-        $getFixtureTransfer = $mysqli->query(" SELECT * FROM equipment_transfer e
-          JOIN fixture f
-          ON f.id = e.equipment_id
-          JOIN building b
-          ON b.building_id = e.from_building
-          JOIN laboratory l
-          ON l.lab_id = e.from_lab
-          WHERE e.type <> 'AIRCONDITIONER' AND e.type <> 'PC' AND e.equipment_id = '$id' ") or die ($mysqli->error);
-        $noPulledOutInformation = true;
-        if(mysqli_num_rows($getFixtureTransfer)>0){
-          $noPulledOutInformation = false;
-        }
-
-        ?>
-        <span class="text-primary">Previous Location</span>
-        <?php if($noPulledOutInformation){ ?>
-        <h5 class="text-uppercase btn btn-block btn-lg btn-secondary font-weight-bold" style="">No previous location</h5>
-      <?php } else {
-        $newFixtureTransfer = $getFixtureTransfer->fetch_array();
-        ?>
-        <h5 class="text-uppercase btn btn-block btn-lg bg-gradient-primary font-weight-bold" style="color: white;">Building:  <?php echo $newFixtureTransfer['building_name']; ?>, Room: <?php echo $newFixtureTransfer['lab_name']; ?></h5>
-      <?php } ?>
-    </center>
-    </div>
+      
+  ?>
   </div>
   <!-- End Here-->
   <?php
   include('footer.php');
 ?>
-<!-- EOF -->

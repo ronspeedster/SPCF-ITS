@@ -162,3 +162,4 @@
 		<?php
 		include('footer.php');
 	?>
+<!-- EOF -->
