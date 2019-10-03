@@ -48,23 +48,15 @@ include('sidebar.php');
 	<!-- Add Building Here -->
 	<div class="card shadow row justify-content-center" style="padding: 1%;">
 	<form action="process_unit_pc.php" method="POST">
-	<h5 style='color: blue;'><center><?php /*
-		if($update_building==true){
-			echo "<h4>Edit ".$building_name."</h4>";
-		}
-		else{
-			echo "<h4>Add Building</h4>";
-		}*/
-		?>
-		Add PC Unit
-	</h5>
+	<h5 style='color: blue;'><center> Add PC Unit</center> </h5>
+
 	<table class='table'>
 		<thead>
 			<tr>
 					<th>Select Building</th>
 					<th>Laboratory / Room</th>
 					<th>PC Qty.</th>
-					<th colspan="2">Actions </th>
+					<th>Actions </th>
 			</tr>
 			<tr>
 				 <!-- Start Drop down Building Selection -->
@@ -112,11 +104,13 @@ include('sidebar.php');
  					</select>
  					<input style="visibility: hidden;" class="form-control" value="<?php if(isset($_GET['buildingId'])){echo $_GET['buildingId'];}?>" name="building_id" readonly>
  				</td>
-					<td><input max="30" min="1" type="number" name="unit_no" class="form-control" placeholder="Qty" required <?php if($noLab==true){ echo 'readonly';} ?>></td>
-					<td>
-					<button type="submit" class="btn btn-primary btn-sm" name="save" <?php if($noLab==true){echo "disabled";} ?>><i class="far fa-save"></i> Add Computers</button>
-					</td>
-					<td><a href="unit_pc.php" id="refresh" class='btn btn-danger btn-sm'><i class="fas as fa-sync"></i> Clear/Refresh</a></th></td>
+				<td>
+					<input max="30" min="1" type="number" name="unit_no" class="form-control" placeholder="Qty" required <?php if($noLab==true){ echo 'readonly';} ?> >
+				</td>
+				<td>
+						<button type="submit" class="btn btn-primary btn-sm mb-1" name="save" <?php if($noLab==true){echo "disabled";} ?>><i class="far fa-save"></i> Add Computers</button>
+						<a href="unit_pc.php" id="refresh" class="btn btn-danger btn-sm mb-1"><i class="fas as fa-sync"></i> Clear/Refresh</a>
+				</td>
 			</tr>
 		</thead>
 	</table>
@@ -127,24 +121,13 @@ include('sidebar.php');
 	<!-- End Building Here -->
 	<!-- Show Added Building Here-->
 	<br/>
-	<h5 class="form-control" style='color: blue;'>List of PC Unit (Preview)</h5>
+	<h5 class="form-control" style='color: blue;'>List of PC Unit (Preview - Latest Addition)</h5>
 	<?php
-		$getPCResults = $mysqli->query("SELECT unit_pc.unit_no, unit_pc.unit_name, laboratory.lab_name, building.building_name FROM unit_pc JOIN laboratory ON unit_pc.lab_id = laboratory.lab_id JOIN building ON unit_pc.building_id = building.building_id") or die($mysqli->error());
-		//$numberPreview = 1;
-		$resultsPerPage = 10;
-		$numberOfResults = mysqli_num_rows($getPCResults);
-		$numberOfPages = ceil($numberOfResults/$resultsPerPage);
-		if(!isset($_GET['page'])){
-			$page = 1;
-		}
-		else{
-			$page = $_GET['page'];
-		}
-		$thisPageFirstResult = ($page-1)*$resultsPerPage;
-		$getPCResults = $mysqli->query("SELECT unit_pc.unit_id, unit_pc.unit_no, unit_pc.unit_name, unit_pc.date_added, laboratory.lab_name, building.building_name FROM unit_pc JOIN laboratory ON unit_pc.lab_id = laboratory.lab_id JOIN building ON unit_pc.building_id = building.building_id ORDER BY unit_pc.date_added DESC") or die($mysqli->error());
+	$thisPageFirstResult = 0;	
+	$getPCResults = $mysqli->query("SELECT unit_pc.unit_id, unit_pc.unit_no, unit_pc.unit_name, unit_pc.date_added, laboratory.lab_name, building.building_name FROM unit_pc JOIN laboratory ON unit_pc.lab_id = laboratory.lab_id JOIN building ON unit_pc.building_id = building.building_id ORDER BY unit_pc.date_added DESC LIMIT 50") or die($mysqli->error());
 	 ?>
-
-		<table class='table' id="dataTable" width="100%" cellspacing="0">
+	<div class="table-responsive">
+		<table class="table" id="dataTable" width="100%" cellspacing="0">
 			<thead>
 				<tr>
 					<th>No</th>
@@ -155,38 +138,30 @@ include('sidebar.php');
 				</tr>
 			</thead>
 			<?php 
-			while($newGetPCResults=$getPCResults->fetch_assoc()):?>
+			while($newGetPCResults=$getPCResults->fetch_assoc()){?>
  			<tr>
  				<td><?php echo ++$thisPageFirstResult; ?></td>
  				<td><?php echo $newGetPCResults['unit_name']; ?></td>
  				<td><?php echo $newGetPCResults['lab_name']; ?></td>
  				<td><?php echo $newGetPCResults['building_name'];?></td>
  				<td style="display: none;"><a target='_blank' href="add_peripheral.php?PcId=<?php echo $newGetPCResults['unit_id']; ?>" class="btn btn-info btn-sm"><i class="far fa-edit"></i> Edit</a>
-				 <!-- Start Drop down Delete here -->
-				
+ 					<!-- Start Drop down Delete here -->
 					<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Delete
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton btn-sm">
 					You sure you want to delete? You cannot undo the changes<br/>
-						<a href="eprocess_unit_pc.php?delete=<?php echo $row['building_id'] ?>" class='btn btn-danger btn-sm'>Confirm Delete</a>
+						<a href="process_unit_pc.php?delete=<?php echo $row['building_id'] ?>" class='btn btn-danger btn-sm'>Confirm Delete</a>
 						<a href="#" class='btn btn-success btn-sm'>Cancel</a> 
 					</div>
- 				
+ 				</td>
  			</tr>
- 			<?php endwhile; ?>
+ 			<?php } ?>
 		</table>
-
+	</div>
 </div>			
 	<br/>
-	<?php
-		function pre_r($array){
-			echo "<pre>";
-			print_r($array);
-			echo "</pre>";
-		}
-	?>
-	<!-- End Added Building Here-->
+
 	<?php
 	include('footer.php');
 ?>

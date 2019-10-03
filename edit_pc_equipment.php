@@ -157,7 +157,8 @@ $_SESSION['getURI'] = $getURI;
 
 	?>
 	<label class="form-control" style='color: blue;'>List of PC Units</label>
-		<table class='table' id="dataTable" cellspacing="0">
+	<div class="table-responsive">
+		<table class="table" width="100%" id="dataTable" cellspacing="0">
 			<thead>
 				<tr>
 					<th>No</th>
@@ -249,6 +250,7 @@ $_SESSION['getURI'] = $getURI;
  			<?php endwhile; ?>
 
 		</table>
+	</div>
 		<?php
 		if(mysqli_num_rows($getPCResults)>=1){ ?>
 			<a href="lab_report.php?<?php echo'building='.$buildingId.'&laboratory='.$labId; ?>" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print" aria-hidden="true"></i>
