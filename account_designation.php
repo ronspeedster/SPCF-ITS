@@ -8,7 +8,7 @@ include('sidebar.php');
 <head>
 	<title>Add Building Designation (For Lab Assistant's only)</title>
 
-	<script src="libs/js/bootstrap.min.min.js"></script>
+	<script src="libs/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -24,7 +24,7 @@ include('sidebar.php');
         <div id="content">
 	<?php //require_once 'process.php';
 	$result = mysqli_query($mysqli, "SELECT * FROM building");
-	$fetchid =0;
+	$fetchid = 0;
 	while ($res = mysqli_fetch_array($result)) {
 	$res['building_id'];
 	$fetchid = $res['building_id'];
@@ -33,18 +33,17 @@ include('sidebar.php');
 ?>
 <div class="container-fluid">
 	<?php
-		if(isset($_SESSION['message'])):
+		if(isset($_SESSION['message'])){
 	?>
 	<div class="alert alert-<?=$_SESSION['msg_type']?> alert-dismissible">
 	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<?php
 			echo $_SESSION['message'];
 			unset($_SESSION['message']);
-
 		?>
 	</div>
 	<?php
-		endif
+		}
 	?>
 	<!--<div class="container">-->
 	<?php

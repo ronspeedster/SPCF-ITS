@@ -12,7 +12,7 @@ $_SESSION['getURI'] = $getURI;
 <html>
 <head>
 	<title>Add / Edit Fixtures</title>
-	<script src="libs/js/bootstrap.min.min.js"></script>
+	<script src="libs/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -51,9 +51,9 @@ $_SESSION['getURI'] = $getURI;
 		<form action="process_fixture.php" method="POST">
 		<table class='table' style="width: 100% !important;">
 			<tr>
-				<th><i class="fas fa-fw fa-building"></i> Building</th>
-				<th><i class="fa fa-home" aria-hidden="true"></i> Room / Laboratory</th>
-				<th><i class="fas fa-couch"></i> Fixture Type</th>
+				<th width="20%;"><i class="fas fa-fw fa-building"></i> Building</th>
+				<th  width="20%;"><i class="fa fa-home" aria-hidden="true"></i> Room / Laboratory</th>
+				<th  width="20%;"><i class="fas fa-couch"></i> Fixture Type</th>
 				<th>Qty</th>
 				<th>Actions</th>
 			</tr>
@@ -109,15 +109,17 @@ $_SESSION['getURI'] = $getURI;
 				<input type="number" name="qty" class="form-control" min='1' max='10' placeholder="0" required>
 			</td>
 			<td>
-				<button class="btn btn-primary btn-sm" type="submit" name="save"><i class="far fa-save" ></i> Save</button>
-				<a href="fixtures.php" id="refresh" class='btn btn-danger btn-sm'><i class="fas as fa-sync"></i> Clear/Refresh</a>
+				<button class="btn btn-primary btn-sm mb-1" type="submit" name="save"><i class="far fa-save" ></i> Save</button>
+				<a href="fixtures.php" id="refresh" class="btn btn-danger btn-sm mb-1"><i class="fas as fa-sync"></i> Clear/Refresh</a>
 			</td>			
 			</tr>	
 		</table>
 		</form>
-		<label style='color: blue;'class="form-control">List of Fixtures (Preview)</label>
-		<!-- Show Added Fixtures -->
-		<table class="table" id="dataTable" width="100%" cellspacing="0">
+		<label style='color: blue;'class="form-control">List of Fixtures (Preview - Latest Addition)</label>
+	
+	<!-- Show Added Fixtures -->
+	<div class="table-responsive">
+		<table class="table" id="fixtureTable" width="100%" cellspacing="0">
 			<thead>
 				<th>Type</th>
 				<th style="display: none;">Batch ID</th>
@@ -147,10 +149,10 @@ $_SESSION['getURI'] = $getURI;
 					<td><?php echo $newFixtures['lab_name']; ?></td>
 					<td><?php if($newFixtures['remarks']=='For Repair'){echo "<font color='red'>".$newFixtures['remarks']."</font>";}else{echo $newFixtures['remarks'];} ?></td>
 					<td>
-						<a class="btn btn-info btn-sm" target="_blank" href="edit_fixture.php?type=<?php echo $newFixtures['type']; ?>&id=<?php echo $newFixtures['id'];?>&building_id=<?php echo $newFixtures['building_id']; ?>"><i class="far fa-edit"></i> Edit</a>
-						<a style='color: #5D4037;' class='btn btn-sm btn-warning' href="report_fixture.php?fixture_id=<?php echo $newFixtures['id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
+						<a class="btn btn-info btn-sm mb-1" target="_blank" href="edit_fixture.php?type=<?php echo $newFixtures['type']; ?>&id=<?php echo $newFixtures['id'];?>&building_id=<?php echo $newFixtures['building_id']; ?>"><i class="far fa-edit"></i> Edit</a>
+						<a style='color: #5D4037;' class="btn btn-sm btn-warning mb-1" href="report_fixture.php?fixture_id=<?php echo $newFixtures['id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
 						<!-- Start Drop down Delete here -->
-						<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm mb-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="far fa-trash-alt"></i> Delete
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton btn-sm">
@@ -164,14 +166,18 @@ $_SESSION['getURI'] = $getURI;
 			</tbody>
 		</table>
 	</div>
+	</div>
 
 	<br/>
 	<br/>
 <script type="text/javascript">
-	$('#example').dataTable( {
-  "pageLength": 50
-} );
+	$(document).ready(function() {
+		$('#fixtureTable').DataTable( {
+			"pageLength": 50
+		} );
+	} );
 </script>
 	<?php
 	include('footer.php');
 ?>
+<!-- EOF -->

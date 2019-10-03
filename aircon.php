@@ -13,16 +13,16 @@ $currentDate = date("Y/m/d");
 <html>
 <head>
 	<title>View Air-con</title>
-	<script src="libs/js/bootstrap.min.min.js"></script>
+	<script src="libs/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
-    $('#airconTable').DataTable( {
-        "order": [[ 7, "asc" ]],
-        "pageLength": 50
+			$('#airconTable').DataTable( {
+				"order": [[ 7, "asc" ]],
+				"pageLength": 50
 	    } );
 	} );
 	</script>
@@ -49,7 +49,7 @@ $currentDate = date("Y/m/d");
 			unset($_SESSION['message']);
 		?>
 	</div>
-	<?php
+<?php
 		}
 		$getFixtures = mysqli_query($mysqli, "SELECT fe.id, fe.date_added, fe.serial_no, fe.type, fe.batch_code, fe.building_id, fe.lab_id, fe.date_last_clean ,fe.remarks, bg.building_id, bg.building_name, ly.lab_id, ly.lab_name
 			FROM fixture fe
@@ -60,12 +60,12 @@ $currentDate = date("Y/m/d");
 			WHERE fe.type ='airconditioner'
 			ORDER BY fe.date_added DESC
 			");
-	?>
+?>
 
-	<div class="car shadow row" style="padding: 1%;">
+    <div class="car shadow row" style="padding: 1%;">
 
 	<h5 style='color: blue;'>Air Conditioners</h5>
-
+<div class="table-responsive">
 	<table class="table" id="airconTable" cellspacing="0">
 		<thead>
 			<th style="width: 5%;">ID</th>
@@ -97,7 +97,7 @@ $currentDate = date("Y/m/d");
 				<td><?php echo $getAirconID = $newFixtures['id']; ?></td>
 				<td style="display: none;"><?php echo strtoupper($newFixtures['type']); ?></td>
 				<td style="display: none;"><?php echo $newFixtures['batch_code']; ?></td>
-				<td><?php if($newFixtures['serial_no']==''){echo "<font color='red'>NO SN</font>";} else { echo $newFixtures['serial_no']; }?></td>
+				<td><?php if($newFixtures['serial_no']==''){echo "<span style='color: red;'>NO SN</span>";} else { echo $newFixtures['serial_no']; }?></td>
 				<td><?php echo $newFixtures['building_name']; ?></td>
 				<td><?php echo $newFixtures['lab_name']; ?></td>
 				<td><?php echo date_format($lastCleanDate, 'F j, Y'); ?></td>
@@ -106,14 +106,14 @@ $currentDate = date("Y/m/d");
 					<a class="btn btn-info btn-sm mb-1" href="edit_aircon.php?id=<?php echo $newFixtures['id'];?>&building_id=<?php echo $newFixtures['building_id']; ?>"><i class="far fa-edit"></i> Edit</a>
 					<!-- Update 2019-09-25 add QR -->
 					<!-- While the subdomain is not available, change the ip address -->
-					<a class="btn btn-primary btn-sm mb-1" href="generate_qr.php?data=https://192.168.2.1/spcf-its/scan_qr.php?isaircon=true$id=<?php echo $getAirconID; ?>"><i class="fas fa-qrcode"></i> Generate QR</a>
+					<a class="btn btn-primary btn-sm mb-1" href="generate_qr.php?data=https://192.168.2.1/spcf-its/scan_qr.php?isaircon=true$id=<?php echo $getAirconID; ?>"><i class="fas fa-qrcode"></i> QR Code</a>
 					<a style='color: #5D4037;' class='btn btn-sm btn-warning mb-1' href="report_fixture.php?fixture_id=<?php echo $newFixtures['id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>
 				</td>
 			</tr>
 			<?php } ?>
 		</tbody>
 	</table>
-	
+</div>	
 
 	</div>
 

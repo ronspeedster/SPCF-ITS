@@ -50,12 +50,12 @@ include('sidebar.php');
 	<form action="process_unit_pc.php" method="POST">
 	<h5 style='color: blue;'><center> Add PC Unit</center> </h5>
 
-	<table class='table'>
+	<table class="table">
 		<thead>
 			<tr>
-					<th>Select Building</th>
-					<th>Laboratory / Room</th>
-					<th>PC Qty.</th>
+					<th width="25%;">Select Building</th>
+					<th width="">Laboratory / Room</th>
+					<th width="10%;">PC Qty.</th>
 					<th>Actions </th>
 			</tr>
 			<tr>
@@ -165,3 +165,4 @@ include('sidebar.php');
 	<?php
 	include('footer.php');
 ?>
+<!-- EOF -->

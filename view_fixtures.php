@@ -112,6 +112,7 @@
 			WHERE type='$current_type' AND type <> 'airconditioner' ");
 		}
 		?>
+	<div class="table-responsive">
 		<table class="table" id="fixtureTable" width="100%" cellspacing="0">
 		<thead> 
 			<tr>
@@ -141,7 +142,7 @@
 				<a class="btn btn-success btn-secondary btn-sm mb-1" href="edit_fixture.php?type=<?php echo $newFixture['type']; ?>&id=<?php echo $newFixture['id'];?>&building_id=<?php echo $newFixture['building_id']; ?>"><i class="far fa-edit"></i> Edit</a>
 				<!-- Update 2019-09-25 add QR -->
 				<!-- While the subdomain is not available, change the ip address -->
-				<a class="btn btn-primary btn-sm mb-1" href="generate_qr.php?data=https://192.168.2.1/spcf-its/scan_qr.php?isfixture=true$id=<?php echo $getFixtureID; ?>"><i class="fas fa-qrcode"></i> Generate QR</a>			
+				<a class="btn btn-primary btn-sm mb-1" href="generate_qr.php?data=https://192.168.2.1/spcf-its/scan_qr.php?isfixture=true$id=<?php echo $getFixtureID; ?>"><i class="fas fa-qrcode"></i> QR Code</a>			
 				<a style='color: #5D4037;' class='btn btn-sm btn-warning mb-1' href="report_fixture.php?fixture_id=<?php echo $newFixture['id']?>" target='_blank'><i class="fas fa-bug"></i> Report</a>			
 				<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm mb-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="far fa-trash-alt"></i> Delete
@@ -156,7 +157,8 @@
 					}}
 				?>
 		</table>
-		</div>
+	</div>
+	</div>
 	</div>
 		<!-- End Here-->
 		<?php
