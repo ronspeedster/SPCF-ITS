@@ -13,65 +13,29 @@ include('process_misc_things.php');
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<script src="js/demo/datatables-demo.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/rowreorder/1.2.6/js/dataTables.rowReorder.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
 	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-	/*
-	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
-	*/
-@media
-only screen
-and (max-width: 760px), (min-device-width: 768px)
-and (max-device-width: 1024px)  {
+	<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+	<link href="https://cdn.datatables.net/rowreorder/1.2.6/css/rowReorder.dataTables.min.css" rel="stylesheet" type="text/css">
+	<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css">
 
-	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr {
-		display: block;
-	}
+	<script type="text/javascript">
+	$(document).ready(function() {
+    var table = $('#forRepairTable').DataTable( {
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+	        },
+	        responsive: true
+	    } );
+	} );	
+	</script>
 
-	thead tr {
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-	}
-
-	tr {
-		margin: 0 0 1rem 0;
-	}
-
-	tr:nth-child(odd) {
-		background: none;
-		padding: 1%;
-		width: 100%;
-		border-bottom: 2px solid grey;
-	}
-	    
-	td {
-		border-bottom: 1px solid #eee;
-		position: relative;
-	}
-
-	td:before {
-		top: 0;
-		width: 45%;
-		padding-right: 5%;
-		white-space: nowrap;
-	}
-
-	/*
-	Label the data
-	You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
-	*/
-	td:nth-of-type(1):before { content: "Type:"; font-weight: bold;}
-	td:nth-of-type(2):before { content: "Batch ID:"; font-weight: bold; }
-	td:nth-of-type(3):before { content: "Serial ID:"; font-weight: bold; }
-	td:nth-of-type(4):before { content: "Last Cleaned:"; font-weight: bold; }
-	td:nth-of-type(5):before { content: "Condition: "; font-weight: bold; }
-	td:nth-of-type(6):before { content: "For Repair?: "; font-weight: bold; }
-	td:nth-of-type(7):before { content: "Actions: "; font-weight: bold; }
-}
-</style>
 </head>
 <body id="page-top">
 
@@ -85,7 +49,7 @@ and (max-device-width: 1024px)  {
 	<?php
 	include('topbar.php');
 ?>
-<div class="card shadow row justify-content-center" style="padding: 2%; margin: 1%;">
+<div class="card shadow row justify-content-center" style="padding: 1%; margin: 1%;">
 
 	<?php
 		if(isset($_SESSION['message'])):
@@ -149,34 +113,33 @@ and (max-device-width: 1024px)  {
 		$getFixtureForRepair = mysqli_query($mysqli, "SELECT * FROM fixture WHERE remarks='For Repair'");
 	?>
 
-		<table class="table" id="dataTable" width="100%" cellspacing="0" role="table">
-			<thead role="rowgroup">
-				<tr role="row">
-					<th role="columnheader">Type</th>
-					<th role="columnheader">Batch ID</th>
-					<th role="columnheader">Serial ID</th>
-					<th role="columnheader">Last Cleaned</th>
-					<th role="columnheader">Condition</th>
-					<th role="columnheader">For Repair?</th>
-					<th role="columnheader">Actions</th>
+		<table class="display nowrap" id="forRepairTable" width="100%" cellspacing="0">
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Batch ID</th>
+					<th>Serial ID</th>
+					<th>Last Cleaned</th>
+					<th>Condition</th>
+					<th>For Repair?</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
-			<tbody role="rowgroup">
 				<?php
 				if(mysqli_num_rows($getFixtureForRepair)==0){
 					echo "<div class='alert alert-warning'>No Fixture(s) currently for repair</div>";
 				}
 				else{
 					while($fixture_row=$getFixtureForRepair->fetch_assoc()){ ?>
-				
-				<tr role="row">
-					<td role="cell"><?php echo strtoupper($fixture_row['type']); ?></td>
-					<td role="cell"><?php echo $fixture_row['batch_code']; ?></td>
-					<td role="cell"><?php if($fixture_row['serial_no']==''){echo "<font color='red'>NO SN</font>";}else{echo $fixture_row['serial_no'];} ?></td>
-					<td role="cell"><?php echo $fixture_row['date_last_clean']; ?></td>
-					<td role="cell"><?php echo $fixture_row['fixture_condition']; ?></td>
-					<td role="cell"><?php echo $fixture_row['remarks']; ?></td>
-					<td role="cell">
+				<tbody>
+				<tr>
+					<td><?php echo strtoupper($fixture_row['type']); ?></td>
+					<td><?php echo $fixture_row['batch_code']; ?></td>
+					<td><?php if($fixture_row['serial_no']==''){echo "<font color='red'>NO SN</font>";}else{echo $fixture_row['serial_no'];} ?></td>
+					<td><?php echo $fixture_row['date_last_clean']; ?></td>
+					<td><?php echo $fixture_row['fixture_condition']; ?></td>
+					<td><?php echo $fixture_row['remarks']; ?></td>
+					<td>
 					<a target="_blank" class="btn btn-success btn-secondary btn-sm" href="<?php echo 'report_fixture.php'.'?fixture_id='.$fixture_row['id'].'&is_fix=true'; ?>"><i class="far fa-edit"></i> Edit</a>
 					<button style="display: none;" class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="far fa-trash-alt"></i> Delete
@@ -184,8 +147,7 @@ and (max-device-width: 1024px)  {
 							You sure you want to delete? You cannot undo the changes<br/>
 								<a href="process_misc_things.php?delete=<?php echo $perripheral_row['peripheral_id'] ?>" class='btn btn-danger btn-sm'><i class="far fa-trash-alt"></i> Confirm Delete</a>
 								<a href="#" class='btn btn-success btn-sm'><i class="far fa-window-close"></i> Cancel</a> 
-					</div>
-					</td>
+					</div></td>
 				</tr>
 					<?php	
 						}}

@@ -98,49 +98,51 @@ include('process_misc_things.php');
 		$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE peripheral_type='$current_type' AND remarks='For Repair'");
 	}
 	?>
-	<table class="table" id="dataTable" width="100%" cellspacing="0">
-	<thead>
-		<tr>
-			<th>Type</th>
-			<th>Brand</th>
-			<th>Description</th>
-			<th>Serial ID</th>
-			<th>Date Purchased</th>
-			<th>Date Issued</th>
-			<th>Condition</th>
-			<th>For Repair?</th>
-			<th>Actions</th>
-		</tr>
-	</thead>
-			<?php
-			if(mysqli_num_rows($getStockRooms)==0){
-				echo "<div class='alert alert-warning'>No ".$current_type." currently for repair</div>";
-			}
-			else{
-				while($perripheral_row=$getStockRooms->fetch_assoc()){ ?>
-		<tr>
-			<td><?php echo $perripheral_row['peripheral_type']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_brand']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_description']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_serial_no']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_date_purchased']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_date_issued']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_condition']; ?></td>
-			<td><?php echo $perripheral_row['remarks']; ?></td>
-			<td>
-			<a class="btn btn-success btn-secondary btn-sm" href="<?php echo 'report_peripherals.php?peripheral_id='.$perripheral_row['peripheral_id'].'&is_fix=true'; ?>"><i class="far fa-edit"></i> Edit</a>
-			<button style="display: none;" class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i class="far fa-trash-alt"></i> Delete
-					</button><div class="dropdown-menu" aria-labelledby="dropdownMenuButton btn-sm">
-					You sure you want to delete? You cannot undo the changes<br/>
-						<a href="process_misc_things.php?delete=<?php echo $perripheral_row['peripheral_id'] ?>" class='btn btn-danger btn-sm'><i class="far fa-trash-alt"></i> Confirm Delete</a>
-						<a href="#" class='btn btn-success btn-sm'><i class="far fa-window-close"></i> Cancel</a> 
-			</div></td>
-		</tr>
-			<?php	
-				}}
-			?>
-	</table>
+	<div class="table-responsive row" style="padding: 1%;">
+		<table class="table" id="dataTable" width="100%" cellspacing="0">
+		<thead>
+			<tr>
+				<th>Type</th>
+				<th>Brand</th>
+				<th>Description</th>
+				<th>Serial ID</th>
+				<th>Date Purchased</th>
+				<th>Date Issued</th>
+				<th>Condition</th>
+				<th>For Repair?</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+				<?php
+				if(mysqli_num_rows($getStockRooms)==0){
+					echo "<div class='alert alert-warning'>No ".$current_type." currently for repair</div>";
+				}
+				else{
+					while($perripheral_row=$getStockRooms->fetch_assoc()){ ?>
+			<tr>
+				<td><?php echo $perripheral_row['peripheral_type']; ?></td>
+				<td><?php echo $perripheral_row['peripheral_brand']; ?></td>
+				<td><?php echo $perripheral_row['peripheral_description']; ?></td>
+				<td><?php echo $perripheral_row['peripheral_serial_no']; ?></td>
+				<td><?php echo $perripheral_row['peripheral_date_purchased']; ?></td>
+				<td><?php echo $perripheral_row['peripheral_date_issued']; ?></td>
+				<td><?php echo $perripheral_row['peripheral_condition']; ?></td>
+				<td><?php echo $perripheral_row['remarks']; ?></td>
+				<td>
+				<a class="btn btn-success btn-secondary btn-sm" href="<?php echo 'report_peripherals.php?peripheral_id='.$perripheral_row['peripheral_id'].'&is_fix=true'; ?>"><i class="far fa-edit"></i> Edit</a>
+				<button style="display: none;" class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="far fa-trash-alt"></i> Delete
+						</button><div class="dropdown-menu" aria-labelledby="dropdownMenuButton btn-sm">
+						You sure you want to delete? You cannot undo the changes<br/>
+							<a href="process_misc_things.php?delete=<?php echo $perripheral_row['peripheral_id'] ?>" class='btn btn-danger btn-sm'><i class="far fa-trash-alt"></i> Confirm Delete</a>
+							<a href="#" class='btn btn-success btn-sm'><i class="far fa-window-close"></i> Cancel</a> 
+				</div></td>
+			</tr>
+				<?php	
+					}}
+				?>
+		</table>
+	</div>
 	</div>
 </div>
 	<!-- End Here-->
