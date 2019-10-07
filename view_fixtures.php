@@ -126,8 +126,8 @@ and (max-device-width: 1024px)  {
 					// Get Categories
 					$getCategories = mysqli_query($mysqli, "SELECT DISTINCT type FROM fixture WHERE type <> 'airconditioner' ");
 					?>
-					<div class="row" class="col-md-12">
-								<div class="col-md-6" style="text-align: center;"><b>Select Type:</b> </div>
+					<div class="row col-md-12">
+								<div class="col-md-6 mb-1" style="text-align: center;"><b>Select Type:</b> </div>
 								<div class="col-md-6 mb-1">
 									<select class="form-control" onchange="location = this.value;">
 										<option disabled selected>Select Fixture</option>
@@ -138,7 +138,7 @@ and (max-device-width: 1024px)  {
 									</select>
 								</div>
 					</div>
-					<h5 style="color: blue;" class="form-control">List of Fixtures</h5>
+					<h5 style="color: blue;" class="form-control mb-1">List of Fixtures</h5>
 					<div class='row justify-content-center'>
 						<?php
 						if($current_type=="*"){

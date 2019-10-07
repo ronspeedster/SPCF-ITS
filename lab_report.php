@@ -59,7 +59,7 @@ input.date{
 	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
-<a target="_blank" href="request_maintenance.php"><- Get Back</a> Hit CRTL + P to PRINT
+<a target="_blank" href="request_maintenance.php"><- Get Back</a> Hit CRTL + P to PRINT;
 	<div style="padding: 1%;" class="row justify-content-center">
 		<table class="table" style="width: 100% !important;">
 			<thead>
