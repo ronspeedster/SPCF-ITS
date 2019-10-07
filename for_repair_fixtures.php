@@ -45,6 +45,7 @@ and (max-device-width: 1024px)  {
 		padding: 1%;
 		width: 100%;
 		border-bottom: 2px solid grey;
+		border-top: 2px solid grey;
 	}
 	    
 	td {
@@ -194,7 +195,6 @@ and (max-device-width: 1024px)  {
 		</table>
 
 	</div>
-
 	<!-- End Here-->
 	<?php
 	include('footer.php');
