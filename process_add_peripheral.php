@@ -16,7 +16,7 @@
 		$peripheral_description  = $_POST['monitor-description'];
 		$peripheral_serial_no  = strtoupper($_POST['monitor-serialno']);
 		$peripheral_date_purchased = $_POST['monitor-datepurchase'];
-		echo $peripheral_amount  = $_POST['monitor-amount'];
+		$peripheral_amount  = $_POST['monitor-amount'];
 		$peripheral_date_issued = $_POST['monitor-dateissue'];
 		#$peripheral_remarks = $_POST['monitor-remarks'];
 
@@ -292,9 +292,9 @@
 
 	//Submit Peripheral Report
 	if(isset($_POST['submit_report'])){
-		echo $newPeripheralID = $_POST['peripheral_id'];
-		echo $remarks = $_POST['status'];
-		echo $condition = $_POST['condition'];
+		$newPeripheralID = $_POST['peripheral_id'];
+		$remarks = $_POST['status'];
+		$condition = $_POST['condition'];
 
 		$mysqli->query("UPDATE peripherals SET remarks='$remarks', peripheral_condition='$condition' WHERE peripheral_id='$newPeripheralID' ") or die ($mysqli->error());
 
@@ -304,14 +304,14 @@
 	}
 	//Submit Peripheral Fix Report
 	if(isset($_POST['submit_fix_report'])){
-		echo $newPeripheralID = $_POST['peripheral_id'];
-		echo $remarks = $_POST['status'];
-		echo $condition = $_POST['condition'];
-		echo $repair_cost = $_POST['repair_cost'];
+		$newPeripheralID = $_POST['peripheral_id'];
+		$remarks = $_POST['status'];
+		$condition = $_POST['condition'];
+		$repair_cost = $_POST['repair_cost'];
 		$currentDate = date_default_timezone_set('Asia/Manila');
 		$currentDate = date('Y-m-d-H-i-s');
 		//$image_receipt = $_FILES['image_receipt']; 
-		echo $newName = 'ItemID-'.$newPeripheralID.$remarks.$repair_cost.$currentDate;
+		$newName = 'ItemID-'.$newPeripheralID.$remarks.$repair_cost.$currentDate;
 
 		// get details of the uploaded file
 		$fileTmpPath = $_FILES['image_receipt']['tmp_name'];
@@ -320,11 +320,11 @@
 		$fileType = $_FILES['image_receipt']['type'];
 		$fileNameCmps = explode(".", $fileName);
 		$fileExtension = strtolower(end($fileNameCmps));
-		print_r($fileNameCmps);
+		//print_r($fileNameCmps);
 
 		//$newFileName = md5(time() . $fileName) . '.' . $fileExtension;
 		$newFileName = $newName . '.' . $fileExtension;
-		print_r($newFileName); 
+		//print_r($newFileName); 
 		// directory in which the uploaded file will be moved
 		$uploadFileDir = 'img/assets/';
 		$dest_path = $uploadFileDir . $newFileName;

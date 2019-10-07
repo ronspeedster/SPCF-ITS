@@ -7,15 +7,15 @@
 	$id='';
 	$requested_by='';
 	if(isset($_POST['save'])){
-		echo $department = $_POST['department'];
-		echo $electrical = $_POST['electrical'];
-		echo $mechanical = $_POST['mechanical'];
-		echo $carpentry = $_POST['carpentry'];
-		echo $janitorial = $_POST['janitorial'];
-		echo $others = $_POST['others'];
-		echo $others_text = $_POST['others_text'];
-		echo $request = $_POST['request'];
-		echo $action_taken = $_POST['action_taken'];
+		$department = $_POST['department'];
+		$electrical = $_POST['electrical'];
+		$mechanical = $_POST['mechanical'];
+		$carpentry = $_POST['carpentry'];
+		$janitorial = $_POST['janitorial'];
+		$others = $_POST['others'];
+		$others_text = $_POST['others_text'];
+		$request = $_POST['request'];
+		$action_taken = $_POST['action_taken'];
 
 		$mysqli->query("INSERT INTO maintenance (department, date_requested, electrical, mechanical, carpentry, janitorial, others, others_text, request, action_taken, requested_by) VALUES('$department','$currentDate','$electrical','$mechanical','$carpentry','$janitorial','$others','$others_text','$request','$action_taken','$userName')") or die($mysqli->error());
 
@@ -28,17 +28,17 @@
 	}
 
 	if(isset($_POST['update'])){
-		echo $department = $_POST['department'];
-		echo $electrical = $_POST['electrical'];
-		echo $mechanical = $_POST['mechanical'];
-		echo $carpentry = $_POST['carpentry'];
-		echo $janitorial = $_POST['janitorial'];
-		echo $others = $_POST['others'];
-		echo $others_text = $_POST['others_text'];
-		echo $request = $_POST['request'];
-		echo $action_taken = $_POST['action_taken'];
-		echo $id = $_POST['id'];
-		echo $requested_by = $_POST['requested_by'];
+		$department = $_POST['department'];
+		$electrical = $_POST['electrical'];
+		$mechanical = $_POST['mechanical'];
+		$carpentry = $_POST['carpentry'];
+		$janitorial = $_POST['janitorial'];
+		$others = $_POST['others'];
+		$others_text = $_POST['others_text'];
+		$request = $_POST['request'];
+		$action_taken = $_POST['action_taken'];
+		$id = $_POST['id'];
+		$requested_by = $_POST['requested_by'];
 		
 		//New update from Chairman
 		$date_action_taken = date_default_timezone_set('Asia/Manila');

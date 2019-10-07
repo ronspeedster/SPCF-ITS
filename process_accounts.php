@@ -6,11 +6,11 @@
 	$userName = $_SESSION['username'];
 	
 	if(isset($_POST['save'])){
-		echo $fullName = $_POST['fullName'];
-		echo $account_userName = $_POST['userName'];
-		echo $password = $_POST['password'];
-		echo $confirmPassword = $_POST['confirmPassword'];
-		echo $account_type = $_POST['account_type'];
+		$fullName = $_POST['fullName'];
+		$account_userName = $_POST['userName'];
+		$password = $_POST['password'];
+		$confirmPassword = $_POST['confirmPassword'];
+		$account_type = $_POST['account_type'];
 		if($confirmPassword!=$password){
 			$_SESSION['message'] = "Password do not match! Please try again";
 			$_SESSION['msg_type'] = "warning";
@@ -46,9 +46,9 @@
 	}
 
 	if(isset($_POST['update'])){
-		echo $account_id = $_POST['account_id'];
-		echo $password = $_POST['password'];
-		echo $confirmPassword = $_POST['confirmPassword'];
+		$account_id = $_POST['account_id'];
+		$password = $_POST['password'];
+		$confirmPassword = $_POST['confirmPassword'];
 		
 		if($confirmPassword!=$password){
 			$_SESSION['message'] = "Password do not match! Please try again";
@@ -67,8 +67,8 @@
 	}
 
 	if(isset($_POST['designate_building'])){
-		echo $account_id = $_POST['account_id'];
-		echo $building_id = $_POST['building_id'];
+		$account_id = $_POST['account_id'];
+		$building_id = $_POST['building_id'];
 
 		$checkDesignatation = $mysqli->query("SELECT * FROM designation WHERE account_id='$account_id' AND building_id='$building_id' ") or die ($mysqli->error);
 		if(mysqli_num_rows($checkDesignatation)>=1){
