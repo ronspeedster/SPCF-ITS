@@ -24,14 +24,14 @@
 	}
 
 	if(isset($_GET['pull_out_fixture'])){
-		$unit_id = $_GET['unit_id'];
-		$building = $_GET['building'];
-		$laboratory = $_GET['laboratory'];
-		$type = $_GET['type'];
+		echo $unit_id = $_GET['unit_id'];
+		echo $building = $_GET['building'];
+		echo $laboratory = $_GET['laboratory'];
+		echo $type = $_GET['type'];
 
-		$mysqli->query("UPDATE fixture SET lab_id='stock_room' WHERE id='$unit_id'") or die ($mysqli->error());
+		$mysqli->query("UPDATE fixture SET lab_id='stock_room' WHERE id='$unit_id' ") or die ($mysqli->error());
 		
-		$mysqli->query("INSERT INTO equipment_transfer (equipment_id, type, from_building, from_lab, date_added, status) VALUES ('$unit_id','$type','$building','$laboratory','$currentDate','pending')") or die ($mysqli->error());
+		$mysqli->query("INSERT INTO equipment_transfer (equipment_id, type, from_building, from_lab, date_added, status) VALUES ('$unit_id','$type','$building','$laboratory','$currentDate','pending') ") or die ($mysqli->error());
 
 		$_SESSION['message'] = "Fixture has been pulled out!";
 		$_SESSION['msg_type'] = "warning";

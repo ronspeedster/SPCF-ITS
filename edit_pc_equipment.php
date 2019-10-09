@@ -54,45 +54,38 @@ $_SESSION['getURI'] = $getURI;
 		}
 	?>
 	
-	<!-- Add Building Here -->
+	
 	<div class="card shadow row justify-content-center" style="padding: 2%;">
+	
+	<!-- Responsive Form -->
 	<form action="#" method="POST">
-	<h3>
-	</h3>
-	<table class='table'>
-		<thead>
-			<tr>
-				<td colspan="2"><center><h5 style='color: blue;'>Search PC Unit</h5></center></td>
-			</tr>
-			<tr>
-					<th><i class="fas fa-fw fa-building"></i> Select Building</th>
-					<th><i class="fa fa-home" aria-hidden="true"></i> Laboratory / Room</th>
-			</tr>
-			<tr>
-				 <!-- Start Drop down Building Selection -->
-				<td>
-					<select class="form-control" name="building_id" onchange="location = this.value;">
-					<option selected disabled>Select Building</option>
-						<?php
-						$building_id = 0;
-						while($building_row=$building_result->fetch_assoc()){
-							if(isset($_GET['buildingId'])){
-								$building_id = $_GET['buildingId'];
-							}
-						 ?>
-						<option value="edit_pc_equipment.php?buildingId=<?php echo $building_row['building_id']; ?>"
-							<?php if($building_id==$building_row['building_id']){
-								echo "selected disabled";
-							} ?>>
-							<?php echo $building_row['building_name'];?>
-						</option>
-						<?php } ?>
-					</select>
- 				</td>
- 				<!-- End Building Selection -->
- 				<!-- Start Lab Drop Down Selection -->
- 				<td>
- 					<select class="form-control" name="lab_id" onchange="location = this.value;">
+	<center><h5 style='color: blue;'>Search PC Unit</h5></center>
+	
+	<div class="row col-md-12 mb-2" style="">
+		<div class="col-md-4 mb-1" style="padding: 1%; margin: auto;">
+			<span class="font-weight-bold" style=""> <i class="fas fa-fw fa-building"></i> Select Building </span>
+			<select class="form-control" name="building_id" onchange="location = this.value;">
+				<option selected disabled>Select Building</option>
+				<?php
+				$building_id = 0;
+				while($building_row=$building_result->fetch_assoc()){
+					if(isset($_GET['buildingId'])){
+						$building_id = $_GET['buildingId'];
+					}
+					?>
+				<option value="edit_pc_equipment.php?buildingId=<?php echo $building_row['building_id']; ?>"
+				<?php if($building_id==$building_row['building_id']){
+					echo "selected disabled";
+				} ?>
+				>
+				<?php echo $building_row['building_name'];?>
+				</option>
+			<?php } ?>
+			</select>			
+		</div>
+		<div class="row col-md-4 mb-1" style="padding: 1%; margin: auto;">
+			<span class="font-weight-bold"><i class="fa fa-home" aria-hidden="true"></i> Laboratory / Room</span>
+			<select class="form-control" name="lab_id" onchange="location = this.value;">
  						<option selected disabled>Select Laboratories Below</option>
  						<?php
  							if(isset($_GET['buildingId'])){
@@ -117,16 +110,13 @@ $_SESSION['getURI'] = $getURI;
  							}	
  						?>
  					</select>
- 				</td>
- 				<td>
- 					<a class="btn btn-sm btn-danger" href="edit_pc_equipment.php"><i class="fas as fa-sync"></i> Refresh</a>
- 				</td>
-			</tr>
-		</thead>
-	</table>
-		
-		
+		</div>
+		<div class="row col-md-4 mb-1" style="padding: 1%; margin: auto; text-align: center;">
+			<span class="font-weight-bold">Actions<br/><a class="btn btn-sm btn-danger" href="edit_pc_equipment.php"><i class="fas as fa-sync"></i> Refresh</a></span>
+		</div>
+	</div>
 	</form>
+	<!-- End Responsive Form -->
 	
 	<!-- End Building Here -->
 	<!-- Show Added Building Here-->
@@ -157,28 +147,28 @@ $_SESSION['getURI'] = $getURI;
 
 	?>
 	<label class="form-control" style='color: blue;'>List of PC Units</label>
-	<div class="table-responsive">
-		<table class="table" width="100%" id="dataTable" cellspacing="0">
-			<thead>
-				<tr>
-					<th>No</th>
-					<th>PC Name</th>
-					<th>Laboratory</th>
-					<th>Building</th>
-					<th style="display: none;">Status</th>
-					<th width="30%">Actions</th>
+
+		<table class="table" width="100%" id="dataTable" cellspacing="0" role="table">
+			<thead role="rowgroup">
+				<tr role="row">
+					<th role="columnheader">No</th>
+					<th role="columnheader">PC Name</th>
+					<th role="columnheader">Laboratory</th>
+					<th role="columnheader">Building</th>
+					<th style="display: none;" role="columnheader">Status</th>
+					<th width="30%" role="columnheader">Actions</th>
 				</tr>
 			</thead>
-			
+			<tbody role="rowgroup">
 			<?php 
-			while($newGetPCResults=$getPCResults->fetch_assoc()):?>
- 			<tr style="width: 100% !important;">
- 				<td><?php echo ++$thisPageFirstResult; ?></td>
- 				<td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#ModalID<?php echo $newGetPCResults['unit_id'];?>"><?php echo $newGetPCResults['unit_name']; ?></button></td>
- 				<td><?php echo $newGetPCResults['lab_name']; ?></td>
- 				<td><?php echo $newGetPCResults['building_name'];?></td>
- 				<td style="display: none;"><?php echo ucfirst($newGetPCResults['status']);?></td>
-				<td>
+			while($newGetPCResults=$getPCResults->fetch_assoc()){?>
+ 			<tr style="width: 100% !important;" role="row">
+ 				<td role="cell"><?php echo ++$thisPageFirstResult; ?></td>
+ 				<td role="cell"><button type="button" class="btn btn-link" data-toggle="modal" data-target="#ModalID<?php echo $newGetPCResults['unit_id'];?>"><?php echo $newGetPCResults['unit_name']; ?></button></td>
+ 				<td role="cell"><?php echo $newGetPCResults['lab_name']; ?></td>
+ 				<td role="cell"><?php echo $newGetPCResults['building_name'];?></td>
+ 				<td style="display: none;" role="cell"><?php echo ucfirst($newGetPCResults['status']);?></td>
+				<td role="cell">
 		<?php
 				$getUnitID =  $newGetPCResults['unit_id'];
 				$checkPeripheralExistence = $mysqli->query("SELECT * FROM peripherals WHERE unit_id = $getUnitID") or die ($mysqli->error);
@@ -247,10 +237,10 @@ $_SESSION['getURI'] = $getURI;
 			  </div>
 			</div>
 			<!-- End Modal For PC Equipments -->
- 			<?php endwhile; ?>
-
+ 			<?php } ?>
+ 			</tbody>
 		</table>
-	</div>
+
 		<?php
 		if(mysqli_num_rows($getPCResults)>=1){ ?>
 			<a href="lab_report.php?<?php echo'building='.$buildingId.'&laboratory='.$labId; ?>" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print" aria-hidden="true"></i>
@@ -269,3 +259,61 @@ else{
 	<?php
 	include('footer.php');
 ?>
+<style type="text/css">
+	/*
+	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
+	*/
+@media
+only screen
+and (max-width: 760px), (min-device-width: 768px)
+and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr {
+		margin: 0 0 1rem 0;
+	}
+
+	tr:nth-child(odd) {
+		background: none;
+		padding: 1%;
+		width: 100%;
+		border-bottom: 2px solid grey;
+		border-top: 2px solid grey;
+	}
+	    
+	td {
+		border-bottom: 1px solid #eee;
+		position: relative;
+	}
+
+	td:before {
+		top: 0;
+		width: 45%;
+		padding-right: 1%;
+		white-space: nowrap;
+	}
+
+	/*
+	Label the data
+	You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+	*/
+	td:nth-of-type(1):before { content: "No:"; font-weight: bold;}
+	td:nth-of-type(2):before { content: "PC Name:"; font-weight: bold; }
+	td:nth-of-type(3):before { content: "Laboratory:"; font-weight: bold; }
+	td:nth-of-type(4):before { content: "Building:"; font-weight: bold; }
+	td:nth-of-type(5):before { content: "Status:"; font-weight: bold; }
+	td:nth-of-type(6):before { content: "Actions:"; font-weight: bold; }
+}
+</style>
+
+<!-- EOF -->

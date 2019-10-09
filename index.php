@@ -48,7 +48,7 @@
   <title>Dashboard</title>
 
   <!-- Custom fonts for this template-->
-  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
@@ -236,14 +236,14 @@
                   <h6 class="m-0 font-weight-bold text-primary">PC Components</h6>
                 </div>
                 <div class="card-body">
-                  <table class="table">
+                  <table class="table pc-components">
                     <thead class="thead-dark">
                       <th>ID</th>
                       <th>Type</th>
                       <th>Laboratory</th>
                       <th>Building</th>
-
                     </thead>
+                    <tbody>
                     <?php while($newPeripherals=$getPeripherals->fetch_assoc()){ ?>
                     <tr>
                       <td><?php echo $newPeripherals['peripheral_id']; ?></td>
@@ -253,11 +253,12 @@
                     </tr>
                     <?php } ?>
                     <tr>
-                      <?php if($peripheralMoreThan3){ ?>
-                      <td colspan="4"><center><a class='btn btn-sm btn-primary' target="_blank" href="for_repair.php"><i class="fas fa-book-reader"></i> Read More</a></center></td>
-                    <?php } ?>
                     </tr>
+                    </tbody>
                   </table>
+                  <?php if($peripheralMoreThan3){ ?>
+                    <center><a class='btn btn-sm btn-primary mb-2' target="_blank" href="for_repair.php"><i class="fas fa-book-reader"></i> Read More</a></center>
+                  <?php } ?>                  
                 </div>
               </div>
 
@@ -279,33 +280,44 @@
                   <h6 class="m-0 font-weight-bold text-primary">Airconditioner</h6>
                 </div>
                 <div class="card-body">
-                  <table class="table ">
+                  <table class="table dashboard-airconditioner">
                     <thead class="thead-dark">
                       <th>ID</th>
                       <th>Serial Code</th>
                       <th>Laboratory</th>
                       <th>Building</th>
                     </thead>
-                    <?php while($newAircon =$getAircon->fetch_assoc()){ ?>
-                    <tr>
-                      <td><?php echo $newAircon['id']; ?></td>
-                      <td><?php echo $newAircon['serial_no']; ?></td>
-                      <td><?php echo $newAircon['lab_name']; ?></td>
-                      <td><?php echo $newAircon['building_name']; ?></td>
-                    </tr>
-                    <?php } ?>
-                    <tr>
-                      <?php if($airconMoreThan3){ ?>
-                      <td colspan="4"><center><a class='btn btn-sm btn-primary' target="_blank" href="for_repair_fixtures.php"><i class="fas fa-book-reader"></i> Read More</a></center></td>
-                    <?php } ?>
-                    </tr>
+                    <tbody>
+                      <?php while($newAircon =$getAircon->fetch_assoc()){ ?>
+                      <tr>
+                        <td><?php echo $newAircon['id']; ?></td>
+                        <td><?php echo $newAircon['serial_no']; ?></td>
+                        <td><?php echo $newAircon['lab_name']; ?></td>
+                        <td><?php echo $newAircon['building_name']; ?></td>
+                      </tr>
+                      <?php } ?>
+                    </tbody>
                   </table>
-
+                  <?php if($airconMoreThan3){ ?>
+                        <center><a class='btn btn-sm btn-primary mb-2' target="_blank" href="for_repair_fixtures.php"><i class="fas fa-book-reader"></i> Read More</a></center>
+                  <?php } ?>
 
 
                   <?php
+                  $airConCleaningMoreThan3=false;
                   $currentDate = date("Y-m-d");
                   $checkDateForCleaning = date('Y-m-d', strtotime($currentDate. ' - 166 days'));
+                  $getAirconCleaning = mysqli_query($mysqli, "SELECT fe.id, fe.date_added, fe.serial_no, fe.type, fe.batch_code, fe.building_id, fe.lab_id, fe.date_last_clean ,fe.remarks, bg.building_id, bg.building_name, ly.lab_id, ly.lab_name
+                    FROM fixture fe
+                    JOIN building bg
+                    ON bg.building_id = fe.building_id
+                    JOIN laboratory ly
+                    ON ly.lab_id = fe.lab_id
+                    WHERE fe.type ='airconditioner' AND fe.date_last_clean<'$checkDateForCleaning' ") or die ($mysqli->error);
+
+                  if(mysqli_num_rows($getAirconCleaning)>3){
+                    $airConCleaningMoreThan3=true;
+                  }
                   $getAirconCleaning = mysqli_query($mysqli, "SELECT fe.id, fe.date_added, fe.serial_no, fe.type, fe.batch_code, fe.building_id, fe.lab_id, fe.date_last_clean ,fe.remarks, bg.building_id, bg.building_name, ly.lab_id, ly.lab_name
                     FROM fixture fe
                     JOIN building bg
@@ -316,7 +328,7 @@
                   
                   ?>
                   <span class="text-primary"><b>Due for Cleaning</b></span>
-                   <table class="table">
+                   <table class="table dashboard-aircon-cleaning">
                     <thead class="thead-dark">
                       <th>ID</th>
                       <th>Serial Code</th>
@@ -335,12 +347,10 @@
                       ?></td>
                     </tr>
                     <?php } ?>
-                    <tr>
-                      <?php if($airconMoreThan3){ ?>
-                      <td colspan="5"><center><a class='btn btn-sm btn-primary' target="_blank"  href="aircon.php"><i class="fas fa-book-reader"></i> Read More</a></center></td>
-                    <?php } ?>
-                    </tr>
                   </table>
+                  <?php if($airConCleaningMoreThan3){ ?>
+                      <center><a class='btn btn-sm btn-primary mb-2' target="_blank"  href="aircon.php"><i class="fas fa-book-reader"></i> Read More</a></center>
+                  <?php } ?>
                 </div>
               </div>
 
@@ -366,7 +376,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">Fixtures</h6>
                 </div>
                 <div class="card-body">
-                  <table class="table">
+                  <table class="table dashboard-fixtures">
                     <thead class="thead-dark">
                       <th>ID</th>
                       <th>Type</th>
@@ -382,12 +392,10 @@
                       <td><?php echo $newFixtures['building_name']; ?></td>
                     </tr>
                     <?php } ?>
-                    <tr>
-                      <?php if($fixturesMoreThan3){ ?>
-                      <td colspan="4"><center><a class='btn btn-sm btn-primary' target="_blank" href="for_repair_fixtures.php"><i class="fas fa-book-reader"></i> Read More</a></center></td>
-                    <?php } ?>
-                    </tr>
                   </table>
+                  <?php if($fixturesMoreThan3){ ?>
+                    <center><a class='btn btn-sm btn-primary' target="_blank" href="for_repair_fixtures.php"><i class="fas fa-book-reader"></i> Read More</a></center>
+                  <?php } ?>
                 </div>
               </div>
 
@@ -406,7 +414,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">Pending Maintenance Requests</h6>
                 </div>
                 <div class="card-body">
-                  <table class="table">
+                  <table class="table dashboard-requests">
                     <thead class="thead-dark">
                       <th>ID</th>
                       <th>Department</th>
@@ -442,12 +450,10 @@
                     </div>
                     <!-- End Modal For PC Equipments -->                    
                     <?php } ?>
-                    <tr>
-                      <?php if($requestMoreThan3){ ?>
-                      <td colspan="4"><center><a class='btn btn-sm btn-primary' target="_blank" href="view_maintenance.php"><i class="fas fa-book-reader"></i> Read More</a></center></td>
-                    <?php } ?>
-                    </tr>
                   </table>
+                  <?php if($requestMoreThan3){ ?>
+                    <center><a class='btn btn-sm btn-primary' target="_blank" href="view_maintenance.php"><i class="fas fa-book-reader"></i> Read More</a></center>
+                    <?php } ?>
                 </div>
               </div>
 
@@ -471,3 +477,220 @@
 
 <?php include('footer.php');?>
 <!-- End of Footer -->
+<style type="text/css">
+  /*
+  Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
+  */
+
+@media
+only screen
+and (max-width: 760px), (min-device-width: 768px)
+and (max-device-width: 1024px)  {
+  /* PC Table */
+  .pc-components table, .pc-components thead, .pc-components tbody, .pc-components th, .pc-components td, .pc-components tr {
+    display: block;
+  }
+
+  .pc-components thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .pc-components tr {
+    margin: 0 0 1rem 0;
+  }
+
+  .pc-components tr:nth-child(odd) {
+    background: none;
+    padding: 1%;
+    width: 100%;
+    border-bottom: 2px solid grey;
+    border-top: 2px solid grey;
+  }
+      
+  .pc-components td {
+    border-bottom: 1px solid #eee;
+    position: relative;
+  }
+
+  .pc-components td:before {
+    top: 0;
+    width: 45%;
+    padding-right: 1%;
+    white-space: nowrap;
+  }
+
+  .pc-components td:nth-of-type(1):before { content: "ID:"; font-weight: bold;}
+  .pc-components td:nth-of-type(2):before { content: "Type:"; font-weight: bold; }
+  .pc-components td:nth-of-type(3):before { content: "Laboratory:"; font-weight: bold; }
+  .pc-components td:nth-of-type(4):before { content: "Building:"; font-weight: bold; }
+  /* End PC Table */
+
+  /* Airconditioner Table */
+  .dashboard-airconditioner table, .dashboard-airconditioner thead, .dashboard-airconditioner tbody, .dashboard-airconditioner th, .dashboard-airconditioner td, .dashboard-airconditioner tr {
+    display: block;
+  }
+
+  .dashboard-airconditioner thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .dashboard-airconditioner tr {
+    margin: 0 0 1rem 0;
+  }
+
+  .dashboard-airconditioner tr:nth-child(odd) {
+    background: none;
+    padding: 1%;
+    width: 100%;
+    border-bottom: 2px solid grey;
+    border-top: 2px solid grey;
+  }
+      
+  .dashboard-airconditioner td {
+    border-bottom: 1px solid #eee;
+    position: relative;
+  }
+
+  .dashboard-airconditioner td:before {
+    top: 0;
+    width: 45%;
+    padding-right: 1%;
+    white-space: nowrap;
+  }
+
+  .dashboard-airconditioner td:nth-of-type(1):before { content: "ID:"; font-weight: bold;}
+  .dashboard-airconditioner td:nth-of-type(2):before { content: "Serial Code:"; font-weight: bold; }
+  .dashboard-airconditioner td:nth-of-type(3):before { content: "Laboratory:"; font-weight: bold; }
+  .dashboard-airconditioner td:nth-of-type(4):before { content: "Building:"; font-weight: bold; }
+  /* End Airconditioner Table */
+
+  /* Airconditioner Cleaning Table */
+  .dashboard-aircon-cleaning table, .dashboard-aircon-cleaning thead, .dashboard-aircon-cleaning tbody, .dashboard-aircon-cleaning th, .dashboard-aircon-cleaning td, .dashboard-aircon-cleaning tr {
+    display: block;
+  }
+
+  .dashboard-aircon-cleaning thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .dashboard-aircon-cleaning tr {
+    margin: 0 0 1rem 0;
+  }
+
+  .dashboard-aircon-cleaning tr:nth-child(odd) {
+    background: none;
+    padding: 1%;
+    width: 100%;
+    border-bottom: 2px solid grey;
+    border-top: 2px solid grey;
+  }
+      
+  .dashboard-aircon-cleaning td {
+    border-bottom: 1px solid #eee;
+    position: relative;
+  }
+
+  .dashboard-aircon-cleaning td:before {
+    top: 0;
+    width: 45%;
+    padding-right: 1%;
+    white-space: nowrap;
+  }
+
+  .dashboard-aircon-cleaning td:nth-of-type(1):before { content: "ID:"; font-weight: bold;}
+  .dashboard-aircon-cleaning td:nth-of-type(2):before { content: "Serial Code:"; font-weight: bold; }
+  .dashboard-aircon-cleaning td:nth-of-type(3):before { content: "Laboratory:"; font-weight: bold; }
+  .dashboard-aircon-cleaning td:nth-of-type(4):before { content: "Building:"; font-weight: bold; }
+  .dashboard-aircon-cleaning td:nth-of-type(4):before { content: "Due Date:"; font-weight: bold; }
+  /* Airconditioner Cleaning Table */
+
+  /* Dashboard Fixture Table */
+  .dashboard-fixtures table, .dashboard-fixtures thead, .dashboard-fixtures tbody, .dashboard-fixtures th, .dashboard-fixtures td, .dashboard-fixtures tr {
+    display: block;
+  }
+
+  .dashboard-fixtures thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .dashboard-fixtures tr {
+    margin: 0 0 1rem 0;
+  }
+
+  .dashboard-fixtures tr:nth-child(odd) {
+    background: none;
+    padding: 1%;
+    width: 100%;
+    border-bottom: 2px solid grey;
+    border-top: 2px solid grey;
+  }
+      
+  .dashboard-fixtures td {
+    border-bottom: 1px solid #eee;
+    position: relative;
+  }
+
+  .dashboard-fixtures td:before {
+    top: 0;
+    width: 45%;
+    padding-right: 1%;
+    white-space: nowrap;
+  }
+
+  .dashboard-fixtures td:nth-of-type(1):before { content: "ID:"; font-weight: bold;}
+  .dashboard-fixtures td:nth-of-type(2):before { content: "Type:"; font-weight: bold; }
+  .dashboard-fixtures td:nth-of-type(3):before { content: "Laboratory:"; font-weight: bold; }
+  .dashboard-fixtures td:nth-of-type(4):before { content: "Building:"; font-weight: bold; }
+  /* Dashboard Fixture Table */
+
+  /* Dashboard Requests */
+  .dashboard-requests table, .dashboard-requests thead, .dashboard-requests tbody, .dashboard-requests th, .dashboard-requests td, .dashboard-requests tr {
+    display: block;
+  }
+
+  .dashboard-requests thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .dashboard-requests tr {
+    margin: 0 0 1rem 0;
+  }
+
+  .dashboard-requests tr:nth-child(odd) {
+    background: none;
+    padding: 1%;
+    width: 100%;
+    border-bottom: 2px solid grey;
+    border-top: 2px solid grey;
+  }
+      
+  .dashboard-requests td {
+    border-bottom: 1px solid #eee;
+    position: relative;
+  }
+
+  .dashboard-requests td:before {
+    top: 0;
+    width: 45%;
+    padding-right: 1%;
+    white-space: nowrap;
+  }
+
+  .dashboard-requests td:nth-of-type(1):before { content: "ID:"; font-weight: bold;}
+  .dashboard-requests td:nth-of-type(2):before { content: "Type:"; font-weight: bold; }
+  .dashboard-requests td:nth-of-type(3):before { content: "Laboratory:"; font-weight: bold; }
+  .dashboard-requests td:nth-of-type(4):before { content: "Building:"; font-weight: bold; }
+  /* Dashboard Requests */   
+}
+</style>
+<!-- EOF -->

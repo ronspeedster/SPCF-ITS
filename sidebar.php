@@ -40,13 +40,14 @@
 .topbar {
     height: 3rem !important;
 }
-  html{
+html{
   font-family: 'Roboto Condensed', sans-serif !important;
   font-size: 13.5px;
-  }
-  input.date{
-    width: 10px;
-  }
+  scroll-behavior: smooth !important;
+}
+input.date{
+  width: 10px;
+}
 
 #dataTable_wrapper,#fixtureTable_wrapper, #airconTable_wrapper, #forRepairTable_wrapper {
     width: 100% !important;
@@ -75,6 +76,11 @@
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   opacity: 0.7 !important; /* Firefox */
 }
+nav ul{
+  position: sticky !important;
+  top: 0;
+  z-index: 99;
+}
 </style>
 
   <meta charset="utf-8">
@@ -96,10 +102,9 @@
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
+    <nav>
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
-
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
@@ -335,4 +340,6 @@
       </div>
 
     </ul>
+  <!-- 2019-10-09 // I use navbar for stickiness of the nav menus. -->
+  </nav>
     <!-- End of Sidebar -->

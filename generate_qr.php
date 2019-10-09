@@ -55,8 +55,9 @@ $currentDate = date('Y/m/d');
 		
 	?>
 	<!-- Add Building Here -->
-	<div class="card shadow row" style="padding: 1%">
+	<div class="card shadow row" style="padding: 2%">
 		<h5>Generate QR Code</h5>
+		<h6>Save this image and paste into the the equipment</h6>
 		<?php include("phpqrcode/index.php"); ?>
 
 	</div>

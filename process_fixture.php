@@ -7,7 +7,8 @@
 
 	$vowels = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U", " ");
 	$batchID = date_default_timezone_set('Asia/Manila');
-	$batchID = date('ymdHi');	
+	$batchID = date('ymdHi');
+
 	if(isset($_POST['save'])){
 		$building_id =  $_POST['building'];
 		$laboratory_id =  $_POST['laboratory'];
@@ -16,7 +17,7 @@
 		$batchID = strtoupper(str_replace(" ", "", $type).$batchID);
 		$startNo = 1;
 		while($startNo<=$qty){
-		$mysqli->query("INSERT INTO fixture (type, batch_code, building_id, lab_id, date_added, remarks) VALUES('$type','$batchID','$building_id','$laboratory_id','$date','OK')") or die($mysqli->error());
+			$mysqli->query("INSERT INTO fixture (type, batch_code, building_id, lab_id, date_added, remarks) VALUES('$type','$batchID','$building_id','$laboratory_id','$date','OK')") or die($mysqli->error());
 			$startNo++;
 		}
 
@@ -34,7 +35,8 @@
 		$_SESSION['message'] = "Fixture has been updated!";
 		$_SESSION['msg_type'] = "success";
 
-		header('location: fixtures.php');
+		$getURI = $_SESSION['getURI'];
+		header('location: '.$getURI);
 	}	
 
 	//Submit Report Fixtures
@@ -104,7 +106,8 @@
 		$_SESSION['message'] = "Fixture has been deleted!";
 		$_SESSION['msg_type'] = "danger";
 
-		header('location: fixtures.php');
+		$getURI = $_SESSION['getURI'];
+		header('location: '.$getURI);
 	}
 
 ?>

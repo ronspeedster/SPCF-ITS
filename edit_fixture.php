@@ -2,9 +2,10 @@
 require_once 'process_fixture.php';
 $currentItem = 'equipments';
 include('sidebar.php');
-$protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-$getURI = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-$_SESSION['getURI'] = $getURI;
+//$protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+//$getURI = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+//$_SESSION['getURI'] = $getURI;
+
 //$getURI = $_SERVER['QUERY_STRING'];
 //echo $query; // Outputs: Query String
 ?>

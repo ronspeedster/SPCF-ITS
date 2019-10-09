@@ -136,17 +136,78 @@ include('process_misc_things.php');
 			<td><?php echo $fixture_row['fixture_condition']; ?></td>
 			<td><?php echo $fixture_row['remarks']; ?></td>
 			<td><?php echo $fixture_row['date_added']; ?></td>
-			<td style="text-align: right !important;"><?php echo "₱ ".number_format($fixture_row['repair_cost'],2,".",","); ?></td>
+			<td><?php echo "₱ ".number_format($fixture_row['repair_cost'],2,".",","); ?></td>
 			<td><a class="btn btn-sm btn-info" href="img/assets/<?php echo $fixture_row['file_name'] ?>" target="_blank"><i class="far fa-image"></i> Image</a></td>
 		</tr>
 			<?php	
 				}}
 			?>
 	</table>
-	<span class="text-danger"><center>Total Repair Cost: ₱ <?php echo number_format($totalRepairCost,2,".",","); ?></center></span>
+	<span class="text-danger font-weight-bold"><center>Total Repair Cost: ₱ <?php echo number_format($totalRepairCost,2,".",","); ?></center></span>
 </div>
 
 	<!-- End Here-->
 	<?php
 	include('footer.php');
 ?>
+<style type="text/css">
+	/*
+	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
+	*/
+@media
+only screen
+and (max-width: 760px), (min-device-width: 768px)
+and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr {
+		margin: 0 0 1rem 0;
+	}
+
+	tr:nth-child(odd) {
+		background: none;
+		padding: 1%;
+		width: 100%;
+		border-bottom: 2px solid grey;
+		border-top: 2px solid grey;
+	}
+	    
+	td {
+		border-bottom: 1px solid #eee;
+		position: relative;
+	}
+
+	td:before {
+		top: 0;
+		width: 45%;
+		padding-right: 1%;
+		white-space: nowrap;
+	}
+
+	/*
+	Label the data
+	You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+	*/
+	td:nth-of-type(1):before { content: "ID:"; font-weight: bold;}
+	td:nth-of-type(2):before { content: "Type:"; font-weight: bold; }
+	td:nth-of-type(3):before { content: "Batch ID:"; font-weight: bold; }
+	td:nth-of-type(4):before { content: "Serial ID:"; font-weight: bold; }
+	td:nth-of-type(5):before { content: "Last Cleaned:"; font-weight: bold; }
+	td:nth-of-type(6):before { content: "Condition:"; font-weight: bold; }
+	td:nth-of-type(7):before { content: "Remarks:"; font-weight: bold; }
+	td:nth-of-type(8):before { content: "Date Fixed:"; font-weight: bold; }
+	td:nth-of-type(9):before { content: "Cost:"; font-weight: bold; }
+	td:nth-of-type(10):before { content: "Receipt:"; font-weight: bold; }
+}
+</style>
+<!-- EOF -->

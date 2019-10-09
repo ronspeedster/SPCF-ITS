@@ -23,63 +23,6 @@ include('process_misc_things.php');
 			} );
 		} );
 	</script>
-<style type="text/css">
-	/*
-	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
-	*/
-@media
-only screen
-and (max-width: 760px), (min-device-width: 768px)
-and (max-device-width: 1024px)  {
-
-	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr {
-		display: block;
-	}
-
-	thead tr {
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-	}
-
-	tr {
-		margin: 0 0 1rem 0;
-	}
-
-	tr:nth-child(odd) {
-		background: none;
-		padding: 1%;
-		width: 100%;
-		border-bottom: 2px solid grey;
-		border-top: 2px solid grey;
-	}
-	    
-	td {
-		border-bottom: 1px solid #eee;
-		position: relative;
-	}
-
-	td:before {
-		top: 0;
-		width: 45%;
-		padding-right: 5%;
-		white-space: nowrap;
-	}
-
-	/*
-	Label the data
-	You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
-	*/
-	td:nth-of-type(1):before { content: "Type:"; font-weight: bold;}
-	td:nth-of-type(2):before { content: "Batch Code:"; font-weight: bold; }
-	td:nth-of-type(3):before { content: "Serial Code:"; font-weight: bold; }
-	td:nth-of-type(4):before { content: "Building:"; font-weight: bold; }
-	td:nth-of-type(5):before { content: "Room: "; font-weight: bold; }
-	td:nth-of-type(6):before { content: "Condition: "; font-weight: bold; }
-	td:nth-of-type(7):before { content: "Actions: "; font-weight: bold; }
-}
-</style>
 </head>
 <body id="page-top">
 	<!-- Page Wrapper -->
@@ -143,7 +86,7 @@ and (max-device-width: 1024px)  {
 						<?php
 						if($current_type=="*"){
 						//$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE unit_id='StockRoom' AND remarks='ForRepair'");
-							$getFixture = mysqli_query($mysqli, "SELECT f.*, b.building_name, l.lab_name FROM fixture f
+							$getFixture = mysqli_query($mysqli, "SELECT f.*, f.id AS fixture_id, b.building_name, l.lab_name FROM fixture f
 								JOIN building b
 								ON b.building_id = f.building_id
 								JOIN laboratory l
@@ -151,7 +94,7 @@ and (max-device-width: 1024px)  {
 						}
 						else{
 						//$getStockRooms = mysqli_query($mysqli, "SELECT * FROM peripherals WHERE unit_id='StockRoom' AND peripheral_type='$current_type' AND remarks='ForRepair'");
-							$getFixture = mysqli_query($mysqli, "SELECT f.*, b.building_name, l.lab_name FROM fixture f
+							$getFixture = mysqli_query($mysqli, "SELECT f.*, f.id AS fixture_id, b.building_name, l.lab_name FROM fixture f
 								JOIN building b
 								ON b.building_id = f.building_id
 								JOIN laboratory l
@@ -198,7 +141,7 @@ and (max-device-width: 1024px)  {
 												<i class="far fa-trash-alt"></i> Delete</button>
 												<div class="dropdown-menu" aria-labelledby="dropdownMenuButton btn-sm">
 													You sure you want to delete? You cannot undo the changes<br/>
-													<a href="process_misc_things.php?delete=<?php echo $perripheral_row['peripheral_id'] ?>" class='btn btn-danger btn-sm mb-1'><i class="far fa-trash-alt"></i> Confirm Delete</a>
+													<a href="process_misc_things.php?delete_fixture=<?php echo $newFixture['fixture_id'] ?>" class='btn btn-danger btn-sm mb-1'><i class="far fa-trash-alt"></i> Confirm Delete</a>
 													<a href="#" class='btn btn-success btn-sm mb-1'><i class="far fa-window-close"></i> Cancel</a> 
 												</div>
 											</td>
@@ -216,4 +159,61 @@ and (max-device-width: 1024px)  {
 			<?php
 			include('footer.php');
 			?>
+<style type="text/css">
+	/*
+	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
+	*/
+@media
+only screen
+and (max-width: 760px), (min-device-width: 768px)
+and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr {
+		margin: 0 0 1rem 0;
+	}
+
+	tr:nth-child(odd) {
+		background: none;
+		padding: 1%;
+		width: 100%;
+		border-bottom: 2px solid grey;
+		border-top: 2px solid grey;
+	}
+	    
+	td {
+		border-bottom: 1px solid #eee;
+		position: relative;
+	}
+
+	td:before {
+		top: 0;
+		width: 45%;
+		padding-right: 5%;
+		white-space: nowrap;
+	}
+
+	/*
+	Label the data
+	You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+	*/
+	td:nth-of-type(1):before { content: "Type:"; font-weight: bold;}
+	td:nth-of-type(2):before { content: "Batch Code:"; font-weight: bold; }
+	td:nth-of-type(3):before { content: "Serial Code:"; font-weight: bold; }
+	td:nth-of-type(4):before { content: "Building:"; font-weight: bold; }
+	td:nth-of-type(5):before { content: "Room: "; font-weight: bold; }
+	td:nth-of-type(6):before { content: "Condition: "; font-weight: bold; }
+	td:nth-of-type(7):before { content: "Actions: "; font-weight: bold; }
+}
+</style>			
 <!-- EOF -->

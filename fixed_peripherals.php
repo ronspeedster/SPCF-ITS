@@ -75,7 +75,7 @@ include('process_misc_things.php');
 
 	<table class="table">
 		<tr>
-			<th style="text-align: right;">Select Type: </th>
+			<th><center>Select Type: </center></th>
 			<th>
 					
 				<select class="form-control" onchange="location = this.value;">
@@ -94,6 +94,7 @@ include('process_misc_things.php');
 				</select>
 			</th>
 		</tr>
+
 	</table>
 	<h5 style="color: blue;" class="form-control">List of PC Equipments Fixed</h5>
 	<?php
@@ -115,23 +116,24 @@ include('process_misc_things.php');
 			AND fr.type='peripheral' ");
 	}
 	?>
-	<table class="table" id="periheralTable" width="100%" cellspacing="0">
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>Type</th>
-			<th>Brand</th>
-			<th>Description</th>
-			<th>Serial ID</th>
-			<th style="display: none;">Date Purchased</th>
-			<th>Date Issued</th>
-			<th>Remarks</th>
-			<th>Date Fixed</th>
-			<th>Cost</th>
-			<th>Receipt</th>
+	<table class="table" id="periheralTable" width="100%" cellspacing="0" role="table">
+		<thead role="rowgroup">
+			<tr role="row">
+				<th role="columnheader">ID</th>
+				<th role="columnheader">Type</th>
+				<th role="columnheader">Brand</th>
+				<th role="columnheader">Description</th>
+				<th role="columnheader">Serial ID</th>
+				<th style="display: none;">Date Purchased</th>
+				<th role="columnheader">Date Issued</th>
+				<th role="columnheader">Remarks</th>
+				<th role="columnheader">Date Fixed</th>
+				<th role="columnheader">Cost</th>
+				<th role="columnheader">Receipt</th>
 
-		</tr>
-	</thead>
+			</tr>
+		</thead>
+		<tbody role="rowgroup">
 			<?php
 			$totalRepairCost = 0;
 			if(mysqli_num_rows($getStockRooms)==0){
@@ -141,25 +143,88 @@ include('process_misc_things.php');
 				while($perripheral_row=$getStockRooms->fetch_assoc()){
 					$totalRepairCost += $perripheral_row['repair_cost'];?>
 		<tr>
-			<td><?php echo $perripheral_row['id']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_type']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_brand']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_description']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_serial_no']; ?></td>
-			<td style="display: none;"><?php echo $perripheral_row['peripheral_date_purchased']; ?></td>
-			<td><?php echo $perripheral_row['peripheral_date_issued']; ?></td>
-			<td><?php echo $perripheral_row['remarks'] ?></td>
-			<td><?php echo $perripheral_row['date_added']; ?></td>
-			<td style="text-align: right !important;"><?php echo "₱ ".number_format($perripheral_row['repair_cost'],2,".",","); ?></td>
-			<td><a class="btn btn-sm btn-info" href="img/assets/<?php echo $perripheral_row['file_name'] ?>" target="_blank"><i class="far fa-image"></i> Image</a></td>
+			<td role="cell"><?php echo $perripheral_row['id']; ?></td>
+			<td role="cell"><?php echo $perripheral_row['peripheral_type']; ?></td>
+			<td role="cell"><?php echo $perripheral_row['peripheral_brand']; ?></td>
+			<td role="cell"><?php echo $perripheral_row['peripheral_description']; ?></td>
+			<td role="cell"><?php echo $perripheral_row['peripheral_serial_no']; ?></td>
+			<td role="cell" style="display: none;"><?php echo $perripheral_row['peripheral_date_purchased']; ?></td>
+			<td role="cell"><?php echo $perripheral_row['peripheral_date_issued']; ?></td>
+			<td role="cell"><?php echo $perripheral_row['remarks'] ?></td>
+			<td role="cell"><?php echo $perripheral_row['date_added']; ?></td>
+			<td role="cell"><?php echo "₱ ".number_format($perripheral_row['repair_cost'],2,".",","); ?></td>
+			<td role="cell"><a class="btn btn-sm btn-info" href="img/assets/<?php echo $perripheral_row['file_name'] ?>" target="_blank"><i class="far fa-image"></i> Image</a></td>
 		</tr>
 			<?php	
 				}}
 			?>
+		</tbody>
 	</table>
-	<span class="text-danger"><center>Total Repair Cost: ₱ <?php echo $totalRepairCost; ?></center></span>
+	<span class="text-danger font-weight-bold"><center>Total Repair Cost: ₱ <?php echo $totalRepairCost; ?></center></span>
 </div>
 	<!-- End Here-->
 	<?php
 	include('footer.php');
 ?>
+<style type="text/css">
+	/*
+	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
+	*/
+@media
+only screen
+and (max-width: 760px), (min-device-width: 768px)
+and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr {
+		margin: 0 0 1rem 0;
+	}
+
+	tr:nth-child(odd) {
+		background: none;
+		padding: 1%;
+		width: 100%;
+		border-bottom: 2px solid grey;
+		border-top: 2px solid grey;
+	}
+	    
+	td {
+		border-bottom: 1px solid #eee;
+		position: relative;
+	}
+
+	td:before {
+		top: 0;
+		width: 45%;
+		padding-right: 1%;
+		white-space: nowrap;
+	}
+
+	/*
+	Label the data
+	You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+	*/
+	td:nth-of-type(1):before { content: "ID:"; font-weight: bold;}
+	td:nth-of-type(2):before { content: "Type:"; font-weight: bold; }
+	td:nth-of-type(3):before { content: "Brand:"; font-weight: bold; }
+	td:nth-of-type(4):before { content: "Description:"; font-weight: bold; }
+	td:nth-of-type(5):before { content: "Serial ID:"; font-weight: bold; }
+	td:nth-of-type(6):before { content: "Date Purchased:"; font-weight: bold; }
+	td:nth-of-type(7):before { content: "Date Issued:"; font-weight: bold; }
+	td:nth-of-type(8):before { content: "Remarks:"; font-weight: bold; }
+	td:nth-of-type(9):before { content: "Date Fixed:"; font-weight: bold; }
+	td:nth-of-type(10):before { content: "Cost:"; font-weight: bold; }
+	td:nth-of-type(11):before { content: "Receipt:"; font-weight: bold; }
+}
+</style>
+<!-- EOF -->

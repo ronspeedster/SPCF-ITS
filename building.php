@@ -67,7 +67,7 @@ include('sidebar.php');
 		?>
 	</h2>
 	<!-- Creating a responsive alternative -->
-	<div class="row col-md-12 mb-2" style="border-bottom: 2px solid #b2b2b2;">
+	<div class="row col-md-12 mb-2" style="">
 		<div class="col-md-3 mb-1" style="padding: 1%; margin: auto;">
 			<span class="font-weight-bold" style=""><center>ID</center></span>
 			<input type="text" name="building_id" class="form-control" value="<?php if(isset($_GET['edit'])){echo $building_id;}else echo ++$fetchid;?>" style="width: 100%;" readonly>
@@ -126,10 +126,10 @@ include('sidebar.php');
 					<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm mb-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="far fa-trash-alt"></i> Delete
 					</button>
-					<div class="dropdown-menu mb-1" aria-labelledby="dropdownMenuButton btn-sm">
-					You sure you want to delete? You cannot undo the changes<br/>
+					<div class="dropdown-menu mb-1 shadow" aria-labelledby="dropdownMenuButton btn-sm" style="padding: 10px !important; font-size: 14px;">
+					You sure you want to delete? Deleting will also delete the contents associated to this building (Computers, Fixtures, etc.) You cannot undo the changes.<br/>
 						<a href="process_building.php?delete=<?php echo $row['building_id'] ?>" class='btn btn-danger btn-sm mb-1'><i class="far fa-trash-alt"></i> Confirm Delete</a>
-						<a href="#" class='btn btn-success btn-sm mb-1'><i class="far fa-window-close"></i> Cancel</a> 
+						<a class="btn btn-success btn-sm mb-1" style="color: white;"><i class="far fa-window-close"></i> Cancel</a> 
 					</div>
 				</td>
 			</tr>

@@ -64,28 +64,30 @@ include('process_misc_things.php');
 		}
 	?>
 
-	<table class="table">
-		<tr>
-			<th style="text-align: right;">Select Type: </th>
-			<th>
-					
-				<select class="form-control" onchange="location = this.value;">
-					<option class="text-danger" disabled selected><?php echo $type; ?></option>
-					<option value="<?php echo $fileName.'?type=*';?>">All Types</option>
-					<option value="<?php echo $fileName.'?type=Monitor';?>">Monitor</option>
-					<option value="<?php echo $fileName.'?type=Keyboard';?>">Keyboard</option>
-					<option value="<?php echo $fileName.'?type=Mouse';?>">Mouse</option>
-					<option value="<?php echo $fileName.'?type=AVR';?>">AVR</option>
-					<option value="<?php echo $fileName.'?type=Headset';?>">Headset</option>
-					<option value="<?php echo $fileName.'?type=CPU';?>">CPU</option>
-					<option value="<?php echo $fileName.'?type=Motherboard';?>">Motherboard</option>
-					<option value="<?php echo $fileName.'?type=GPU';?>">GPU</option>
-					<option value="<?php echo $fileName.'?type=RAM';?>">RAM</option>
-					<option value="<?php echo $fileName.'?type=HDD';?>">HDD</option>
-				</select>
-			</th>
-		</tr>
-	</table>
+	<!-- Responsive Form -->
+	<div class="row col-md-12 mb-2" style="">
+		<div class="col-md-6 mb-1" style="padding: 1%; margin: auto;">
+			<center><b>Select Type:</b></center>
+		</div>
+		<div class="col-md-6 mb-1" style="padding: 1%; margin: auto;">
+			<select class="form-control" onchange="location = this.value;">
+				<option class="text-danger" disabled selected><?php echo $type; ?></option>
+				<option value="<?php echo $fileName.'?type=*';?>">All Types</option>
+				<option value="<?php echo $fileName.'?type=Monitor';?>">Monitor</option>
+				<option value="<?php echo $fileName.'?type=Keyboard';?>">Keyboard</option>
+				<option value="<?php echo $fileName.'?type=Mouse';?>">Mouse</option>
+				<option value="<?php echo $fileName.'?type=AVR';?>">AVR</option>
+				<option value="<?php echo $fileName.'?type=Headset';?>">Headset</option>
+				<option value="<?php echo $fileName.'?type=CPU';?>">CPU</option>
+				<option value="<?php echo $fileName.'?type=Motherboard';?>">Motherboard</option>
+				<option value="<?php echo $fileName.'?type=GPU';?>">GPU</option>
+				<option value="<?php echo $fileName.'?type=RAM';?>">RAM</option>
+				<option value="<?php echo $fileName.'?type=HDD';?>">HDD</option>
+			</select>
+		</div>
+	</div>
+	<!-- End Responsive Form -->
+
 	<h5 style="color: blue;" class="form-control">List of Components and Peripherals currentlty in For Repair</h5>
 	<div class='row justify-content-center'>
 	<?php
@@ -149,3 +151,64 @@ include('process_misc_things.php');
 	<?php
 	include('footer.php');
 ?>
+<style type="text/css">
+	/*
+	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
+	*/
+@media
+only screen
+and (max-width: 760px), (min-device-width: 768px)
+and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr {
+		margin: 0 0 1rem 0;
+	}
+
+	tr:nth-child(odd) {
+		background: none;
+		padding: 1%;
+		width: 100%;
+		border-bottom: 2px solid grey;
+		border-top: 2px solid grey;
+	}
+	    
+	td {
+		border-bottom: 1px solid #eee;
+		position: relative;
+	}
+
+	td:before {
+		top: 0;
+		width: 45%;
+		padding-right: 1%;
+		white-space: nowrap;
+	}
+
+	/*
+	Label the data
+	You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+	*/
+	td:nth-of-type(1):before { content: "Type:"; font-weight: bold;}
+	td:nth-of-type(2):before { content: "Brand:"; font-weight: bold; }
+	td:nth-of-type(3):before { content: "Description:"; font-weight: bold; }
+	td:nth-of-type(4):before { content: "Serial ID:"; font-weight: bold; }
+	td:nth-of-type(5):before { content: "Date Purchased:"; font-weight: bold; }
+	td:nth-of-type(6):before { content: "Date Issued:"; font-weight: bold; }
+	td:nth-of-type(7):before { content: "Condition:"; font-weight: bold; }
+	td:nth-of-type(8):before { content: "Remarks:"; font-weight: bold; }
+	td:nth-of-type(9):before { content: "Actions:"; font-weight: bold; }
+}
+</style>
+
+<!-- EOF -->

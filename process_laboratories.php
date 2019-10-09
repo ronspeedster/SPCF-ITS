@@ -26,6 +26,9 @@
 		$lab_id = $_GET['delete'];
 		$mysqli->query("DELETE FROM laboratory WHERE lab_id=$lab_id") or die($mysqli->error());
 
+		//2019-10-09 - Cascade Deletion
+		$mysqli->query("DELETE FROM unit_pc WHERE lab_id=$lab_id") or die($mysqli->error());
+
 		$_SESSION['message'] = "Record has been deleted!";
 		$_SESSION['msg_type'] = "danger";
 		header("location: laboratories.php");

@@ -37,7 +37,7 @@
 		$peripheral_id = $_GET['delete'];
 		
 		//Delete Unit
-		$mysqli->query("DELETE FROM peripherals WHERE peripheral_id=$peripheral_id") or die($mysqli->error());
+		$mysqli->query("DELETE FROM peripherals WHERE peripheral_id= '$peripheral_id' ") or die($mysqli->error());
 
 		$_SESSION['message'] = "Record has been deleted!";
 		$_SESSION['msg_type'] = "danger";
@@ -82,5 +82,18 @@
 		$_SESSION['msg_type'] = "warning";
 
 		header('location: misc_things.php');
+	}
+	
+	//Quick Delete for fixture
+	if(isset($_GET['delete_fixture'])){
+		$fixture_id = $_GET['delete_fixture'];
+		
+		//Delete Unit
+		$mysqli->query("DELETE FROM fixture WHERE id= '$fixture_id' ") or die($mysqli->error());
+
+		$_SESSION['message'] = "Record has been deleted!";
+		$_SESSION['msg_type'] = "danger";
+		
+		header('location:'.$getURI);
 	}
 ?>
