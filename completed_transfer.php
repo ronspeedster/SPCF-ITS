@@ -101,3 +101,61 @@ $currentDate = date("Y/m/d");
 <?php
 	include('footer.php');
 ?>
+<style type="text/css">
+	/*
+	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
+	*/
+@media
+only screen
+and (max-width: 760px), (min-device-width: 768px)
+and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr {
+		margin: 0 0 1rem 0;
+	}
+
+	tr:nth-child(odd) {
+		background: #fcfce3;
+		padding: 1%;
+		width: 100%;
+		border-bottom: 2px solid grey;
+		border-top: 2px solid grey;
+	}
+	    
+	td {
+		border-bottom: 1px solid #eee;
+		position: relative;
+	}
+
+	td:before {
+		top: 0;
+		width: 45%;
+		padding-right: 1%;
+		white-space: nowrap;
+	}
+
+	/*
+	Label the data
+	You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+	*/
+	td:nth-of-type(1):before { content: "ID:"; font-weight: bold;}
+	td:nth-of-type(2):before { content: "Type:"; font-weight: bold; }
+	td:nth-of-type(3):before { content: "From Builing: "; font-weight: bold; }
+	td:nth-of-type(4):before { content: "From Room: "; font-weight: bold; }
+	td:nth-of-type(5):before { content: "To Building: "; font-weight: bold; }
+	td:nth-of-type(6):before { content: "Too Room: "; font-weight: bold; }
+	td:nth-of-type(7):before { content: "Date: "; font-weight: bold; }
+}
+</style>
+<!-- EOF -->

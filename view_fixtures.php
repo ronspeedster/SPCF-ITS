@@ -75,7 +75,9 @@ include('process_misc_things.php');
 									<select class="form-control" onchange="location = this.value;">
 										<option disabled selected>Select Fixture</option>
 										<?php while($newCategories=$getCategories->fetch_assoc()){  ?>
-											<option value="<?php echo $fileName.'?type='.$newCategories['type'];?>"><?php echo strtoupper($newCategories['type']); ?></option>
+											<option value="<?php echo $fileName.'?type='.$newCategories['type'];?>" <?php if($current_type==$newCategories['type']){echo "selected";} ?> >
+												<?php echo strtoupper($newCategories['type']); ?>
+											</option>
 										<?php } ?>
 										<option value="<?php echo $fileName.'?type=*';?>">All Type</option>
 									</select>
@@ -184,7 +186,7 @@ and (max-device-width: 1024px)  {
 	}
 
 	tr:nth-child(odd) {
-		background: none;
+		background: #fcfce3;
 		padding: 1%;
 		width: 100%;
 		border-bottom: 2px solid grey;

@@ -213,7 +213,7 @@ and (max-device-width: 1024px)  {
 	}
 
 	tr:nth-child(odd) {
-		background: none;
+		background: #fcfce3;
 		padding: 1%;
 		width: 100%;
 		border-bottom: 2px solid grey;

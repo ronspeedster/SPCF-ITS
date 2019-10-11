@@ -88,7 +88,7 @@ include('process_misc_things.php');
 	</div>
 	<!-- End Responsive Form -->
 
-	<h5 style="color: blue;" class="form-control">List of Components and Peripherals currentlty in For Repair</h5>
+	<h6 style="color: blue;"><center>List of Components and Peripherals currentlty in For Repair</center></h6>
 	<div class='row justify-content-center'>
 	<?php
 	if($current_type=="*"){
@@ -210,5 +210,4 @@ and (max-device-width: 1024px)  {
 	td:nth-of-type(9):before { content: "Actions:"; font-weight: bold; }
 }
 </style>
-
 <!-- EOF -->

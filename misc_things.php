@@ -161,16 +161,16 @@ $counterEquipment = 0;
 	<table class="table" id="dataTable" width="100%" cellspacing="0">
 		<thead>
 			<tr>
-			<th>No.</th>
-			<th>Type</th>
-			<th>Brand</th>
-			<th>Description</th>
-			<th>Serial ID</th>
-			<th>Date Purchased</th>
-			<th>Date Issued</th>
-			<th>Condition</th>
-			<th>For Repair?</th>
-			<th>Actions</th>
+				<th>No.</th>
+				<th>Type</th>
+				<th>Brand</th>
+				<th>Description</th>
+				<th>Serial ID</th>
+				<th>Date Purchased</th>
+				<th>Date Issued</th>
+				<th>Condition</th>
+				<th>For Repair?</th>
+				<th>Actions</th>
 			</tr>
 		</thead>	
 			<?php

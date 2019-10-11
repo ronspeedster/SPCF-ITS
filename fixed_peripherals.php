@@ -188,14 +188,15 @@ and (max-device-width: 1024px)  {
 
 	tr {
 		margin: 0 0 1rem 0;
+		background: #fcfce3;
 	}
 
 	tr:nth-child(odd) {
-		background: none;
 		padding: 1%;
 		width: 100%;
 		border-bottom: 2px solid grey;
 		border-top: 2px solid grey;
+		background: none;
 	}
 	    
 	td {

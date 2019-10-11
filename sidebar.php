@@ -80,6 +80,10 @@ nav ul{
   position: sticky !important;
   top: 0;
   z-index: 99;
+  white-space: normal;
+}
+nav ul li a{
+  white-space: normal !important;
 }
 </style>
 
@@ -221,13 +225,21 @@ nav ul{
         </div>
       </li>
 
-      <!-- Nav Item - Stock Rooms -->
-      <li class="nav-item <?php if($currentItem=='stock_room'){echo 'active';} ?>">
-        <a class="nav-link" href="stock_room.php">
+      <!-- Nav Items - Stock Rooms -->
+      <li class="nav-item <?php if($currentItem=='stock_room'){echo 'active';} ?> ">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#stock_room" aria-expanded="true" aria-controls="equipments">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Stock Room</span></a>
+          <span>Stock Room</span>
+        </a>
+        <div id="stock_room" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2  collapse-inner rounded">
+            <h6 class="collapse-header">Rooms:</h6>
+            <a class="collapse-item" href="stock_room.php"><i class="fas fa-laptop"></i> Stock Room (ITS) </span></a>
+            <a class="collapse-item" href="#"><i class="fas fa-couch"></i> Stock Room (Accounting)</a>
+          </div>
+        </div>
       </li>
-
+      
       <!-- Nav Item - Defective Equipment -->
       <li style="display: none;" class="nav-item <?php if($currentItem=='defect_equipment'){echo 'active';} ?>">
         <a class="nav-link" href="defect_equipment.php">

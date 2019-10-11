@@ -61,10 +61,10 @@ include('sidebar.php');
 			}
 			else{
 			?>
-			<label class="form-control"><a class="" href='fixtures.php'><-- Back to Fixtures </a></label>
-			<br/> <br/> <br/>
+			<label class="form-control">
+				<a class="" href='fixtures.php'><-- Back to Fixtures </a>
+			</label>
 			<h5 style='color: blue;'> Edit <?php echo $id.'. '. strtoupper($type); ?></h5>
-			<br/><br/>
 			<?php
 				$getFixture = mysqli_query($mysqli, "SELECT fe.id, fe.date_added, fe.serial_no, fe.type, fe.batch_code, fe.building_id, fe.lab_id, fe.remarks, bg.building_id, bg.building_name, ly.lab_id, ly.lab_name
 					FROM fixture fe
@@ -87,9 +87,9 @@ include('sidebar.php');
 					$noLab = true;
 				}
 				//print_r($newFixture); ?>
-				
+			<form action="process_fixture.php" method="POST" style="width: 100%;">
 				<table class="table" width="100%;">
-				<form action="process_fixture.php" method="POST">
+				<thead>
 					<tr>
 						<th>Type</th>
 						<th>Serial No.</th>
@@ -97,6 +97,8 @@ include('sidebar.php');
 						<th>Room / Laboratory</th>
 						<th>Actions</th>
 					</tr>
+				</thead>
+				<tbody>
 					<tr>
 						<td><?php echo strtoupper($newFixture['type']); ?></td>
 						<td><input type="text" name="serial_no" class="form-control" placeholder="Serial-No" value="<?php echo $serial_no; ?>" required>
@@ -135,9 +137,9 @@ include('sidebar.php');
 						</div>
 						</td>
 					</tr>
-				</form>
+				</tbody>
 				</table>
-
+			</form>
 			
 			<?php 
 			}
@@ -146,11 +148,63 @@ include('sidebar.php');
 		<!-- Show Added Fixtures -->
 
 	</div>
-
-	<br/>
-	<br/>
-
-
 	<?php
-	include('footer.php');
-?>
+		include('footer.php');
+	?>
+<style type="text/css">
+	/*
+	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
+	*/
+@media
+only screen
+and (max-width: 760px), (min-device-width: 768px)
+and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr {
+		margin: 0 0 1rem 0;
+	}
+
+	tr:nth-child(odd) {
+		background: none;
+		padding: 1%;
+		width: 100%;
+		border-bottom: 2px solid grey;
+		border-top: 2px solid grey;
+		background: #fcfce3;
+	}
+	    
+	td {
+		border-bottom: 1px solid #eee;
+		position: relative;
+	}
+
+	td:before {
+		top: 0;
+		width: 45%;
+		padding-right: 5%;
+		white-space: nowrap;
+	}
+
+	/*
+	Label the data
+	You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+	*/
+	td:nth-of-type(1):before { content: "Type.:"; font-weight: bold;}
+	td:nth-of-type(2):before { content: "Serial No.:"; font-weight: bold;}
+	td:nth-of-type(3):before { content: "Building:"; font-weight: bold; }
+	td:nth-of-type(4):before { content: "Room / Laboratory:"; font-weight: bold; }
+	td:nth-of-type(5):before { content: "Actions:"; font-weight: bold; }
+}
+</style>
+<!-- EOF -->

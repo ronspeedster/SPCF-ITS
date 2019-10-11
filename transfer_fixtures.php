@@ -49,6 +49,38 @@ $_SESSION['getURI'] = $getURI;
 	<!-- Add Fixtures Here -->
 	<div class="card shadow row justify-content-center" style="padding: 1%;">
 		<label style='color: blue;'class="form-control">List of Fixtures</label>
+		<?php
+			$fileName = basename($_SERVER['PHP_SELF']);
+			if(!isset($_GET['type'])){
+				$current_type = '*';
+				$type='All Types';
+			}
+			else{
+				$current_type = $_GET['type'];
+				if($current_type=='*'){
+					$type = 'All Types';
+				}
+				else{
+					$type = $current_type;
+				}
+			}
+			// Get Categories
+			$getCategories = mysqli_query($mysqli, "SELECT DISTINCT type FROM fixture ");
+		?>
+		<div class="row col-md-12">
+			<div class="col-md-6 mb-1" style="text-align: center;"><b>Select Type:</b> </div>
+			<div class="col-md-6 mb-1" style="text-align: center;">
+				<select class="form-control" onchange="location = this.value;">
+					<option disabled selected>Select Fixture</option>
+					<?php while($newCategories=$getCategories->fetch_assoc()){  ?>
+					<option value="<?php echo $fileName.'?type='.$newCategories['type'];?>" <?php if($current_type==$newCategories['type']){echo "selected";} ?> >
+						<?php echo strtoupper($newCategories['type']); ?>
+					</option>
+					<?php } ?>
+					<option value="<?php echo $fileName.'?type=*';?>">All Type</option>
+				</select>
+			</div>
+		</div>
 		<!-- Show Added Fixtures -->
 		<table class="table" id="dataTable" width="100%" cellspacing="0">
 			<thead>
@@ -61,15 +93,30 @@ $_SESSION['getURI'] = $getURI;
 				<th>Actions</th>
 			</thead>
 			<tbody>
-				<?php $getFixtures = mysqli_query($mysqli, "SELECT fe.id, fe.date_added, fe.serial_no, fe.type, fe.batch_code, fe.building_id, fe.lab_id, fe.remarks, bg.building_id, bg.building_name, ly.lab_id, ly.lab_name
-			FROM fixture fe
-			JOIN building bg
-			ON bg.building_id = fe.building_id
-			JOIN laboratory ly
-			ON ly.lab_id = fe.lab_id
-			WHERE fe.lab_id <> 'stock_room'
-			ORDER BY fe.date_added DESC
-			"); 
+				<?php
+				if($current_type=="*"){
+					$getFixtures = mysqli_query($mysqli, "SELECT fe.id, fe.date_added, fe.serial_no, fe.type, fe.batch_code, fe.building_id, fe.lab_id, fe.remarks, bg.building_id, bg.building_name, ly.lab_id, ly.lab_name
+						FROM fixture fe
+						JOIN building bg
+						ON bg.building_id = fe.building_id
+						JOIN laboratory ly
+						ON ly.lab_id = fe.lab_id
+						WHERE fe.lab_id <> 'stock_room'
+						ORDER BY fe.date_added DESC
+						");
+				}
+				else{
+					$getFixtures = mysqli_query($mysqli, "SELECT fe.id, fe.date_added, fe.serial_no, fe.type, fe.batch_code, fe.building_id, fe.lab_id, fe.remarks, bg.building_id, bg.building_name, ly.lab_id, ly.lab_name
+					FROM fixture fe
+					JOIN building bg
+					ON bg.building_id = fe.building_id
+					JOIN laboratory ly
+					ON ly.lab_id = fe.lab_id
+					WHERE fe.lab_id <> 'stock_room' AND
+					fe.type = '$current_type'
+					ORDER BY fe.date_added DESC
+					");
+				}
 			while($newFixtures=$getFixtures->fetch_assoc()){
 			?>
 				<tr>
@@ -93,13 +140,64 @@ $_SESSION['getURI'] = $getURI;
 		</table>
 	</div>
 
-	<br/>
-	<br/>
-<script type="text/javascript">
-	$('#example').dataTable( {
-  "pageLength": 50
-} );
-</script>
 	<?php
-	include('footer.php');
-?>
+		include('footer.php');
+	?>
+<style type="text/css">
+	/*
+	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
+	*/
+@media
+only screen
+and (max-width: 760px), (min-device-width: 768px)
+and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr {
+		margin: 0 0 1rem 0;
+	}
+
+	tr:nth-child(odd) {
+		padding: 1%;
+		width: 100%;
+		border-bottom: 2px solid grey;
+		border-top: 2px solid grey;
+		background: #fcfce3;
+	}
+	    
+	td {
+		border-bottom: 1px solid #eee;
+		position: relative;
+	}
+
+	td:before {
+		top: 0;
+		width: 45%;
+		padding-right: 5%;
+		white-space: nowrap;
+	}
+
+	/*
+	Label the data
+	You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+	*/
+	td:nth-of-type(1):before { content: "Type:"; font-weight: bold;}
+	td:nth-of-type(2):before { content: "Batch ID:"; font-weight: bold; }
+	td:nth-of-type(3):before { content: "Serial No:"; font-weight: bold; }
+	td:nth-of-type(4):before { content: "Building:"; font-weight: bold; }
+	td:nth-of-type(5):before { content: "Room Laboratory: "; font-weight: bold; }
+	td:nth-of-type(6):before { content: "Remarks: "; font-weight: bold; }
+	td:nth-of-type(7):before { content: "Actions: "; font-weight: bold; }
+}
+</style>
+<!-- EOF -->

@@ -237,3 +237,4 @@ else{
 	<?php
 	include('footer.php');
 ?>
+<!-- EOF -->

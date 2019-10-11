@@ -61,7 +61,7 @@ $isUpdate = false;
 	}
 	?>
 	<div class="car shadow row justify-content-center" style="padding: 1%;">
-	<form action="process_add_peripheral.php" method="POST">
+	<form style="width: 100%;" action="process_add_peripheral.php" method="POST">
 	<h5 style="color: blue;" >
 	<?php 
 	if(!isset($_GET['PcId'])){
@@ -69,27 +69,23 @@ $isUpdate = false;
 	}
 	else{
 		echo $PcName." Peripherals</h5>";
-		?><input type="form-control" name="unit_id" style="visibility: hidden;" value="<?php echo $PcId; ?>">
-			<table class='table' style="">
-		<thead>
-			<tr>
-				<td colspan="6"><strong>Instructions:</strong><br>A. Please fill out the fields carefully.<br>
-				B. Type NA if not applicable.<br>
-				</td>
-				<td><a class="btn btn-sm btn-danger" href="<?php echo $getURI; ?>"><i class="fas as fa-sync"></i> Clear Fields</a></td> 
-			</tr>
-		</thead>
+		?>
+		<input type="form-control" name="unit_id" style="visibility: hidden;" value="<?php echo $PcId; ?>">
+		<strong class="float-left">Instructions:</strong><br>A. Please fill out the fields carefully.<br>B. Type NA if not applicable.
 		<!-- Start Monitor -->
-			<tr>
-					<th>Type</th>
-					<th>Brand<font color="red">*</font></th>
-					<th>Description</th>
-					<th>Serial Number<font color="red">*</font></th>
-					<th>Date Purchased<font color="red" >*</font></th>
-					<th style="width: 10%;">Amount<font color="red">*</font></th>
-					<th>Date Issued<font color="red">*</font></th>
-					<th style="width: 25%;" colspan="2">Remarks<font color="red">*</font></th>
-			</tr>
+		<table class='table' width="100%" style="" role="table">
+			<thead>
+				<tr>
+						<th>Type</th>
+						<th>Brand<font color="red">*</font></th>
+						<th>Description</th>
+						<th>Serial Number<font color="red">*</font></th>
+						<th>Date Purchased<font color="red" >*</font></th>
+						<th style="width: 10%;">Amount<font color="red">*</font></th>
+						<th>Date Issued<font color="red">*</font></th>
+						<th style="width: 25%;">Remarks<font color="red">*</font></th>
+				</tr>
+			</thead>
 			<?php
 				$getMonitor=$mysqli->query("SELECT * FROM peripherals WHERE unit_id=$PcId AND peripheral_type='Monitor'") or die ($mysqli->error());
 				$newMonitor = $getMonitor->fetch_array();
@@ -102,7 +98,7 @@ $isUpdate = false;
 				}
 			?>
 			<tr>
-				<th>Monitor</th>
+				<td>Monitor</td>
 				<td><input class="form-control" type="text" name="monitor-brand" value="<?php if($isMonitor){echo $newMonitor['peripheral_brand'];}else{/*Do nothing*/}?>" required	></td>
  				<td><textarea  class="form-control" name="monitor-description" style="min-height: 40px; height: 40px;" required><?php if($isMonitor){echo $newMonitor['peripheral_description'];}else{/*Do nothing*/}?></textarea></td>
  				<td><input class="form-control" type="text" name="monitor-serialno" value="<?php if($isMonitor){echo $newMonitor['peripheral_serial_no'];}else{/*Do nothing*/}?>" required></td>
@@ -135,7 +131,7 @@ $isUpdate = false;
 				}
 			?>
 			<tr>
-				<th>Keyboard</th>
+				<td>Keyboard</td>
 				<td><input class="form-control" type="text" name="keyboard-brand" value="<?php if($newKeyboard){echo $newKeyboard['peripheral_brand'];}else{/*Do nothing*/}?>"></td>
  				<td><textarea class="form-control" name="keyboard-description" style="min-height: 40px; height: 40px;"><?php if($newKeyboard){echo $newKeyboard['peripheral_description'];}else{/*Do nothing*/}?></textarea></td>
  				<td><input class="form-control" type="text" name="keyboard-serialno" value="<?php if($newKeyboard){echo $newKeyboard['peripheral_serial_no'];}else{/*Do nothing*/}?>"></td>
@@ -168,7 +164,7 @@ $isUpdate = false;
 				}
 			?>
 			<tr>
-				<th>Mouse</th>				
+				<td>Mouse</td>				
 				<td><input class="form-control" type="text" name="mouse-brand" value="<?php if($isMouse){echo $newMouse['peripheral_brand'];}else{/*Do nothing*/}?>"></td>
  				<td><textarea class="form-control" name="mouse-description" style="min-height: 40px; height: 40px;"><?php if($isMouse){echo $newKeyboard['peripheral_description'];}else{/*Do nothing*/}?></textarea></td>
  				<td><input class="form-control" type="text" name="mouse-serialno" value="<?php if($isMouse){echo $newMouse['peripheral_serial_no'];}else{/*Do nothing*/}?>"></td>
@@ -201,7 +197,7 @@ $isUpdate = false;
 				}
 			?>
 			<tr>
-				<th>AVR</th>
+				<td>AVR</td>
 				<td><input class="form-control" type="text" name="AVR-brand" value="<?php if($isAVR){echo $newAVR['peripheral_brand'];}else{/*Do nothing*/}?>"></td>
 				<td><textarea class="form-control" name="AVR-description" style="min-height: 40px; height: 40px;"><?php if($isAVR){echo $newAVR['peripheral_description'];}else{/*Do nothing*/}?></textarea></td>
  				<td><input class="form-control" type="text" name="AVR-serialno" value="<?php if($isAVR){echo $newAVR['peripheral_serial_no'];}else{/*Do nothing*/}?>"></td>
@@ -234,7 +230,7 @@ $isUpdate = false;
 				}
 			?>
 			<tr>
-				<th>Headset</th>
+				<td>Headset</td>
 				<td><input class="form-control" type="text" name="headset-brand" value="<?php if($isHeadset){echo $newHeadset['peripheral_brand'];}else{/*Do nothing*/}?>"></td>
 				<td><textarea class="form-control" name="headset-description" style="min-height: 40px; height: 40px;"><?php if($isHeadset){echo $newHeadset['peripheral_description'];}else{/*Do nothing*/}?></textarea></td>
  				<td><input class="form-control" type="text" name="headset-serialno" value="<?php if($isHeadset){echo $newHeadset['peripheral_serial_no'];}else{/*Do nothing*/}?>"></td>
@@ -269,7 +265,7 @@ $isUpdate = false;
 					$isCPU = true;
 				}
 			?>
-			<tr>
+			<tr class="second-heading">
 					<th>Type</th>
 					<th>Brand<font color="red">*</font></th>
 					<th>Description</th>
@@ -277,10 +273,10 @@ $isUpdate = false;
 					<th>Date Purchased<font color="red">*</font></th>
 					<th>Amount<font color="red">*</font></th>
 					<th>Date Issued<font color="red">*</font></th>
-					<th style="width: 25%;" colspan="2">Remarks<font color="red">*</font></th>
+					<th>Remarks<font color="red">*</font></th>
 			</tr>
 			<tr>
-				<th>Processor (CPU)</th>
+				<td>Processor (CPU)</td>
 				<td><input class="form-control" type="text" name="cpu-brand" value="<?php if($isCPU){echo $newCPU['peripheral_brand'];}else{/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="text" name="cpu-description" value="<?php if($isCPU){echo $newCPU['peripheral_description'];}else{/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="text" name="cpu-serialno" value="<?php if($isCPU){echo $newCPU['peripheral_serial_no'];}else{/*Do nothing*/}?>"></td>
@@ -313,7 +309,7 @@ $isUpdate = false;
 				}
 			?>
 			<tr>
-				<th>Motherboard</th>
+				<td>Motherboard</td>
 				<td><input class="form-control" type="text" name="motherboard-brand" value="<?php if($isMotherboard){echo $newMotherboard['peripheral_brand'];}else{/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="text" name="motherboard-description" value="<?php if($isMotherboard){echo $newMotherboard['peripheral_description'];}else{/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="text" name="motherboard-serialno" value="<?php if($isMotherboard){echo $newMotherboard['peripheral_serial_no'];}else{/*Do nothing*/}?>"></td>
@@ -346,7 +342,7 @@ $isUpdate = false;
 				}
 			?>
 			<tr>
-				<th>Graphics Card (GPU)</th>
+				<td>Graphics Card (GPU)</td>
 				<td><input class="form-control" type="text" name="gpu-brand" value="<?php if($isGPU){echo $newGPU['peripheral_brand'];}else{/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="text" name="gpu-description" value="<?php if($isGPU){echo $newGPU['peripheral_description'];}else{/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="text" name="gpu-serialno" value="<?php if($isGPU){echo $newGPU['peripheral_serial_no'];}else{/*Do nothing*/}?>"></td>
@@ -379,7 +375,7 @@ $isUpdate = false;
 				}
 			?>
 			<tr>
-				<th>RAM</th>
+				<td>RAM</td>
 				<td><input class="form-control" type="text" name="ram-brand" value="<?php if($isRAM){echo $newRAM['peripheral_brand'];}else{/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="text" name="ram-description" value="<?php if($isRAM){echo $newRAM['peripheral_description'];}else{/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="text" name="ram-serialno" value="<?php if($isRAM){echo $newRAM['peripheral_serial_no'];}else{/*Do nothing*/}?>"></td>
@@ -412,7 +408,7 @@ $isUpdate = false;
 				}
 			?>
 			<tr>
-				<th>Hard Disk Drive</th>
+				<td>Hard Disk Drive</td>
 				<td><input class="form-control" type="text" name="hdd-brand" value="<?php if($isHDD){echo $newHDD['peripheral_brand'];}else{/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="text" name="hdd-description" value="<?php if($isHDD){echo $newHDD['peripheral_description'];}else{/*Do nothing*/}?>"></td>
  				<td><input class="form-control" type="text" name="hdd-serialno"  value="<?php if($isHDD){echo $newHDD['peripheral_serial_no'];}else{/*Do nothing*/}?>"></td>
@@ -453,3 +449,65 @@ $isUpdate = false;
 	<?php
 	include('footer.php');
 ?>
+<style type="text/css">
+	/*
+	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
+	*/
+@media
+only screen
+and (max-width: 760px), (min-device-width: 768px)
+and (max-device-width: 1024px)  {
+	/* Hide when not in use */
+	.second-heading{
+		display: none;
+	}
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr {
+		margin: 0 0 1rem 0;
+	}
+
+	tr:nth-child(odd) {
+		background: none;
+		padding: 1%;
+		width: 100%;
+		border-bottom: 2px solid grey;
+		border-top: 2px solid grey;
+	}
+	    
+	td {
+		border-bottom: 1px solid #eee;
+		position: relative;
+	}
+
+	td:before {
+		top: 0;
+		width: 45%;
+		padding-right: 1%;
+		white-space: nowrap;
+	}
+
+	/*
+	Label the data
+	You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+	*/
+	td:nth-of-type(1):before { content: "Type:"; font-weight: bold;}
+	td:nth-of-type(2):before { content: "Brand:"; font-weight: bold; }
+	td:nth-of-type(3):before { content: "Description:"; font-weight: bold; }
+	td:nth-of-type(4):before { content: "Serial Number:"; font-weight: bold; }
+	td:nth-of-type(5):before { content: "Date Purchased:"; font-weight: bold; }
+	td:nth-of-type(6):before { content: "Amount:"; font-weight: bold; }
+	td:nth-of-type(7):before { content: "Date Issued:"; font-weight: bold; }
+	td:nth-of-type(8):before { content: "Remarks:"; font-weight: bold; }
+}
+</style>
+<!-- EOF -->
