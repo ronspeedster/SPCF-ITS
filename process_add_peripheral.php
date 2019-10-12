@@ -350,20 +350,3 @@
 		header('location: for_repair.php');
 	}
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

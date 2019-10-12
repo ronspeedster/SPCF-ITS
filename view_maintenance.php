@@ -82,9 +82,9 @@ $currentDate = date('Y/m/d');
 				<td><?php echo $newMaintenanceRequest['requested_by']; ?></td>
 				<td><?php echo $newMaintenanceRequest['date_action_taken']; ?></td>
 				<td><?php echo ($diff = date_diff($date1,$date2))->format('%a');?></td>
-				<td><a target='_blank' href="request_maintenance.php?edit=<?php echo $newMaintenanceRequest['id']; ?>" class="btn btn-info btn-sm"><i class="far fa-edit"></i> Edit</a>
+				<td><a target='_blank' href="request_maintenance.php?edit=<?php echo $newMaintenanceRequest['id']; ?>" class="btn btn-info btn-sm mb-1"><i class="far fa-edit"></i> Edit</a>
 					<!-- Start Drop down Delete here -->
-					<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm mb-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="far fa-trash-alt"></i> Delete
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton btn-sm">

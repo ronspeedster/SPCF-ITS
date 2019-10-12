@@ -85,6 +85,7 @@ nav ul{
 nav ul li a{
   white-space: normal !important;
 }
+
 </style>
 
   <meta charset="utf-8">
@@ -142,7 +143,7 @@ nav ul li a{
           <span>Buildings</span>
         </a>
         <div id="buildings" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
+          <div class="bg-white py-2 collapse-inner rounded" >
             <h6 class="collapse-header">Customize Buildings:</h6>
             <a class="collapse-item" href="building.php"><i class="fas fa-fw fa-building"></i> Add / Edit Buildings</a>
             <a class="collapse-item" href="laboratories.php"><i class="fas fa-person-booth"></i> Add / Edit Laboratories and Rooms</a>
@@ -225,6 +226,23 @@ nav ul li a{
         </div>
       </li>
 
+      <!-- Nav Items - Vehicles -->
+      <li class="nav-item <?php if($currentItem=='vehicles'){echo 'active';} ?>">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#vehicles" aria-expanded="true" aria-controls="equipments">
+          <i class="fas fa-shuttle-van"></i>
+          <span>Vehicles</span>
+        </a>
+        <div id="vehicles" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Vehicles:</h6>
+            <a class="collapse-item" href="vehicle.php"><i class="fas fa-truck-pickup"></i> Add / Edit Vehicles </span></a>
+            <a class="collapse-item" href="vehicle_expense.php"><i class="fas fa-cogs"></i> Add Expenses</a>
+            <h6 class="collapse-header">Expenses:</h6>
+            <a class="collapse-item" href="#"><i class="fas fa-eye"></i> View Vehicle Expenses</a>
+          </div>
+        </div>
+      </li>
+
       <!-- Nav Items - Stock Rooms -->
       <li class="nav-item <?php if($currentItem=='stock_room'){echo 'active';} ?> ">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#stock_room" aria-expanded="true" aria-controls="equipments">
@@ -238,19 +256,6 @@ nav ul li a{
             <a class="collapse-item" href="#"><i class="fas fa-couch"></i> Stock Room (Accounting)</a>
           </div>
         </div>
-      </li>
-      
-      <!-- Nav Item - Defective Equipment -->
-      <li style="display: none;" class="nav-item <?php if($currentItem=='defect_equipment'){echo 'active';} ?>">
-        <a class="nav-link" href="defect_equipment.php">
-          <i class="fas fa-fw fa-unlink"></i>
-          <span>Defective Equipment</span></a>
-      </li>
-
-      <!-- Nav Item - Fixed Equipment -->
-      <li style="display: none;" class="nav-item">
-        <a class="nav-link" href="#">
-          <span>Fixed Equipment</span></a>
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
