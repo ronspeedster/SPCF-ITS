@@ -361,15 +361,67 @@ else{
       <?php
       $buildingName = $newPCInformation['building_name'];
       $roomName = $newPCInformation['lab_name'];
-      $unitName = $newPCInformation['unit_name'];
-    } ?>
+      $unitName = $newPCInformation['unit_name']; 
+    }
+    if(mysqli_num_rows($getPCInformation)==0){
+      $noParts=true;
+    }
+    else{
+       $noParts=false;
+    }
+    ?>
     
-    <span style="text-align: center; margin-top: 2rem;"> 
-      <h4 class="btn btn-block btn-lg btn-success"><b>PC: <?php echo $unitName; ?></b></h4><br/>
-      <h5 class="btn btn btn-block btn-warning btn-lg text-uppercase"  style="color: #5D4037 !important;">Building: <b><?php echo $buildingName; ?></b>
-        ,Room: <b><?php echo $roomName; ?></b></h5>
+    <span style="text-align: center; margin-top: 2rem;<?php if($noParts){echo 'display: none;';} ?>"> 
+      <h4 class="btn btn-block btn-lg btn-success">
+        <b>
+          PC: <?php echo $unitName; ?>            
+        </b>
+      </h4>
+      <br/>
+      <span class="text-primary"><center>Current Location</center></span>
+      <h5 class="btn btn btn-block btn-warning btn-lg text-uppercase"  style="color: #5D4037 !important;">
+        Building: <b><?php echo $buildingName; ?></b>
+        ,Room: <b><?php echo $roomName; ?></b>
+      </h5>
+      <?php
+      $getPCOrigin = $mysqli->query("SELECT * FROM equipment_transfer e
+          JOIN unit_pc up
+          ON up.unit_id = e.equipment_id
+          JOIN building b
+          ON b.building_id = e.from_building
+          JOIN laboratory l
+          ON l.lab_id = e.from_lab
+          WHERE e.type = 'PC' AND e.equipment_id = '$id' ") or die ($mysqli->error);
+        //print_r($getPCOrigin);
+      if(mysqli_num_rows($getPCOrigin)==0){
+      ?>
+      <span class="text-primary"><center>Previous Location</center></span>
+      <h5 class="btn btn btn-block btn-secondary btn-lg text-uppercase"  style="color: #5D4037 !important;">
+      NO PC ORIGIN AT THE MOMENT
+      </h5>
+      <?php
+      }
+      else{
+        $newPCOrigin = $getPCOrigin->fetch_array();
+      ?>
+      <span class="text-primary"><center>Previous Location</center></span>
+      <h5 class="btn btn btn-block btn-primary btn-lg text-uppercase"  style="color: white !important;">
+        Building: <b><?php echo $newPCOrigin['building_name']; ?>,</b> Room: <b><?php echo $newPCOrigin['lab_name']; ?></b>
+      </h5>      
+      <?php
+      }
+      ?>
     </span>
+    <!-- If no parts -->
+    <span style="text-align: center; margin-top: 2rem;<?php if(!$noParts){echo 'display: none;';} ?>"> 
+      <br/>
+      <h5 class="btn btn btn-block btn-warning btn-lg text-uppercase"  style="color: #5D4037 !important;">
+        It appears this PC does not have any peripherals yet. Please add one.
+      </h5>
+    </span>    
     </div>
+
+    <!-- AIRCON -->
     <div style="<?php if(!$isaircon){echo 'display: none;';} ?>">
       <?php
 

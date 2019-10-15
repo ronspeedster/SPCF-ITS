@@ -173,11 +173,13 @@ $_SESSION['getURI'] = $getURI;
 				$getUnitID =  $newGetPCResults['unit_id'];
 				$checkPeripheralExistence = $mysqli->query("SELECT * FROM peripherals WHERE unit_id = $getUnitID") or die ($mysqli->error);
 				if(mysqli_num_rows($checkPeripheralExistence)==0){
+					$noParts=true;
 		?>
 				<a target="_blank" href="add_peripheral.php?PcId=<?php echo $newGetPCResults['unit_id']; ?>" class="btn btn-primary btn-sm mb-1"><i class="far fa-plus-square"></i> Add PC Parts</a>
 		<?php
 				}
 				else{
+					$noParts=false;
 		?>
 				<a target="_blank" href="add_peripheral.php?PcId=<?php echo $newGetPCResults['unit_id']; ?>" class="btn btn-success btn-sm mb-1"><i class="far fa-edit"></i> Edit PC Parts</a>
 		<?php			
@@ -185,7 +187,10 @@ $_SESSION['getURI'] = $getURI;
 		?>
 					<!-- Update 2019-09-25 add QR -->
 					<!-- While the subdomain is not available, change the ip address -->
-					<a target="_blank" class="btn btn-primary btn-sm mb-1" href="generate_qr.php?data=https://192.168.2.1/spcf-its/scan_qr.php?ispc=true$id=<?php echo $getUnitID; ?>"><i class="fas fa-qrcode"></i> Generate QR</a>
+					<a target="_blank" class="btn btn-primary btn-sm mb-1 <?php if($noParts){echo 'not-active';} ?>" href="generate_qr.php?data=https://192.168.2.1/spcf-its/scan_qr.php?ispc=true$id=<?php echo $getUnitID; ?>" >
+						<i class="fas fa-qrcode"></i>
+						Generate QR
+					</a>
 					<button class="btn btn-danger btn-secondary dropdown-toggle btn-sm mb-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="far fa-trash-alt"></i> Delete
 					</button>
@@ -263,6 +268,12 @@ else{
 	/*
 	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
 	*/
+.not-active {
+	pointer-events: none;
+	cursor: default;
+	text-decoration: line-through;
+	color: white;
+}
 @media
 only screen
 and (max-width: 760px), (min-device-width: 768px)
