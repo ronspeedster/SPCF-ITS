@@ -55,10 +55,10 @@
 	}
 
 	if(isset($_POST['submit_expense_vehicle'])){
-		echo $vehicle_id = $_POST['vehicle_id'];
-		echo $expense_type = strtoupper($_POST['expense_type']);
-		echo $expense_description = $_POST['expense_description'];
-		echo $expense_cost = $_POST['expense_cost'];
+		$vehicle_id = $_POST['vehicle_id'];
+		$expense_type = strtoupper($_POST['expense_type']);
+		$expense_description = $_POST['expense_description'];
+		$expense_cost = $_POST['expense_cost'];
 		$currentDate = date_default_timezone_set('Asia/Manila');
 		$currentDate = date('Y-m-d-H-i-s');
 		//$image_receipt = $_FILES['image_receipt']; 
