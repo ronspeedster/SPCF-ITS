@@ -83,7 +83,7 @@ include('sidebar.php');
 			<input type="file" name="expense_receipt" accept="image/*" value="Upload Receipt" required>
 		</div>
 		<div class="col-md-2 mb-1" style="padding: 1%; margin: auto;">
-			<span class="font-weight-bold" style=""><center>Cost</center></span>
+			<span class="font-weight-bold" style=""><center>Cost in ₱eso</center></span>
 			<input type="number" name='expense_cost' class="form-control" placeholder="0.00" min="0" step="0.01" required>
 		</div>
 		<div class="col-md-2 mb-1" style="padding: 1%; margin: auto;">
@@ -99,7 +99,7 @@ include('sidebar.php');
 			
 	<!-- End Building Here -->
 	<!-- Show Added laboratories Here-->
-	<h4 style='color: blue;' class="form-control">List of Rooms and Laboratories</h4>	
+	<h4 style='color: blue;' class="form-control">List Vehicle Expense</h4>	
 	<br/>
 	<div class="table-responsive">
 	<table class="table" id="dataTable" width="100%" cellspacing="0" role="table">
@@ -109,7 +109,7 @@ include('sidebar.php');
 				<th role="columnheader">Vehicle</th>
 				<th role="columnheader">Plate No.</th>
 				<th role="columnheader">Expense Type</th>
-				<th role="columnheader">Expense Cost</th>
+				<th role="columnheader">Expense Cost ₱</th>
 				<th role="columnheader">Date</th>
 				<th role="columnheader">Image</th>
 			</tr>
@@ -121,7 +121,7 @@ include('sidebar.php');
 				<td role="cell"><?php echo $newVehicleExpense['name']; ?></td>
 				<td role="cell"><?php echo $newVehicleExpense['plate_no']; ?></td>
 				<td role="cell"><?php echo $newVehicleExpense['expense_type']; ?></td>
-				<td role="cell"><?php echo $newVehicleExpense['expense_cost']; ?></td>
+				<td role="cell"><?php echo '₱'.$newVehicleExpense['expense_cost']; ?></td>
 				<td role="cell"><?php echo $newVehicleExpense['date_added']; ?></td>
 				<td role="cell"><a class="btn btn-sm btn-info" href="img/assets/<?php echo $newVehicleExpense['file_name'] ?>" target="_blank"><i class="far fa-image"></i> Image</a></td>
 			</tr>
