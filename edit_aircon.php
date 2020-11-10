@@ -113,6 +113,7 @@ $_SESSION['getURI'] = $getURI;
 								<option value="wall-mounted">Wall Mounted</option>
 								<option value="ceiling-mounted">Ceiling Mounted</option>
 								<option value="floor-mounted">Floor Mounted</option>
+								<option value="casette">Casette</option>
 							</select></td>
 							<td width="5%" style="display: none;">
 								<select class="form-control" onchange="location = this.value;" disabled>
