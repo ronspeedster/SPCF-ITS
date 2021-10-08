@@ -94,7 +94,13 @@
                       <!-- Progress -->
                                             <br/>
                           <?php $totalPCForRepair = $newCountPeripheralForRepair['COUNT(peripheral_id)'] + $newCountPeripheralFixed['COUNT(peripheral_id)'];
-                                $totalPCForRepair =  ($newCountPeripheralFixed['COUNT(peripheral_id)'] / $totalPCForRepair)*100;
+                                if($totalPCForRepair == 0){
+                                  $totalPCForRepair =100;
+                                }
+                                else{
+                                  $totalPCForRepair =  ($newCountPeripheralFixed['COUNT(peripheral_id)'] / $totalPCForRepair)*100;
+                                }
+                                
                                 $totalPCForRepair = number_format($totalPCForRepair, 2, '.', '');
                                 ?>
                           <div class="text-xs mb-0 mr-3 font-weight-bold text-gray-800">PROGRESS: <?php echo $totalPCForRepair; ?>%</div>

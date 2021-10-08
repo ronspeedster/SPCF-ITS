@@ -148,7 +148,7 @@ include('process_misc_things.php');
 <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; SYSTEMS PLUS COLLEGE FOUNDATION - ICTDU 2019</span>
+            <span>Copyright &copy; SYSTEMS PLUS COLLEGE FOUNDATION - ICTDU 2021</span>
           </div>
         </div>
 </footer>

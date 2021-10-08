@@ -94,14 +94,17 @@
 					<option value="computerTable">Computer Table</option>
 					<option value="monoBlocChair">Mono Bloc Chair</option>
 					<option value="officeTable">Office Table</option>
-					<option value="officeChair">Office Chair</option>
-					<option value="flourescentLights">Flourescent Lights</option>
+					<option value="chair">chair</option>
+					<option value="lights">Lights</option>
+					<option value="electronics">Electronics</option>
+					<option value="comfortRoom">Comfort Room</option>
+					<option value="flooring">FLooring</option>
 					<option disabled>Select Type</option>
 				</select>
 			</div>
 			<div class="col-md-2 mb-1" style="padding: 1%; margin: auto;">
 				<span class="font-weight-bold" style=""><center>Qty</center></span>
-				<input type="number" name="qty" class="form-control" min='1' max='10' placeholder="0" required>
+				<input type="number" name="qty" class="form-control" min='1' max='999999999999' placeholder="0" required>
 			</div>
 			<div class="col-md-2 mb-1" style="padding: 1%; margin: auto;">
 				<span class="font-weight-bold" style=""><center>Actions</center></span>

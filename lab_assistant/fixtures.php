@@ -98,6 +98,8 @@ $account_id = $_SESSION['account_id'];
 					<option value="officeTable">Office Table</option>
 					<option value="officeChair">Office Chair</option>
 					<option value="flourescentLights">Flourescent Lights</option>
+					<option value="electronics">Electronics</option>
+					<option value="comfortRoom">Comfort Room</option>
 					<option disabled>Select Type</option>
 				</select>
 			</td>
